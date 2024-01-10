@@ -25,9 +25,37 @@
     </nav>
 </header>
 <body>
-<div class = "reservation-box">
-
-</div>
+    <div class = "reservation-box">
+        <h1>Wat wil je boeken</h1>
+        <form action = "#" method="POST">
+            <input type = "radio" name = "service" id = "catering">
+                <img class = "catering">
+                <label for = "service1"> Catering </label>
+            <input type = "radio" name = "service" id = "workshop">
+                <img class = "workshop">
+                <label for = "service2"> Workshop </label>
+            <label for = "date" >Voor welke datum?</label>
+            <input type = "date" name = "date" id = "date">
+            <div class = "available-time">
+                <p>16:00-17:00</p>
+                <p>prijs</p>
+                <input type = "radio" name = "time" id = "time">
+            </div>
+            <div class = "available-time">
+                <p>17:00-18:00</p>
+                <p>prijs</p>
+                <input type = "radio" name = "time" id = "time">
+            </div>
+            <div class = "available-time">
+                <p>18:00-19:00</p>
+                <p>prijs</p>
+                <input type = "radio" name = "time" id = "time">
+            </div>
+            <input type = "number" name = "amount_people" min = "2" max = "16">
+            <label for = "amount_people">Amount of people</label>
+            <button type = "submit">Reserveren!</button>
+        </form>
+    </div>
 </body>
 <footer>
     <img class="logo" src="">
