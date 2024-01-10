@@ -8,6 +8,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/reservation.css">
     <title>Denise Kookt</title>
 </head>
 <header>
@@ -25,37 +26,43 @@
     </nav>
 </header>
 <body>
-    <div class = "reservation-box">
-        <h1>Wat wil je boeken</h1>
-        <form action = "#" method="POST">
-            <input type = "radio" name = "service" id = "catering">
-                <img class = "catering">
-                <label for = "service1"> Catering </label>
-            <input type = "radio" name = "service" id = "workshop">
-                <img class = "workshop">
-                <label for = "service2"> Workshop </label>
-            <label for = "date" >Voor welke datum?</label>
-            <input type = "date" name = "date" id = "date">
-            <div class = "available-time">
-                <p>16:00-17:00</p>
-                <p>prijs</p>
-                <input type = "radio" name = "time" id = "time">
-            </div>
-            <div class = "available-time">
-                <p>17:00-18:00</p>
-                <p>prijs</p>
-                <input type = "radio" name = "time" id = "time">
-            </div>
-            <div class = "available-time">
-                <p>18:00-19:00</p>
-                <p>prijs</p>
-                <input type = "radio" name = "time" id = "time">
-            </div>
-            <input type = "number" name = "amount_people" min = "2" max = "16">
-            <label for = "amount_people">Amount of people</label>
-            <button type = "submit">Reserveren!</button>
-        </form>
-    </div>
+<div class="reservation-box">
+    <h1>Wat wil je boeken</h1>
+    <form action="#" method="POST">
+        <div class="flex-side">
+            <input type="radio" name="service" id="catering">
+            <img class="catering">
+            <label for="service1"> Catering </label>
+            <input type="radio" name="service" id="workshop">
+            <img class="workshop">
+            <label for="service2"> Workshop </label>
+        </div>
+        <div class="flex-down">
+            <label for="date">Voor welke datum?</label>
+            <input type="date" name="date" id="date">
+        </div>
+        <div class="available-time">
+            <p>16:00-17:00</p>
+            <p>prijs</p>
+            <input type="radio" name="time" id="time">
+        </div>
+        <div class="available-time">
+            <p>17:00-18:00</p>
+            <p>prijs</p>
+            <input type="radio" name="time" id="time">
+        </div>
+        <div class="available-time">
+            <p>18:00-19:00</p>
+            <p>prijs</p>
+            <input type="radio" name="time" id="time">
+        </div>
+        <div class="flex-down">
+            <label for="amount_people">Amount of people</label>
+            <input type="number" name="amount_people" min="2" max="16">
+            <button type="submit">Reserveren!</button>
+        </div>
+    </form>
+</div>
 </body>
 <footer>
     <img class="logo" src="">
