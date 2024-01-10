@@ -41,6 +41,10 @@
             <label for="date">Voor welke datum?</label>
             <input type="date" name="date" id="date">
         </div>
+        <div class="flex-down">
+            <label for="amount_people">Amount of people</label>
+            <input type="number" name="amount_people" min="2" max="16">
+        </div>
         <div class="available-time">
             <p>16:00-17:00</p>
             <p>prijs</p>
@@ -56,11 +60,7 @@
             <p>prijs</p>
             <input type="radio" name="time" id="time">
         </div>
-        <div class="flex-down">
-            <label for="amount_people">Amount of people</label>
-            <input type="number" name="amount_people" min="2" max="16">
-            <button type="submit">Reserveren!</button>
-        </div>
+        <button type="submit">Reserveren!</button>
     </form>
 </div>
 </body>
