@@ -1,16 +1,32 @@
-.flex-side{
-    display: flex;
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Libre+Baskerville&family=Mulish&family=Roboto+Mono:wght@300&family=Titan+One&display=swap');
+body{
+    margin:0;
 }
-.flex-down{
+nav{
+    background-color: #84A59D;
+    width: 100%;
+    font-family: 'Libre Baskerville', serif;
     display: flex;
-    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
-.available-time{
+.header-link-text{
+    text-decoration: none;
+    color: #f7EDE2;
+}
+img{
+    width: 4rem;
+}
+.nav-right{
     display: flex;
-    gap: 1rem;
+    align-items: center;
+}
+nav a:hover{
+    border-bottom: 3px solid #f7EDE2;
+}
+.nav-right a{
+    padding: 1rem;
+    border-bottom: 3px solid transparent;
+    border-top: 3px solid transparent;
 }
 
-.reservation-box{
-    max-width: 50vw;
-    margin: auto;
-}

@@ -14,7 +14,7 @@
 <header>
     <nav>
         <div class="nav-right">
-            <img class="logo" src="">
+            <img class="logo" src="img/logo_denisekookt.png">
             <a class="header-link-text" href="#">Reserveren</a>
             <a class="header-link-text" href="#">Over ons</a>
             <a class="header-link-text" href="#">Nieuws</a>
