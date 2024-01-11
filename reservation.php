@@ -5,6 +5,23 @@ ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 require_once 'includes/database.php';
+
+$errors = [];
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["service"])) {
+        $errors['service'] = 'Dienst is vereist';
+    } else {
+        $brand = mysqli_real_escape_string($db, $_POST['service']);
+    }
+    if (empty($_POST["date"])) {
+        $errors['date'] = 'Datum is vereist';
+    } else {
+        $brand = mysqli_real_escape_string($db, $_POST['date']);
+    }
+
+   // echo($errors['service']);
+}
 ?>
 <!doctype html>
 <html lang="en">
