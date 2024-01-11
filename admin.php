@@ -65,19 +65,6 @@ mysqli_close($db);
 </table>
 </div>
 
-<div class="month">
-    <ul>
-        <li class="prev">&#10094;</li>
-        <li class="next">&#10095;</li>
-        <li>January<br><span style="font-size:18px">2024</span></li>
-    </ul>
-</div>
-
-<?php
-include 'Calendar.php';
-$calendar = new Calendar();
-?>
-
 </body>
 <footer>
     <div class = "footer-style">

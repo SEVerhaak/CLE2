@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="calendar.php">
+<link rel="stylesheet" href="css/calendar.css">
 
 <?php
 class Calendar {
