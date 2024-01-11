@@ -88,7 +88,7 @@
             element.value = value + 1;
         }
     }
-
+    // test
     function decrease() {
         let value = parseInt(element.value)
         if (value <= 2){
