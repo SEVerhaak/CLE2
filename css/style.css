@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Libre+Baskerville&family=Mulish&family=Roboto+Mono:wght@300&family=Titan+One&display=swap');
+body{
+    margin:0;
+}
+nav{
+    background-color: #84A59D;
+    width: 100%;
+    font-family: 'Libre Baskerville', serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header-link-text{
+    text-decoration: none;
+    color: #f7EDE2;
+}
+img{
+    width: 4rem;
+}
+.nav-right{
+    display: flex;
+    align-items: center;
+    margin-left: 0.6rem;
+}
+.nav-right a{
+    padding: 1rem;
+    border-bottom: 3px solid transparent;
+    border-top: 3px solid transparent;
+}
+.nav-right a:hover{
+    padding: 1rem;
+    border-bottom: 3px solid #f7EDE2;
+    border-top: 3px solid transparent;
+}
+
+.login{
+    background-color: #f7EDE2;
+    color: black;
+    padding: 0.5rem 1.9rem 0.5rem 1.9rem;
+    margin-right: 2rem;
+    border-radius: 0.5rem;
+    font-size: 0.8rem;
+    text-decoration: none;
+}
+footer{
+    background-color: #84A59D;
+    width: 100%;
+    font-family: 'Libre Baskerville', serif;
+    position: fixed;
+    bottom: 0;
+    padding:0;
+}
+.footer-style{
+    margin: 0.3rem 1rem 0.2rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid #f7EDE2;
+}
+.footer-main-text{
+    color: #f7EDE2;
+}
+.footer-style img{
+    margin-left: 1rem;
+    margin-bottom: 0.3rem;
+    width: 4rem;
+}
+footer p{
+    margin: 0.3rem;
+}
+
+
+
