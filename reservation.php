@@ -5,6 +5,23 @@ ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 require_once 'includes/database.php';
+
+$errors = [];
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["service"])) {
+        $errors['service'] = 'Dienst is vereist';
+    } else {
+        $brand = mysqli_real_escape_string($db, $_POST['service']);
+    }
+    if (empty($_POST["date"])) {
+        $errors['date'] = 'Datum is vereist';
+    } else {
+        $brand = mysqli_real_escape_string($db, $_POST['date']);
+    }
+
+   // echo($errors['service']);
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -22,15 +39,18 @@ require_once 'includes/database.php';
             <img class="logo" src="img/logo_dk.png">
             <a class="header-link-text" href="#">Reserveren</a>
             <a class="header-link-text" href="#">Over ons</a>
-            <a class="header-link-text" href="#">Nieuwshghghghghg</a>
+            <a class="header-link-text" href="#">Nieuws</a>
             <a class="header-link-text" href="#">Contact</a>
         </div>
         <div class="nav-left">
-            <a class="login" href = "#">Login</a>
+            <a class="login" href = "admin.php">Login</a>
         </div>
     </nav>
 </header>
+
+
 <body>
+
 <div class="reservation-box">
     <h1>Wat wil je boeken</h1>
     <form action="#" method="POST">
@@ -69,8 +89,10 @@ require_once 'includes/database.php';
         </div>
         <button type="submit">Reserveren!</button>
     </form>
-</div>
+</div>s
 </body>
+
+
 <footer>
     <div class = "footer-style">
         <img class="logo" src="img/logo_dk.png">
