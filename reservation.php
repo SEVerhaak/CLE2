@@ -63,6 +63,7 @@
         <img class="logo" src="img/logo_denisekookt.png">
         <p class="footer-main-text">Denise Kookt!</p>
         <p class="footer-social-text">Socials</p>
+        <!-- hoi -->
     </div>
 </footer>
 </html>
