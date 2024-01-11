@@ -19,7 +19,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $brand = mysqli_real_escape_string($db, $_POST['date']);
     }
+    if (empty($_POST["amount_people"])) {
+        $errors['amount_people'] = 'Datum is vereist';
+    } else {
+        $brand = mysqli_real_escape_string($db, $_POST['amount_people']);
+    }
+    if (empty($_POST["time"])) {
+        $errors['time'] = 'Datum is vereist';
+    } else {
+        $brand = mysqli_real_escape_string($db, $_POST['time']);
+    }
+    if (empty($errors)){
 
+    } else {
+
+    }
    // echo($errors['service']);
 }
 ?>
@@ -62,6 +76,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <img class="workshop">
             <label for="service2"> Workshop </label>
         </div>
+        <p class="error">
+            <?php if (isset($errors['service'])) {
+                echo $errors['service'];
+            } else {
+                echo '';
+            } ?>
+        </p>
         <div class="flex-down">
             <label for="date">Voor welke datum?</label>
             <input type="date" name="date" id="date">
