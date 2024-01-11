@@ -10,22 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/style.css">
     <title>Denise Kookt</title>
-    <script>
-        let element = document.getElementsByClassName('amount-value')[0];
-        let leftButton = document.getElementsByClassName('left-button')[0];
-        let rightButton = document.getElementsByClassName('right-button')[0];
-        leftButton.addEventListener("click", decrease);
-        rightButton.addEventListener("click", increase);
 
-        function increase() {
-            element.value += 1;
-        }
-
-        function decrease() {
-            element.value += 1;
-        }
-
-    </script>
 </head>
 <header>
     <nav>
@@ -60,7 +45,7 @@
         <div class="flex-side">
             <label for="amount_people">Amount of people</label>
             <button type="button" class="left-button" id="left-button-id">-</button>
-            <input class="amount-value" type="number" value="" name="amount_people" min="2" max="16">
+            <input class="amount-value" type="number" value="2" name="amount_people" min="2" max="16">
             <button type="button" class="right-button" id="right-button-id">+</button>
         </div>
         <div class="available-time">
@@ -89,4 +74,23 @@
         <p class="footer-social-text">Socials</p>
     </div>
 </footer>
+<script>
+    let element = document.getElementsByClassName('amount-value')[0];
+    let leftButton = document.getElementsByClassName('left-button')[0];
+    let rightButton = document.getElementsByClassName('right-button')[0];
+    leftButton.addEventListener("click", decrease);
+    rightButton.addEventListener("click", increase);
+
+    function increase() {
+        element.value = parseInt(element.value) + 1;
+        console.log(typeof element.value);
+    }
+
+    function decrease() {
+        element.value = parseInt(element.value) - 1;
+        console.log(typeof element.value);
+
+    }
+
+</script>
 </html>
