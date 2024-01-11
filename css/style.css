@@ -69,5 +69,20 @@ footer p{
     margin: 0.3rem;
 }
 
+.flex-side{
+    display: flex;
+}
+.flex-down{
+    display: flex;
+    flex-direction: column;
+}
+.available-time{
+    display: flex;
+    gap: 1rem;
+}
 
+.reservation-box{
+    max-width: 50vw;
+    margin: auto;
+}
 
