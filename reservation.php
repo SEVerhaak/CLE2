@@ -29,12 +29,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $brand = mysqli_real_escape_string($db, $_POST['time']);
     }
-    if (empty($errors)){
+    if (empty($errors)) {
 
     } else {
 
     }
-   // echo($errors['service']);
+    // echo($errors['service']);
 }
 ?>
 <!doctype html>
@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <a class="header-link-text" href="#">Contact</a>
         </div>
         <div class="nav-left">
-            <a class="login" href = "admin.php">Login</a>
+            <a class="login" href="admin.php">Login</a>
         </div>
     </nav>
 </header>
@@ -68,54 +68,66 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <div class="reservation-box">
     <h1>Wat wil je boeken</h1>
     <form action="#" method="POST">
-        <div class="flex-side">
-            <input type="radio" name="service" id="catering">
-            <img class="catering">
-            <label for="service1"> Catering </label>
-            <input type="radio" name="service" id="workshop">
-            <img class="workshop">
-            <label for="service2"> Workshop </label>
+        <div class="form-box">
+            <div class="flex-side">
+                <div>
+                    <img src="img/icon1.png" class="catering">
+                    <div>
+                        <input type="radio" name="service" id="catering">
+                        <label for="service1"> Catering </label>
+                    </div>
+                </div>
+                <div>
+                    <img src="img/icon2.png" class="workshop">
+                    <div>
+                        <input type="radio" name="service" id="workshop">
+                        <label for="service2"> Workshop </label>
+                    </div>
+                </div>
+            </div>
+            <p class="error">
+                <?php if (isset($errors['service'])) {
+                    echo $errors['service'];
+                } else {
+                    echo '';
+                } ?>
+            </p>
+            <div class="flex-down">
+                <label for="date">Voor welke datum?</label>
+                <input type="date" name="date" id="date">
+            </div>
+            <div class="flex-side">
+                <label for="amount_people">Amount of people</label>
+                <button type="button" class="left-button" id="left-button-id">-</button>
+                <input class="amount-value" type="number" value="2" name="amount_people" min="2" max="16"
+                       readonly="readonly">
+                <button type="button" class="right-button" id="right-button-id">+</button>
+            </div>
+            <div class="available-time">
+                <p>16:00-17:00</p>
+                <p>prijs</p>
+                <input type="radio" name="time" id="time">
+            </div>
+            <div class="available-time">
+                <p>17:00-18:00</p>
+                <p>prijs</p>
+                <input type="radio" name="time" id="time">
+            </div>
+            <div class="available-time">
+                <p>18:00-19:00</p>
+                <p>prijs</p>
+                <input type="radio" name="time" id="time">
+            </div>
+            <button type="submit">Reserveren!</button>
         </div>
-        <p class="error">
-            <?php if (isset($errors['service'])) {
-                echo $errors['service'];
-            } else {
-                echo '';
-            } ?>
-        </p>
-        <div class="flex-down">
-            <label for="date">Voor welke datum?</label>
-            <input type="date" name="date" id="date">
-        </div>
-        <div class="flex-side">
-            <label for="amount_people">Amount of people</label>
-            <button type="button" class="left-button" id="left-button-id">-</button>
-            <input class="amount-value" type="number" value="2" name="amount_people" min="2" max="16" readonly="readonly">
-            <button type="button" class="right-button" id="right-button-id">+</button>
-        </div>
-        <div class="available-time">
-            <p>16:00-17:00</p>
-            <p>prijs</p>
-            <input type="radio" name="time" id="time">
-        </div>
-        <div class="available-time">
-            <p>17:00-18:00</p>
-            <p>prijs</p>
-            <input type="radio" name="time" id="time">
-        </div>
-        <div class="available-time">
-            <p>18:00-19:00</p>
-            <p>prijs</p>
-            <input type="radio" name="time" id="time">
-        </div>
-        <button type="submit">Reserveren!</button>
     </form>
-</div>s
+</div>
+s
 </body>
 
 
 <footer>
-    <div class = "footer-style">
+    <div class="footer-style">
         <img class="logo" src="img/logo_dk.png">
         <p class="footer-main-text">Denise Kookt!</p>
         <p class="footer-social-text">Socials</p>
@@ -131,15 +143,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     function increase() {
         let value = parseInt(element.value)
         if (value >= 16) {
-       } else {
+        } else {
             element.value = value + 1;
         }
     }
+
     function decrease() {
         let value = parseInt(element.value)
-        if (value <= 2){
+        if (value <= 2) {
 
-        } else{
+        } else {
             element.value = value - 1;
         }
 
