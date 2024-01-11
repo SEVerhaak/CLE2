@@ -69,10 +69,4 @@ footer p{
     margin: 0.3rem;
 }
 
-.table {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 
