@@ -23,13 +23,12 @@ mysqli_close($db);
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/admin.css">
     <title>Denise Kookt!</title>
 </head>
 <header>
     <nav>
         <div class="nav-right">
-            <img class="logo" src="img/logo_denisekookt.png">
+            <img class="logo" src="img/logo_dk.png">
             <a class="header-link-text" href="#">Reserveren</a>
             <a class="header-link-text" href="#">Over ons</a>
             <a class="header-link-text" href="#">Nieuws</a>
@@ -120,7 +119,7 @@ mysqli_close($db);
 </body>
 <footer>
     <div class = "footer-style">
-        <img class="logo" src="img/logo_denisekookt.png">
+        <img class="logo" src="img/logo_dk.png">
         <p class="footer-main-text">Denise Kookt!</p>
         <p class="footer-social-text">Socials</p>
     </div>
