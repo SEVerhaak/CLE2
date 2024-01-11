@@ -1,5 +1,27 @@
 <?php
+session_start();
+/** @var array $db */
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
+require_once 'includes/database.php';
 
+$errors = [];
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (empty($_POST["service"])) {
+        $errors['service'] = 'Dienst is vereist';
+    } else {
+        $brand = mysqli_real_escape_string($db, $_POST['service']);
+    }
+    if (empty($_POST["date"])) {
+        $errors['date'] = 'Datum is vereist';
+    } else {
+        $brand = mysqli_real_escape_string($db, $_POST['date']);
+    }
+
+   // echo($errors['service']);
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -47,7 +69,7 @@
         <div class="flex-side">
             <label for="amount_people">Amount of people</label>
             <button type="button" class="left-button" id="left-button-id">-</button>
-            <input class="amount-value" type="number" value="2" name="amount_people" min="2" max="16">
+            <input class="amount-value" type="number" value="2" name="amount_people" min="2" max="16" readonly="readonly">
             <button type="button" class="right-button" id="right-button-id">+</button>
         </div>
         <div class="available-time">
