@@ -93,7 +93,8 @@ footer p{
     height: 100vh;
     margin-top: 0;
     padding: 2rem;
-    display:flex;
+    display: flex;
+    justify-content: center;
 }
 .reservation-box h1{
     margin-top: 0;
