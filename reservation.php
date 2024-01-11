@@ -82,13 +82,21 @@
     rightButton.addEventListener("click", increase);
 
     function increase() {
-        element.value = parseInt(element.value) + 1;
-        console.log(typeof element.value);
+        let value = parseInt(element.value)
+        if (value >= 16) {
+       } else {
+            element.value = value + 1;
+        }
     }
 
     function decrease() {
-        element.value = parseInt(element.value) - 1;
-        console.log(typeof element.value);
+        let value = parseInt(element.value)
+        if (value <= 2){
+
+        } else{
+            element.value = value - 1;
+        }
+
 
     }
 
