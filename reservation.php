@@ -1,4 +1,12 @@
 <?php
+session_start();
+/** @var array $db */
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
+require_once 'includes/database.php';
+
+
 
 ?>
 <!doctype html>
@@ -14,7 +22,7 @@
 <header>
     <nav>
         <div class="nav-right">
-            <img class="logo" src="img/logo_denisekookt.png">
+            <img class="logo" src="img/logo_dk.png">
             <a class="header-link-text" href="#">Reserveren</a>
             <a class="header-link-text" href="#">Over ons</a>
             <a class="header-link-text" href="#">Nieuws</a>
@@ -44,7 +52,7 @@
         <div class="flex-side">
             <label for="amount_people">Amount of people</label>
             <button type="button" class="left-button" id="left-button-id">-</button>
-            <input class="amount-value" type="number" value="2" name="amount_people" min="2" max="16">
+            <input class="amount-value" readonly="readonly" type="number" value="2" name="amount_people" min="2" max="16">
             <button type="button" class="right-button" id="right-button-id">+</button>
         </div>
         <div class="available-time">
@@ -68,7 +76,7 @@
 </body>
 <footer>
     <div class = "footer-style">
-        <img class="logo" src="img/logo_denisekookt.png">
+        <img class="logo" src="img/logo_dk.png">
         <p class="footer-main-text">Denise Kookt!</p>
         <p class="footer-social-text">Socials</p>
         <!-- hoi -->
