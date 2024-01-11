@@ -71,7 +71,6 @@
         <img class="logo" src="img/logo_denisekookt.png">
         <p class="footer-main-text">Denise Kookt!</p>
         <p class="footer-social-text">Socials</p>
-        <!-- hoi -->
     </div>
 </footer>
 <script>
@@ -88,7 +87,6 @@
             element.value = value + 1;
         }
     }
-    // test
     function decrease() {
         let value = parseInt(element.value)
         if (value <= 2){
