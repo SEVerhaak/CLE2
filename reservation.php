@@ -89,8 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
         <button type="submit">Reserveren!</button>
     </form>
-</div>
-<img class = "background-image" src = "img/food1.jpeg">
+</div>s
 </body>
 
 
