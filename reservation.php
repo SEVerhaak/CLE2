@@ -17,15 +17,18 @@
             <img class="logo" src="img/logo_dk.png">
             <a class="header-link-text" href="#">Reserveren</a>
             <a class="header-link-text" href="#">Over ons</a>
-            <a class="header-link-text" href="#">Nieuwshghghghghg</a>
+            <a class="header-link-text" href="#">Nieuws</a>
             <a class="header-link-text" href="#">Contact</a>
         </div>
         <div class="nav-left">
-            <a class="login" href = "#">Login</a>
+            <a class="login" href = "admin.php">Login</a>
         </div>
     </nav>
 </header>
+
+
 <body>
+
 <div class="reservation-box">
     <h1>Wat wil je boeken</h1>
     <form action="#" method="POST">
@@ -65,7 +68,10 @@
         <button type="submit">Reserveren!</button>
     </form>
 </div>
+<img class = "background-image" src = "img/food1.jpeg">
 </body>
+
+
 <footer>
     <div class = "footer-style">
         <img class="logo" src="img/logo_dk.png">
