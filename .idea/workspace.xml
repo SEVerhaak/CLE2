@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cfe85cbe-d8ff-4b1d-8f33-6f2fc43b49b4" name="Changes" comment="Calendar buttons changed">
+    <list default="true" id="cfe85cbe-d8ff-4b1d-8f33-6f2fc43b49b4" name="Changes" comment="Index.php fixed">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/css/admin.css" beforeDir="false" afterPath="$PROJECT_DIR$/css/admin.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example.php" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -72,7 +74,7 @@
       <workItem from="1704978509604" duration="1052000" />
       <workItem from="1704979575197" duration="2955000" />
       <workItem from="1705049698586" duration="1514000" />
-      <workItem from="1705051237623" duration="6707000" />
+      <workItem from="1705051237623" duration="7390000" />
     </task>
     <task id="LOCAL-00001" summary="kaas">
       <option name="closed" value="true" />
@@ -178,7 +180,15 @@
       <option name="project" value="LOCAL" />
       <updated>1705054775945</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Index.php fixed">
+      <option name="closed" value="true" />
+      <created>1705059565473</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1705059565473</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -195,6 +205,7 @@
     <MESSAGE value="Calendar edited" />
     <MESSAGE value="Calendar buttons added" />
     <MESSAGE value="Calendar buttons changed" />
-    <option name="LAST_COMMIT_MESSAGE" value="Calendar buttons changed" />
+    <MESSAGE value="Index.php fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Index.php fixed" />
   </component>
 </project>

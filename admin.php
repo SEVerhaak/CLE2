@@ -72,7 +72,7 @@ include 'Calendar.php';
 $calendar = new Calendar();
 $calendar->add_event('Workshop 18:00', '2024-01-03', 1, 'green');
 $calendar->add_event('Catering 17:00', '2024-01-07', 1, 'yellow');
-$calendar->add_event('Workshop 15:30', '2024-01-23', 1, 'green');
+$calendar->add_event('Workshop 16:30', '2024-01-23', 1, 'green');
 $calendar->add_event('Catering 17:30', '2024-01-31', 1, 'yellow');
 ?>
 
