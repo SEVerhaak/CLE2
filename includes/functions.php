@@ -1,4 +1,7 @@
 <?php
+/** @var array $db */
+require_once 'includes/database.php';
+
 function takenDatesCheckerDataFetch($db){
     $query = "SELECT `id`, `userId`, `reservationDate`, `reservationBeginTime`, `reservationEndTime` FROM `reservations` WHERE 1";
     $result = mysqli_query($db, $query)
