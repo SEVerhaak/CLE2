@@ -1,6 +1,6 @@
 <?php
-//// required when working with sessions
-//session_start();
+// required when working with sessions
+session_start();
 
 /** @var mysqli $db */
 require_once 'includes/database.php';
@@ -45,12 +45,12 @@ if (isset($_POST['submit'])) {
             // Check if the provided password matches the stored password in the database
             if (password_verify($password, $user['password'])) {
 
-//                // Store the user in the session
-//                $_SESSION['user'] = [
-//                    'name' => $user['first_name'],
-//                    'email' => $user['email'],
-//                    'id' => $user['user_id'],
-//                ];
+                // Store the user in the session
+                $_SESSION['user'] = [
+                    'name' => $user['first_name'],
+                    'email' => $user['email'],
+                    'id' => $user['user_id'],
+                ];
 
                 // Redirect to secure page
                 header('Location: index.php');
