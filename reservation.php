@@ -177,7 +177,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     }
                 } ?>>
             </div>
-            <div class="available-time">
+            <div class="available-times">
                 <p>17:00-18:00</p>
                 <p>prijs</p>
                 <input value="timeslot2" type="radio" name="time"
