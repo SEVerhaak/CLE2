@@ -85,18 +85,19 @@ footer p{
 
 .reservation-box{
     max-width: 40vw;
-    margin: auto;
     background-color: #f7EDE2;
     height: 100vh;
-    margin-top: 0;
+    margin: auto;
     padding: 2rem;
-    display:flex;
+    display: flex;
+    flex-direction: column;
 }
 .reservation-box h1{
     margin-top: 0;
 }
-form{
-    display: flex;
-    flex-direction: column;
+
+.hidden-meta-data{
+    display: none;
+    visibility: hidden;
 }
 
