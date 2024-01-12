@@ -65,9 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-
     if (empty($errors)) {
-
         // sql statement
         $sql = "INSERT INTO `reservations`(userId, amountPeople, reservationDate, reservationBeginTime, reservationEndTime ,reservationCreationDate, reservationType) 
         VALUES ('$userID','$amount_people','$date','$timeBegin','$timeEnd','$currentTimeSQL','$service')";
@@ -76,7 +74,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header('Location: index.php');
         } else {
             //echo "Error: " . $sql . "<br>" . mysqli_error($db);
-            // header('Location: create.php');
             $errorMessage = "An error has occurred";
         }
         mysqli_close($db);
