@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="cfe85cbe-d8ff-4b1d-8f33-6f2fc43b49b4" name="Changes" comment="Calendar buttons changed">
+      <change beforePath="$PROJECT_DIR$/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/admin.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="Mathijs" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2ao5Jm1XxImiWnV74d7Uqmlep8K" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\CLE2-git" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-php-predefined-ba97393d7c68-b4dcf6bb9de9-com.jetbrains.php.sharedIndexes-PS-233.13135.108" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cfe85cbe-d8ff-4b1d-8f33-6f2fc43b49b4" name="Changes" comment="" />
+      <created>1704972021331</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1704972021331</updated>
+      <workItem from="1704972022464" duration="153000" />
+      <workItem from="1704972197108" duration="886000" />
+      <workItem from="1704976969039" duration="1516000" />
+      <workItem from="1704978509604" duration="1052000" />
+      <workItem from="1704979575197" duration="2955000" />
+      <workItem from="1705049698586" duration="1514000" />
+      <workItem from="1705051237623" duration="6707000" />
+    </task>
+    <task id="LOCAL-00001" summary="kaas">
+      <option name="closed" value="true" />
+      <created>1704976928088</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1704976928088</updated>
+    </task>
+    <task id="LOCAL-00002" summary="admin.php commit">
+      <option name="closed" value="true" />
+      <created>1704977581876</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1704977581876</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Calendar added&#10;Admin.css added&#10;Style.css edited">
+      <option name="closed" value="true" />
+      <created>1704979061563</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1704979061563</updated>
+    </task>
+    <task id="LOCAL-00004" summary="test.html deleted">
+      <option name="closed" value="true" />
+      <created>1704979146526</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1704979146526</updated>
+    </task>
+    <task id="LOCAL-00005" summary="oig.jpeg deleted">
+      <option name="closed" value="true" />
+      <created>1704979175122</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1704979175122</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Calendar changed">
+      <option name="closed" value="true" />
+      <created>1704981778912</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1704981778912</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Calendar changed">
+      <option name="closed" value="true" />
+      <created>1704982295804</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1704982295804</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Calendar moved">
+      <option name="closed" value="true" />
+      <created>1705051034889</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1705051034889</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Calendar edited">
+      <option name="closed" value="true" />
+      <created>1705051714173</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1705051714173</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Calendar edited">
+      <option name="closed" value="true" />
+      <created>1705052271865</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1705052271865</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Calendar edited">
+      <option name="closed" value="true" />
+      <created>1705052940407</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1705052940407</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Calendar buttons added">
+      <option name="closed" value="true" />
+      <created>1705054296690</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1705054296690</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Calendar buttons changed">
+      <option name="closed" value="true" />
+      <created>1705054775945</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1705054775945</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="kaas" />
+    <MESSAGE value="admin.php commit" />
+    <MESSAGE value="Calendar added&#10;Admin.css added&#10;Style.css edited" />
+    <MESSAGE value="test.html deleted" />
+    <MESSAGE value="oig.jpeg deleted" />
+    <MESSAGE value="Calendar changed" />
+    <MESSAGE value="Calendar moved" />
+    <MESSAGE value="Calendar edited" />
+    <MESSAGE value="Calendar buttons added" />
+    <MESSAGE value="Calendar buttons changed" />
+    <option name="LAST_COMMIT_MESSAGE" value="Calendar buttons changed" />
+  </component>
+</project>
