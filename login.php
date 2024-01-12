@@ -1,6 +1,6 @@
 <?php
-// required when working with sessions
-session_start();
+//// required when working with sessions
+//session_start();
 
 /** @var mysqli $db */
 require_once 'includes/database.php';
@@ -53,7 +53,7 @@ if (isset($_POST['submit'])) {
 //                ];
 
                 // Redirect to secure page
-                header('Location: admin.php');
+                header('Location: index.php');
                 exit;
             } else {
                 // Credentials not valid
