@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/newstyle.css">
     <title>Denise Kookt</title>
 </head>
 <header>
@@ -68,7 +68,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <div class="reservation-box">
     <h1>Wat wil je boeken</h1>
     <form action="#" method="POST">
-        <div class="form-box">
             <div class="flex-side">
                 <div>
                     <img src="img/icon1.png" class="catering">
@@ -119,10 +118,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <input type="radio" name="time" id="time">
             </div>
             <button type="submit">Reserveren!</button>
-        </div>
     </form>
 </div>
-s
+
 </body>
 
 
