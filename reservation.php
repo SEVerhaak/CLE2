@@ -109,109 +109,109 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </nav>
 </header>
-
-
-<div>
-    <div class="hidden-meta-data"
-
-    </div>
-<div class="reservation-box">
-    <h1>Wat wil je boeken</h1>
-    <form action="#" method="POST">
-        <div class="flex-side">
-            <input type="radio" name="service" id="catering"
-                   value="catering" <?php if (count($errors) > 0 and isset($_POST["service"])) {
-                if ($_POST['service'] == 'catering') {
-                    echo 'checked="checked"';
-                }
-            } ?>>
-            <img class="catering">
-            <label for="service1"> Catering </label>
-            <input type="radio" name="service" id="workshop"
-                   value="workshop" <?php if (count($errors) > 0 and isset($_POST["service"])) {
-                if ($_POST['service'] == 'workshop') {
-                    echo 'checked="checked"';
-                }
-            } ?>>
-            <img class="workshop">
-            <label for="service2"> Workshop </label>
-        </div>
-        <p class="error">
-            <?php if (isset($errors['service'])) {
-                echo $errors['service'];
-            } else {
-                echo '';
-            } ?>
-        </p>
-        <div class="flex-down">
-            <label for="date">Voor welke datum?</label>
-            <input type="date" name="date" id="date" min=<?= $currentTimeHTML ?>
-            value='<?php if (count($errors) > 0 and isset($_POST["date"])) {
-                echo $_POST['date'];
-            }
-            ?>'>
-        </div>
-        <p class="error">
-            <?php if (isset($errors['date'])) {
-                echo $errors['date'];
-            } else {
-                echo '';
-            } ?>
-        </p>
-        <div class="flex-side">
-            <label for="amount_people">Amount of people</label>
-            <button type="button" class="left-button" id="left-button-id">-</button>
-            <input class="amount-value" type="number" value="2" name="amount_people" min="2" max="16"
-                   readonly="readonly">
-            <button type="button" class="right-button" id="right-button-id">+</button>
-        </div>
-        <p class="error">
-            <?php if (isset($errors['amount_people'])) {
-                echo $errors['amount_people'];
-            } else {
-                echo '';
-            } ?>
-        </p>
-        <div class="available-time">
-            <p>16:00-17:00</p>
-            <p>prijs</p>
-            <input value="timeslot1" type="radio" name="time"
-                   id="time" <?php if (count($errors) > 0 and isset($_POST["time"])) {
-                if ($_POST['time'] == 'timeslot1') {
-                    echo 'checked="checked"';
-                }
-            } ?>>
-        </div>
-        <div class="available-time">
-            <p>17:00-18:00</p>
-            <p>prijs</p>
-            <input value="timeslot2" type="radio" name="time"
-                   id="time" <?php if (count($errors) > 0 and isset($_POST["time"])) {
-                if ($_POST['time'] == 'timeslot2') {
-                    echo 'checked="checked"';
-                }
-            } ?>>
-        </div>
-        <div class="available-time">
-            <p>18:00-19:00</p>
-            <p>prijs</p>
-            <input value="timeslot3" type="radio" name="time"
-                   id="time" <?php if (count($errors) > 0 and isset($_POST["time"])) {
-                if ($_POST['time'] == 'timeslot3') {
-                    echo 'checked="checked"';
-                }
-            } ?>>
-        </div>
-        <p class="error">
-            <?php if (isset($errors['time'])) {
-                echo $errors['time'];
-            } else {
-                echo '';
-            } ?>
-        </p>
-        <button type="submit">Reserveren!</button>
-    </form>
+<div class="hidden-meta-data" style="display: none;">
+    <?php for ($i = 0; $i < count(takenDatesCheckerDataFetch($db)); $i++) { ?>
+        <p class=<?= "dateInvisible" ?>><?= takenDatesCheckerDataFetch($db)[$i] ?></p>
+    <?php } ?>
 </div>
+<div>
+    <div class="reservation-box">
+        <h1>Wat wil je boeken</h1>
+        <form action="#" method="POST">
+            <div class="flex-side">
+                <input type="radio" name="service" id="catering"
+                       value="catering" <?php if (count($errors) > 0 and isset($_POST["service"])) {
+                    if ($_POST['service'] == 'catering') {
+                        echo 'checked="checked"';
+                    }
+                } ?>>
+                <img class="catering">
+                <label for="service1"> Catering </label>
+                <input type="radio" name="service" id="workshop"
+                       value="workshop" <?php if (count($errors) > 0 and isset($_POST["service"])) {
+                    if ($_POST['service'] == 'workshop') {
+                        echo 'checked="checked"';
+                    }
+                } ?>>
+                <img class="workshop">
+                <label for="service2"> Workshop </label>
+            </div>
+            <p class="error">
+                <?php if (isset($errors['service'])) {
+                    echo $errors['service'];
+                } else {
+                    echo '';
+                } ?>
+            </p>
+            <div class="flex-down">
+                <label for="date">Voor welke datum?</label>
+                <input type="date" name="date" id="date-id" min='<?= $currentTimeHTML ?>'
+                       value='<?php if (count($errors) > 0 and isset($_POST["date"])) {
+                           echo $_POST['date'];
+                       }
+                       ?>'>
+            </div>
+            <p class="error" id="date-error">
+                <?php if (isset($errors['date'])) {
+                    echo $errors['date'];
+                } else {
+                    echo '';
+                } ?>
+            </p>
+            <div class="flex-side">
+                <label for="amount_people">Amount of people</label>
+                <button type="button" class="left-button" id="left-button-id">-</button>
+                <input class="amount-value" type="number" value="2" name="amount_people" min="2" max="16"
+                       readonly="readonly">
+                <button type="button" class="right-button" id="right-button-id">+</button>
+            </div>
+            <p class="error">
+                <?php if (isset($errors['amount_people'])) {
+                    echo $errors['amount_people'];
+                } else {
+                    echo '';
+                } ?>
+            </p>
+            <div class="available-time">
+                <p>16:00-17:00</p>
+                <p>prijs</p>
+                <input value="timeslot1" type="radio" name="time"
+                       id="time" <?php if (count($errors) > 0 and isset($_POST["time"])) {
+                    if ($_POST['time'] == 'timeslot1') {
+                        echo 'checked="checked"';
+                    }
+                } ?>>
+            </div>
+            <div class="available-time">
+                <p>17:00-18:00</p>
+                <p>prijs</p>
+                <input value="timeslot2" type="radio" name="time"
+                       id="time" <?php if (count($errors) > 0 and isset($_POST["time"])) {
+                    if ($_POST['time'] == 'timeslot2') {
+                        echo 'checked="checked"';
+                    }
+                } ?>>
+            </div>
+            <div class="available-time">
+                <p>18:00-19:00</p>
+                <p>prijs</p>
+                <input value="timeslot3" type="radio" name="time"
+                       id="time" <?php if (count($errors) > 0 and isset($_POST["time"])) {
+                    if ($_POST['time'] == 'timeslot3') {
+                        echo 'checked="checked"';
+                    }
+                } ?>>
+            </div>
+            <p class="error">
+                <?php if (isset($errors['time'])) {
+                    echo $errors['time'];
+                } else {
+                    echo '';
+                } ?>
+            </p>
+            <button type="submit">Reserveren!</button>
+        </form>
+    </div>
 </div>
 </body>
 
@@ -223,6 +223,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <p class="footer-social-text">Socials</p>
     </div>
 </footer>
+<script>
+    let dateElement = document.getElementById("date-id");
+    let taken = false;
+    dateElement.addEventListener("input", function () {
+        taken = false;
+        for (let i = 0; i < document.getElementsByClassName("dateInvisible").length; i++) {
+            console.log(document.getElementById('date-id').value)
+            if (document.getElementById('date-id').value === document.getElementsByClassName("dateInvisible")[i].innerHTML) {
+                document.getElementById("date-error").innerHTML = 'deze datum is niet meer beschikbaar'
+                taken = true;
+            } else {
+                document.getElementById("date-error").innerHTML = ''
+            }
+        }
+        console.log(taken);
+    });
+</script>
 <script>
     let element = document.getElementsByClassName('amount-value')[0];
     let leftButton = document.getElementsByClassName('left-button')[0];
