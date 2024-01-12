@@ -1,6 +1,7 @@
 .calendar {
     display: flex;
     flex-flow: column;
+    background-color: white;
 }
 .calendar .header .month-year {
     font-size: 20px;

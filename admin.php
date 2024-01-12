@@ -22,7 +22,9 @@ mysqli_close($db);
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="css/style.css">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/example.css" rel="stylesheet">
+    <link href="css/calendar.css" rel="stylesheet">
     <title>Denise Kookt!</title>
 </head>
 <header>
@@ -62,6 +64,18 @@ mysqli_close($db);
     <?php endforeach; ?>
     </tbody>
 </table>
+</div>
+
+<?php
+include 'Calendar.php';
+$calendar = new Calendar('2023-05-12');
+$calendar->add_event('Birthday', '2023-05-03', 1, 'green');
+$calendar->add_event('Doctors', '2023-05-04', 1, 'red');
+$calendar->add_event('Holiday', '2023-05-16', 7);
+?>
+
+<div class="content home">
+    <?=$calendar?>
 </div>
 
 </body>
