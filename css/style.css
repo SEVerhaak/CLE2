@@ -100,4 +100,10 @@ footer p{
     margin-top: 0;
 }
 
+.content {
+    background-color: #FFFFFF;
+    border-radius: 1vw;
+    padding: 1vw;
+}
+
 
