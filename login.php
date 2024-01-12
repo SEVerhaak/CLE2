@@ -133,7 +133,7 @@ if (isset($_POST['submit'])) {
             </form>
         </section>
         <section>
-            <p><a href="register.php">Registreren</a></p>
+            <p><a href="registeren.php">Registreren</a></p>
         </section>
 
 
