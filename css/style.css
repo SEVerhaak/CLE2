@@ -100,3 +100,8 @@ footer p{
     margin-top: 0;
 }
 
+.hidden-meta-data{
+    display: none;
+    visibility: hidden;
+}
+

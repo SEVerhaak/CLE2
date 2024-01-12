@@ -14,6 +14,6 @@ function takenDatesCheckerDataFetch($db){
     for ($i = 0; $i < count($reservations); $i++) {
         array_push($takenDates, $reservations[$i]['reservationDate']);
     }
-    print_r($takenDates);
+    return $takenDates;
 }
 ?>
