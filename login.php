@@ -77,9 +77,24 @@ if (isset($_POST['submit'])) {
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="css/style.css">
     <title>Log in</title>
 </head>
+<!-- Header -->
+<header>
+    <nav>
+        <div class="nav-right">
+            <img class="logo" src="img/logo_dk.png">
+            <a class="header-link-text" href="reservation.php">Reserveren</a>
+            <a class="header-link-text" href="#">Over ons</a>
+            <a class="header-link-text" href="#">Nieuws</a>
+            <a class="header-link-text" href="#">Contact</a>
+        </div>
+        <div class="nav-left">
+            <a class="login" href = "#">Login</a>
+        </div>
+    </nav>
+</header>
 <body>
 <section class="section">
     <div class="container content">
@@ -140,6 +155,13 @@ if (isset($_POST['submit'])) {
     </div>
 </section>
 </body>
+<footer>
+    <div class = "footer-style">
+        <img class="logo" src="img/logo_dk.png">
+        <p class="footer-main-text">Denise Kookt!</p>
+        <p class="footer-social-text">Socials</p>
+    </div>
+</footer>
 </html>
 
 
