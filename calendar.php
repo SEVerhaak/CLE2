@@ -1,5 +1,6 @@
+<!-- CSS connectie -->
 <link rel="stylesheet" href="css/calendar.css">
-
+<!-- Code voor de interactieve kalender -->
 <?php
 class Calendar {
 
