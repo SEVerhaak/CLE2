@@ -23,6 +23,7 @@ mysqli_close($db);
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="css/style.css" rel="stylesheet">
+    <link href="css/admin.css" rel="stylesheet" >
     <link href="css/example.css" rel="stylesheet">
     <link href="css/calendar.css" rel="stylesheet">
     <title>Denise Kookt!</title>
@@ -68,12 +69,16 @@ mysqli_close($db);
 
 <?php
 include 'Calendar.php';
-$calendar = new Calendar('2023-01-12');
-$calendar->add_event('Workshop', '2023-01-03', 1, 'green');
-$calendar->add_event('Catering', '2023-01-07', 1, 'yellow');
+$calendar = new Calendar();
+$calendar->add_event('Workshop 18:00', '2024-01-03', 1, 'green');
+$calendar->add_event('Catering 17:00', '2024-01-07', 1, 'yellow');
+$calendar->add_event('Workshop 15:30', '2024-01-23', 1, 'green');
+$calendar->add_event('Catering 17:30', '2024-01-31', 1, 'yellow');
 ?>
 
 <div class="content home">
+    <a href="?month=<?= $calendar->getPrevMonth() ?>" class="linkOne">Previous Month</a>
+    <a href="?month=<?= $calendar->getNextMonth() ?>" class="linkTwo">Next Month</a>
     <?=$calendar?>
 </div>
 

@@ -1,8 +1,34 @@
-/* Table CSS */
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Libre+Baskerville&family=Mulish&family=Roboto+Mono:wght@300&family=Titan+One&display=swap');
+
+.content {
+    background-color: #FFFFFF;
+    border-radius: 1vh;
+    padding: 1vh;
+}
+
 .table {
-    margin-top: 5vh;
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 1vh;
 }
 
+table {
+    background-color: #FFFFFF;
+    border-radius: 1vh;
+    padding: 1vh;
+}
+
+.linkOne {
+    font-family: -apple-system, BlinkMacSystemFont, "segoe ui", roboto, oxygen, ubuntu, cantarell, "fira sans", "droid sans", "helvetica neue", Arial, sans-serif;
+    text-decoration: none;
+    color: #636e73;
+    margin-left: 10%;
+}
+
+.linkTwo {
+    font-family: -apple-system, BlinkMacSystemFont, "segoe ui", roboto, oxygen, ubuntu, cantarell, "fira sans", "droid sans", "helvetica neue", Arial, sans-serif;
+    text-decoration: none;
+    color: #636e73;
+    margin-left: 50%;
+}
