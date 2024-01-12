@@ -20,7 +20,7 @@
             <a class="header-link-text" href="#">Contact</a>
         </div>
         <div class="nav-left">
-            <a class="login">Login</a>
+            <a class="login" href="login.php">Login</a>
         </div>
     </nav>
 </header>
