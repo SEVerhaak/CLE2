@@ -1,3 +1,4 @@
+<!-- Verbinding met de Database maken en de reserveringen ophalen -->
 <?php
 /** @var mysqli $db */
 
@@ -15,6 +16,7 @@ while ($reservation = mysqli_fetch_assoc($result)) {
 
 mysqli_close($db);
 ?>
+<!-- Documentinformatie en CSS connectie -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -28,6 +30,7 @@ mysqli_close($db);
     <link href="css/calendar.css" rel="stylesheet">
     <title>Denise Kookt!</title>
 </head>
+<!-- Header -->
 <header>
     <nav>
         <div class="nav-right">
@@ -43,7 +46,7 @@ mysqli_close($db);
     </nav>
 </header>
 <body>
-
+<!-- Tabel met reserveringen uit de Database -->
 <div class="table">
 <table border="1">
     <thead>
@@ -66,7 +69,7 @@ mysqli_close($db);
     </tbody>
 </table>
 </div>
-
+<!-- Evenementen aan de kalender toevoegen (moet nog verbonden worden met de database) -->
 <?php
 include 'Calendar.php';
 $calendar = new Calendar();
@@ -75,13 +78,13 @@ $calendar->add_event('Catering 17:00', '2024-01-07', 1, 'yellow');
 $calendar->add_event('Workshop 16:30', '2024-01-23', 1, 'green');
 $calendar->add_event('Catering 17:30', '2024-01-31', 1, 'yellow');
 ?>
-
+<!-- Kalender met navigatieknoppen -->
 <div class="content home">
     <a href="?month=<?= $calendar->getPrevMonth() ?>" class="linkOne">Previous Month</a>
     <a href="?month=<?= $calendar->getNextMonth() ?>" class="linkTwo">Next Month</a>
     <?=$calendar?>
 </div>
-
+<!-- Footer -->
 </body>
 <footer>
     <div class = "footer-style">
