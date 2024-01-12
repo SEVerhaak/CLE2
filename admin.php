@@ -68,9 +68,9 @@ mysqli_close($db);
 
 <?php
 include 'Calendar.php';
-$calendar = new Calendar('2023-05-12');
-$calendar->add_event('Workshop', '2023-05-03', 1, 'green');
-$calendar->add_event('Catering', '2023-05-07', 1, 'yellow');
+$calendar = new Calendar('2023-01-12');
+$calendar->add_event('Workshop', '2023-01-03', 1, 'green');
+$calendar->add_event('Catering', '2023-01-07', 1, 'yellow');
 ?>
 
 <div class="content home">
