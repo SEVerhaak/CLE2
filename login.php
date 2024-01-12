@@ -99,7 +99,7 @@ if (isset($_POST['submit'])) {
 <div class="center-box">
     <div class="login-container">
         <p>Terug naar de <a href="index.php">Homepagina</a></p>
-        <h2 class="title">Log in</h2>
+        <h1 class="title">Log in</h1>
         <form class="form-login" action="" method="post">
             <label class="label" for="email">Email</label>
             <input class="input" id="email" type="text" name="email" value="<?= isset($email) ? $email : '' ?>"/>
@@ -115,7 +115,7 @@ if (isset($_POST['submit'])) {
             </p>
 
 
-            <button class="button is-link is-fullwidth" type="submit" name="submit">Log in With Email</button>
+            <button type="submit" name="submit">Log in With Email</button>
 
 
         </form>

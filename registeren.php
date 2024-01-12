@@ -9,7 +9,7 @@ $errorPassword = '';
 $errorPhonenumber = '';
 $errorIsAdmin = '';
 
-if(isset($_POST['submit'])) {
+if (isset($_POST['submit'])) {
 
     // Get form data
     $firstName = mysqli_escape_string($db, $_POST['firstName']);
@@ -21,7 +21,7 @@ if(isset($_POST['submit'])) {
     $isAdmin = mysqli_escape_string($db, $_POST['isAdmin']);
 
     // Server-side validation
-    if (isset($_POST['firstName'], $_POST['lastName'], $_POST['email'], $_POST['password'],  $_POST['phoneNumber'], $_POST['isAdmin'])) {
+    if (isset($_POST['firstName'], $_POST['lastName'], $_POST['email'], $_POST['password'], $_POST['phoneNumber'], $_POST['isAdmin'])) {
         if (empty($_POST['firstName'])) {
             $errorEmail = 'firstname cannot be empty';
         }
@@ -44,7 +44,7 @@ if(isset($_POST['submit'])) {
     }
 
     // If data valid
-    if (empty($errorFirstname)&&empty($errorLastname)&&empty($errorEmail)&&empty($errorPassword)&&empty($errorPhonenumber)&&empty($errorIsAdmin)) {
+    if (empty($errorFirstname) && empty($errorLastname) && empty($errorEmail) && empty($errorPassword) && empty($errorPhonenumber) && empty($errorIsAdmin)) {
         // create a secure password, with the PHP function password_hash()
         $password = password_hash("$password", PASSWORD_BCRYPT, ['cost' => 10]);
 
@@ -74,145 +74,100 @@ if(isset($_POST['submit'])) {
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <link rel="stylesheet" href="css/style.css">
+
     <title>Registreren</title>
 </head>
+<nav>
+    <div class="nav-right">
+        <img class="logo" src="img/logo_dk.png">
+        <a class="header-link-text" href="#">Reserveren</a>
+        <a class="header-link-text" href="#">Over ons</a>
+        <a class="header-link-text" href="#">Nieuws</a>
+        <a class="header-link-text" href="#">Contact</a>
+    </div>
+    <div class="nav-left">
+        <a class="login" href="admin.php">Login</a>
+    </div>
+</nav>
 <body>
-
-<section class="section">
-    <div class="container content">
+<div class="center-box">
+    <div class="login-container">
         <h2 class="title">Register With Email</h2>
+        <form class="form-login" action="" method="post">
+            <!-- First name -->
+            <label class="label" for="firstName">First name</label>
+            <input class="input" id="firstName" type="text" name="firstName"
+                   value="<?= isset($firstName) ? $firstName : '' ?>"/>
+            <p class="help is-danger">
+                <?php echo $errorFirstname ?>
+            </p>
+            <!-- Last name -->
 
-        <section class="columns">
-            <form class="column is-6" action="" method="post">
-
-                <!-- First name -->
-                <div class="field is-horizontal">
-                    <div class="field-label is-normal">
-                        <label class="label" for="firstName">First name</label>
-                    </div>
-                    <div class="field-body">
-                        <div class="field">
-                            <div class="control has-icons-left">
-                                <input class="input" id="firstName" type="text" name="firstName" value="<?= isset($firstName) ? $firstName : '' ?>" />
-                                <span class="icon is-small is-left"><i class="fas fa-envelope"></i></span>
-                            </div>
-                            <p class="help is-danger">
-                                <?php echo $errorFirstname ?>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Last name -->
-                <div class="field is-horizontal">
-                    <div class="field-label is-normal">
-                        <label class="label" for="lastName">Last name</label>
-                    </div>
-                    <div class="field-body">
-                        <div class="field">
-                            <div class="control has-icons-left">
-                                <input class="input" id="lastName" type="text" name="lastName" value="<?= isset($lastName) ? $lastName : '' ?>" />
-                                <span class="icon is-small is-left"><i class="fas fa-envelope"></i></span>
-                            </div>
-                            <p class="help is-danger">
-                                <?php echo $errorLastname ?>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Email -->
-                <div class="field is-horizontal">
-                    <div class="field-label is-normal">
-                        <label class="label" for="email">Email</label>
-                    </div>
-                    <div class="field-body">
-                        <div class="field">
-                            <div class="control has-icons-left">
-                                <input class="input" id="email" type="text" name="email" value="<?= isset($email) ? $email : '' ?>" />
-                                <span class="icon is-small is-left"><i class="fas fa-envelope"></i></span>
-                            </div>
-                            <p class="help is-danger">
-                                <?php echo $errorEmail ?>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Password -->
-                <div class="field is-horizontal">
-                    <div class="field-label is-normal">
-                        <label class="label" for="password">Password</label>
-                    </div>
-                    <div class="field-body">
-                        <div class="field">
-                            <div class="control has-icons-left">
-                                <input class="input" id="password" type="password" name="password"/>
-                                <span class="icon is-small is-left"><i class="fas fa-lock"></i></span>
-                            </div>
-                            <p class="help is-danger">
-                                <?php echo $errorPassword ?>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Phonenumber -->
-                <div class="field is-horizontal">
-                    <div class="field-label is-normal">
-                        <label class="label" for="phoneNumber">Phonenumber</label>
-                    </div>
-                    <div class="field-body">
-                        <div class="field">
-                            <div class="control has-icons-left">
-                                <input class="input" id="phoneNumber" type="number" name="phoneNumber" value="<?= isset($phonenumber) ? $phonenumber : '' ?>" />
-                                <span class="icon is-small is-left"><i class="fas fa-envelope"></i></span>
-                            </div>
-                            <p class="help is-danger">
-                                <?php echo $errorPhonenumber ?>
-                            </p>
-                        </div>
-                    </div>
-                </div>
+            <label class="label" for="lastName">Last name</label>
+            <input class="input" id="lastName" type="text" name="lastName"
+                   value="<?= isset($lastName) ? $lastName : '' ?>"/>
 
 
-                <!-- isAdmin -->
-                <div class="field is-horizontal">
-                    <div class="field-label is-normal">
-                        <label class="label" for="isAdmin">isAdmin</label>
-                    </div>
-                    <div class="field-body">
-                        <div class="field">
-                            <div class="control has-icons-left">
-                                <input class="input" id="isAdmin" type="number" name="isAdmin" value="<?= isset($isAdmin) ? $isAdmin : '' ?>" />
-                                <span class="icon is-small is-left"><i class="fas fa-envelope"></i></span>
-                            </div>
-                            <p class="help is-danger">
-                                <?php echo $errorIsAdmin ?>
-                            </p>
-                        </div>
-                    </div>
-                </div>
+            <p class="help is-danger">
+                <?php echo $errorLastname ?>
+            </p>
+
+            <!-- Email -->
+            <label class="label" for="email">Email</label>
+            <input class="input" id="email" type="text" name="email"
+                   value="<?= isset($email) ? $email : '' ?>"/>
+
+            <p class="help is-danger">
+                <?php echo $errorEmail ?>
+            </p>
+            <!-- Password -->
+
+            <label class="label" for="password">Password</label>
+
+            <input class="input" id="password" type="password" name="password"/>
+
+            <p class="help is-danger">
+                <?php echo $errorPassword ?>
+            </p>
+
+            <!-- Phonenumber -->
+
+            <label class="label" for="phoneNumber">Phonenumber</label>
+
+            <input class="input" id="phoneNumber" type="number" name="phoneNumber"
+                   value="<?= isset($phonenumber) ? $phonenumber : '' ?>"/>
+
+            <p class="help is-danger">
+                <?php echo $errorPhonenumber ?>
+            </p>
+            <!-- isAdmin -->
+
+            <label class="label" for="isAdmin">isAdmin</label>
+
+            <input class="input" id="isAdmin" type="number" name="isAdmin"
+                   value="<?= isset($isAdmin) ? $isAdmin : '' ?>"/>
+
+            <p class="help is-danger">
+                <?php echo $errorIsAdmin ?>
+            </p>
 
 
-                <!-- Submit -->
-                <div class="field is-horizontal">
-                    <div class="field-label is-normal"></div>
-                    <div class="field-body">
-                        <button class="button is-link is-fullwidth" type="submit" name="submit">Register</button>
-                    </div>
-                </div>
+            <!-- Submit -->
 
-            </form>
-
-        </section>
+            <button class="button is-link is-fullwidth" type="submit" name="submit">Register</button>
+        </form>
         <section>
             <p>Heb je al een account?<a href="login.php"> Inloggen</a></p>
         </section>
-
     </div>
-</section>
+</div>
 </body>
+<footer>
+    <div class="footer-style">
+        <img class="logo" src="img/logo_dk.png">
+        <p class="footer-main-text">Denise Kookt!</p>
+        <p class="footer-social-text">Socials</p>
+    </div>
+</footer>
 </html>

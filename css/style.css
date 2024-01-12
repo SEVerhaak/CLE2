@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Libre+Baskerville&family=Mulish&family=Roboto+Mono:wght@300&family=Titan+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
 body{
     margin:0;
     background-image: url(../img/bg.png);
+    font-family: 'Open Sans', sans-serif;
 }
 
 nav{
@@ -107,22 +109,50 @@ footer p{
 .form-login{
     display: flex;
     flex-direction: column;
-    flex-wrap: nowrap;
+    width: 80%;
 }
 .login-container{
     display: flex;
-    width: 50vw;
+    width: 30vw;
     background-color: #f7EDE2;
-    height: 100vh;
+    height: 100%;
     flex-direction: column;
     align-items: center;
     flex-shrink: 0;
+    padding-bottom: 4rem;
 }
 .center-box{
     display: flex;
     justify-content: center;
 }
-label{
-    width: 100%;
+a{
+    color: #2D3835;
+}
+input{
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid #2D3835;
+    border-radius: 4px;
+}
+form button{
+    background-color: #84A59D;
+    color: #f7EDE2;
+    padding: 16px 32px;
+    border: 2px solid #84A59D;
+    border-radius: 4px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+form button:hover{
+    background-color: #84A59D;
+    color: #f7EDE2;
+    padding: 16px 32px;
+    border: 2px solid #84A59D;
+    border-radius: 4px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
 }
 
