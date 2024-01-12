@@ -67,6 +67,10 @@ footer{
     margin-bottom: 0.3rem;
     width: 4rem;
 }
+.form-box{
+    display: flex;
+    justify-content: center;
+}
 footer p{
     margin: 0.3rem;
 }
@@ -99,5 +103,26 @@ footer p{
 .hidden-meta-data{
     display: none;
     visibility: hidden;
+}
+.form-login{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+.login-container{
+    display: flex;
+    width: 50vw;
+    background-color: #f7EDE2;
+    height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+}
+.center-box{
+    display: flex;
+    justify-content: center;
+}
+label{
+    width: 100%;
 }
 

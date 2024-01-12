@@ -63,8 +63,7 @@ if (isset($_POST['submit'])) {
             // User doesn't exist
             require_once 'includes/validation.php';
         }
-    }
-    else {
+    } else {
         // Handle database error
         require_once 'includes/validation.php';
     }
@@ -78,6 +77,7 @@ if (isset($_POST['submit'])) {
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/style.css">
+
     <title>Log in</title>
 </head>
 <!-- Header -->
@@ -91,72 +91,44 @@ if (isset($_POST['submit'])) {
             <a class="header-link-text" href="#">Contact</a>
         </div>
         <div class="nav-left">
-            <a class="login" href = "#">Login</a>
+            <a class="login" href="#">Login</a>
         </div>
     </nav>
 </header>
 <body>
-<section class="section">
-    <div class="container content">
+<div class="center-box">
+    <div class="login-container">
         <p>Terug naar de <a href="index.php">Homepagina</a></p>
         <h2 class="title">Log in</h2>
+        <form class="form-login" action="" method="post">
+            <label class="label" for="email">Email</label>
+            <input class="input" id="email" type="text" name="email" value="<?= isset($email) ? $email : '' ?>"/>
 
-        <section class="columns">
-            <form class="column is-6" action="" method="post">
+            <p>
+                <?= isset($errors['loginFailed']) ? $errors['loginFailed'] : '' ?>
+            </p>
+            <label class="label" for="password">Password</label>
+            <input class="input" id="password" type="password" name="password"/>
 
-                <div class="field is-horizontal">
-                    <div class="field-label is-normal">
-                        <label class="label" for="email">Email</label>
-                    </div>
-                    <div class="field-body">
-                        <div class="field">
-                            <div class="control has-icons-left">
-                                <input class="input" id="email" type="text" name="email" value="<?= isset($email) ? $email : '' ?>" />
-                                <span class="icon is-small is-left"><i class="fas fa-envelope"></i></span>
-                            </div>
-                            <p class="help is-danger">
-                                <?= isset($errors['loginFailed']) ? $errors['loginFailed'] : '' ?>
-                            </p>
-                        </div>
-                    </div>
-                </div>
+            <p class="help is-danger">
+                <?= isset($errors['loginFailed']) ? $errors['loginFailed'] : '' ?>
+            </p>
 
-                <div class="field is-horizontal">
-                    <div class="field-label is-normal">
-                        <label class="label" for="password">Password</label>
-                    </div>
-                    <div class="field-body">
-                        <div class="field">
-                            <div class="control has-icons-left">
-                                <input class="input" id="password" type="password" name="password"/>
-                                <span class="icon is-small is-left"><i class="fas fa-lock"></i></span>
-                            </div>
-                            <p class="help is-danger">
-                                <?= isset($errors['loginFailed']) ? $errors['loginFailed'] : '' ?>
-                            </p>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="field is-horizontal">
-                    <div class="field-label is-normal"></div>
-                    <div class="field-body">
-                        <button class="button is-link is-fullwidth" type="submit" name="submit">Log in With Email</button>
-                    </div>
-                </div>
+            <button class="button is-link is-fullwidth" type="submit" name="submit">Log in With Email</button>
 
-            </form>
-        </section>
+
+        </form>
         <section>
             <p><a href="registeren.php">Registreren</a></p>
         </section>
 
 
     </div>
-</section>
+</div>
 </body>
 <footer>
-    <div class = "footer-style">
+    <div class="footer-style">
         <img class="logo" src="img/logo_dk.png">
         <p class="footer-main-text">Denise Kookt!</p>
         <p class="footer-social-text">Socials</p>
