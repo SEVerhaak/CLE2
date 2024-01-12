@@ -26,8 +26,6 @@ $timeSlots = array(
 );
 
 //takenDatesCheckerDataFetch($db);
-print_r(takenDatesCheckerDataFetch($db));
-
 
 // error array
 $errors = [];
@@ -114,7 +112,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <p class=<?= "dateInvisible" ?>><?= takenDatesCheckerDataFetch($db)[$i] ?></p>
     <?php } ?>
 </div>
-<div>
     <div class="reservation-box">
         <h1>Wat wil je boeken</h1>
         <form action="#" method="POST">
@@ -209,7 +206,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     echo '';
                 } ?>
             </p>
-            <button type="submit">Reserveren!</button>
+            <button id="submitButton" type="submit">Reserveren!</button>
         </form>
     </div>
 </div>
@@ -236,6 +233,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             } else {
                 document.getElementById("date-error").innerHTML = ''
             }
+        }
+        if (taken == true){
+            document.getElementById("submitButton").disabled = true;
+        } else {
+            document.getElementById("submitButton").disabled = false;
         }
         console.log(taken);
     });

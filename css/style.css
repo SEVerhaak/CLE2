@@ -94,7 +94,7 @@ footer p{
     margin-top: 0;
     padding: 2rem;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
 }
 .reservation-box h1{
     margin-top: 0;
