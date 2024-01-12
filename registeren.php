@@ -91,6 +91,7 @@ if (isset($_POST['submit'])) {
     </div>
 </nav>
 <body>
+<!-- form  -->
 <div class="center-box">
     <div class="login-container">
         <h2 class="title">Register With Email</h2>

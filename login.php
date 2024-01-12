@@ -96,6 +96,7 @@ if (isset($_POST['submit'])) {
     </nav>
 </header>
 <body>
+<!-- form -->
 <div class="center-box">
     <div class="login-container">
         <p>Terug naar de <a href="index.php">Homepagina</a></p>
