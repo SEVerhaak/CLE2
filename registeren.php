@@ -46,7 +46,7 @@ if(isset($_POST['submit'])) {
     // If data valid
     if (empty($errorFirstname)&&empty($errorLastname)&&empty($errorEmail)&&empty($errorPassword)&&empty($errorPhonenumber)&&empty($errorIsAdmin)) {
         // create a secure password, with the PHP function password_hash()
-        $password = password_hash("$password", PASSWORD_BCRYPT, ['cost' => 12]);
+        $password = password_hash("$password", PASSWORD_BCRYPT, ['cost' => 10]);
 
         // store the new user in the database.
         $sql = "INSERT INTO users (firstName, lastName, email, password, phoneNumber, isAdmin) VALUES ('$firstName', '$lastName', '$email', '$password', '$phoneNumber', '$isAdmin')";
