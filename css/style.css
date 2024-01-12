@@ -102,8 +102,21 @@ footer p{
 
 .content {
     background-color: #FFFFFF;
-    border-radius: 1vw;
-    padding: 1vw;
+    border-radius: 1vh;
+    padding: 1vh;
+}
+
+.table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1vh;
+}
+
+table {
+    background-color: #FFFFFF;
+    border-radius: 1vh;
+    padding: 1vh;
 }
 
 
