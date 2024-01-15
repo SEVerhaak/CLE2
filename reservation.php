@@ -19,8 +19,8 @@ $currentTimeHTML = date("Y-m-d", $currentTime + 259200);
 
 // tijdsloten variable, eerste array is begin tijd en tweede array is eind tijd
 $timeSlots = array(
-    array('17:00:00', '18:00:00', '19:00:00'),
-    array('18:00:00', '19:00:00', '20:00:00')
+    array('12:00:00', '18:00:00'),
+    array('16:00:00', '22:00:00')
 );
 
 // error array
@@ -53,11 +53,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else if ($time == 'timeslot2') {
             $timeBegin = $timeSlots[0][1];
             $timeEnd = $timeSlots[1][1];
-        } else if ($time == 'timeslot3') {
-            $timeBegin = $timeSlots[0][2];
-            $timeEnd = $timeSlots[1][2];
         } else {
-            $errors['time'] = 'Datum is vekeerd';
+            $errors['time'] = 'Datum is onjuist ingevoerd';
         }
         if (empty($_POST["fName"])) {
             $errors['fName'] = 'Voornaam is vereist';
