@@ -104,15 +104,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $sqlUser = "INSERT INTO `users`(`firstName`, `lastName`, `email`, `password`, `phoneNumber`, `isAdmin`) 
                         VALUES ('$fName','$lName','$email','$password','$phone',0)";
             $userResult = mysqli_query($db, $sqlUser)
-            or die('Error '.mysqli_error($db).' with query '.$sqlUser);
+            or die('Error ' . mysqli_error($db) . ' with query ' . $sqlUser);
 
             $sqlUserID = "SELECT * FROM users WHERE email LIKE '$email'";
             $result = mysqli_query($db, $sqlUserID)
-            or die('Error '.mysqli_error($db).' with query '.$sqlUserID);
+            or die('Error ' . mysqli_error($db) . ' with query ' . $sqlUserID);
             $userData = [];
-            while($row = mysqli_fetch_assoc($result))
+            while ($row = mysqli_fetch_assoc($result))
                 $userData[] = $row;
-            if (count($userData) === 0){
+            if (count($userData) === 0) {
                 //header("Location: index.php");
             }
 
@@ -161,26 +161,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php } ?>
 </div>
 <div class="reservation-box">
-    <div id="section1">
+    <div id="section1" class="section1">
         <h1>Wat wil je boeken</h1>
-    <form action="#" method="POST">
-        <div class="flex-side">
-            <input class="inputSection1" type="radio" name="service" id="catering"
-                       value="catering" <?php if (count($errors) > 0 and isset($_POST["service"])) {
-                    if ($_POST['service'] == 'catering') {
-                        echo 'checked="checked"';
-                    }
-                } ?>>
-                <img class="catering">
-                <label for="service1"> Catering </label>
-                <input class="inputSection1" type="radio" name="service" id="workshop"
-                       value="workshop" <?php if (count($errors) > 0 and isset($_POST["service"])) {
-                    if ($_POST['service'] == 'workshop') {
-                        echo 'checked="checked"';
-                    }
-                } ?>>
-                <img class="workshop">
-                <label for="service2"> Workshop </label>
+        <form action="#" method="POST">
+            <div class="flex-side">
+                <div class="catering-box">
+                    <img class="catering" src="img/icon1.png">
+                    <div class="catering-radio">
+                        <input class="inputSection1" type="radio" name="service" id="catering"
+                               value="catering" <?php if (count($errors) > 0 and isset($_POST["service"])) {
+                            if ($_POST['service'] == 'catering') {
+                                echo 'checked="checked"';
+                            }
+                        } ?>>
+
+                        <label for="service1"> Catering </label>
+                    </div>
+                </div>
+                <div class="workshop-box">
+                    <img class="workshop" src="img/icon2.png">
+                    <div class="workshop-radio">
+                        <input class="inputSection1" type="radio" name="service" id="workshop"
+                               value="workshop" <?php if (count($errors) > 0 and isset($_POST["service"])) {
+                            if ($_POST['service'] == 'workshop') {
+                                echo 'checked="checked"';
+                            }
+                        } ?>>
+
+                        <label for="service2"> Workshop </label>
+                    </div>
+                </div>
             </div>
             <p class="error">
                 <?php if (isset($errors['service'])) {
@@ -204,68 +214,76 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     echo '';
                 } ?>
             </p>
-            <div class="flex-side">
+            <div class="flex-people">
                 <label for="amount_people">Amount of people</label>
                 <button type="button" class="left-button" id="left-button-id">-</button>
                 <input class="amount-value inputSection1" type="number" value="2" name="amount_people" min="2" max="16"
-                   readonly="readonly">
-            <button type="button" class="right-button" id="right-button-id">+</button>
-        </div>
-        <p class="error">
-            <?php if (isset($errors['amount_people'])) {
-                echo $errors['amount_people'];
-            } else {
-                echo '';
-            } ?>
-        </p>
-        <div class="available-time">
-            <p>16:00-17:00</p>
-            <p>prijs</p>
-            <input class="inputSection1" value="timeslot1" type="radio" name="time"
-                       id="time-1" <?php if (count($errors) > 0 and isset($_POST["time"])) {
-                if ($_POST['time'] == 'timeslot1') {
-                    echo 'checked="checked"';
-                }
-            } ?>>
-        </div>
-        <div class="available-time">
-            <p>17:00-18:00</p>
-            <p>prijs</p>
-            <input class="inputSection1" value="timeslot2" type="radio" name="time"
-                       id="time-2" <?php if (count($errors) > 0 and isset($_POST["time"])) {
-                if ($_POST['time'] == 'timeslot2') {
-                    echo 'checked="checked"';
-                }
-            } ?>>
-        </div>
-        <div class="available-time">
-            <p>18:00-19:00</p>
-            <p>prijs</p>
-            <input class="inputSection1" value="timeslot3" type="radio" name="time"
-                       id="time-3" <?php if (count($errors) > 0 and isset($_POST["time"])) {
-                if ($_POST['time'] == 'timeslot3') {
-                    echo 'checked="checked"';
-                }
-            } ?>>
-        </div>
-        <p class="error">
-            <?php if (isset($errors['time'])) {
-                echo $errors['time'];
-            } else {
-                echo '';
-            } ?>
-        </p>
-        <p id="jsError"></p>
+                       readonly="readonly">
+                <button type="button" class="right-button" id="right-button-id">+</button>
+            </div>
+            <p class="error">
+                <?php if (isset($errors['amount_people'])) {
+                    echo $errors['amount_people'];
+                } else {
+                    echo '';
+                } ?>
+            </p>
+            <div class="available-time">
+                <p>16:00-17:00</p>
+                <div>
+                    <p>prijs</p>
+                    <input class="inputSection1" value="timeslot1" type="radio" name="time"
+                           id="time-1" <?php if (count($errors) > 0 and isset($_POST["time"])) {
+                        if ($_POST['time'] == 'timeslot1') {
+                            echo 'checked="checked"';
+                        }
+                    } ?>>
+                </div>
+            </div>
+            <div class="available-time">
+                <p>17:00-18:00</p>
+                <div>
+                    <p>prijs</p>
+                    <input class="inputSection1" value="timeslot2" type="radio" name="time"
+                           id="time-2" <?php if (count($errors) > 0 and isset($_POST["time"])) {
+                        if ($_POST['time'] == 'timeslot2') {
+                            echo 'checked="checked"';
+                        }
+                    } ?>>
+                </div>
+            </div>
+            <div class="available-time">
+                <p>18:00-19:00</p>
+                <div>
+                <p>prijs</p>
+
+                    <input class="inputSection1" value="timeslot3" type="radio" name="time"
+                           id="time-3" <?php if (count($errors) > 0 and isset($_POST["time"])) {
+                        if ($_POST['time'] == 'timeslot3') {
+                            echo 'checked="checked"';
+                        }
+                    } ?>>
+                </div>
+            </div>
+            <p class="error">
+                <?php if (isset($errors['time'])) {
+                    echo $errors['time'];
+                } else {
+                    echo '';
+                } ?>
+            </p>
+            <p id="jsError"></p>
             <button id="nextButton" type="button">Volgende stap</button>
     </div>
     <div id="section2">
         <h1>Persoonlijke gegevens</h1>
         <div class="first-name-form">
             <label for="fName">Voornaam</label>
-            <input class="inputSection2" id="fName" type="text" name="fName" value='<?php if (count($errors) > 0 and isset($_POST["fName"])) {
-                echo $_POST['fName'];
-            }
-            ?>'>
+            <input class="inputSection2" id="fName" type="text" name="fName"
+                   value='<?php if (count($errors) > 0 and isset($_POST["fName"])) {
+                       echo $_POST['fName'];
+                   }
+                   ?>'>
         </div>
         <p class="error page-2">
             <?php if (isset($errors['fName'])) {
@@ -276,10 +294,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </p>
         <div class="last-name-form">
             <label for="lName">Achternaam</label>
-            <input class="inputSection2" id="lName" type="text" name="lName" value='<?php if (count($errors) > 0 and isset($_POST["lName"])) {
-                echo $_POST['fName'];
-            }
-            ?>'>
+            <input class="inputSection2" id="lName" type="text" name="lName"
+                   value='<?php if (count($errors) > 0 and isset($_POST["lName"])) {
+                       echo $_POST['fName'];
+                   }
+                   ?>'>
         </div>
         <p class="error page-2">
             <?php if (isset($errors['lName'])) {
@@ -290,10 +309,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </p>
         <div class="email-form">
             <label for="email">Email</label>
-            <input class="inputSection2" id="email" type="email" name="email" value='<?php if (count($errors) > 0 and isset($_POST["email"])) {
-                echo $_POST['email'];
-            }
-            ?>'>
+            <input class="inputSection2" id="email" type="email" name="email"
+                   value='<?php if (count($errors) > 0 and isset($_POST["email"])) {
+                       echo $_POST['email'];
+                   }
+                   ?>'>
         </div>
         <p class="error page-2">
             <?php if (isset($errors['email'])) {
@@ -304,10 +324,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </p>
         <div class="phone-form">
             <label for="phone">Telefoon nummer</label>
-            <input class="inputSection2" id="phone" type="number" name="phone" value='<?php if (count($errors) > 0 and isset($_POST["phone"])) {
-                echo $_POST['phone'];
-            }
-            ?>'>
+            <input class="inputSection2" id="phone" type="number" name="phone"
+                   value='<?php if (count($errors) > 0 and isset($_POST["phone"])) {
+                       echo $_POST['phone'];
+                   }
+                   ?>'>
         </div>
         <p class="error page-2">
             <?php if (isset($errors['phone'])) {
@@ -318,7 +339,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </p>
         <div class="password-form">
             <label for="password">Wachtwoord</label>
-            <input class="inputSection2" id="password" type="password" name="password" >
+            <input class="inputSection2" id="password" type="password" name="password">
         </div>
         <p class="error page-2">
             <?php if (isset($errors['password'])) {
@@ -339,7 +360,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             } ?>
         </p>
         <div class="extra-info-form">
-            <label for="extraInfo">Herhaal wachtwoord</label>
+            <label for="extraInfo">Zijn er nog bijzonderheden?</label>
             <input class="extraInfo" id="extraInfo" type="text" name="extraInfo">
         </div>
 
@@ -373,19 +394,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     nextButton.addEventListener("click", checkInput);
     prevButton.addEventListener("click", prevPage);
 
-    function init(){
+    function init() {
         let errorElementsPage2 = document.getElementsByClassName("error page-2")
         let errorBool = false;
-        for (let i = 0; i <errorElementsPage2.length; i++) {
-            if (errorElementsPage2[i].innerHTML.includes("vereist")){
+        for (let i = 0; i < errorElementsPage2.length; i++) {
+            if (errorElementsPage2[i].innerHTML.includes("vereist")) {
                 errorBool = true;
             }
         }
-        if (errorBool){
+        if (errorBool) {
             window.addEventListener('load', function () {
                 nextPage();
             })
-        } else{
+        } else {
             window.addEventListener('load', function () {
                 prevPage();
             })
@@ -414,7 +435,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    function nextPage(){
+    function nextPage() {
         section1.style.visibility = 'hidden';
         section1.style.display = 'none';
 
