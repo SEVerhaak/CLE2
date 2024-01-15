@@ -193,17 +193,14 @@ form button:hover{
 .flex-people{
     display: flex;
     align-items: center;
-}
-
-.right-button{
-    background-color: #84A59D;
-    color: #f7EDE2;
-    padding: 5px 20px;
-    border: 2px solid #84A59D;
-    border-radius: 20%;
-    text-decoration: none;
-    margin: 4px 2px;
-    cursor: pointer;
+    justify-content: space-between;
+    flex-direction: row;
+    background-color: #F5CAC3;
+    color: #2D3835;
+    margin: 1rem 0;
+    padding: 0 0.5rem;
+    border: 5px solid #F5CAC3;
+    border-radius: 20px;
 }
 /* hoi hoi */
 .available-time{
@@ -217,6 +214,7 @@ form button:hover{
     flex-direction: row;
     justify-content: space-between;
 }
+
 .available-time div{
     display: flex;
     flex-direction: row;
@@ -252,4 +250,27 @@ form button:hover{
 }
 [type = radio]:checked + div{
     border: 5px solid #2D3835;
+}
+.flex-people button{
+    background-color: #F5CAC3;
+    border: 2px solid #F5CAC3;
+    color: #2D3835;
+    font-size: 1.5rem;
+}
+.flex-people button:hover{
+        background-color: #F5CAC3;
+        padding: 16px 32px;
+        border: 2px solid #F5CAC3;
+        cursor: pointer;
+    color: #f28482;
+}
+.button-right{
+    display: flex;
+    justify-content: flex-end;
+}
+.nextButton:disabled{
+    background-color: white;
+    color: darkgray;
+    border: 2px solid #84A59D;
+    cursor: auto;
 }
