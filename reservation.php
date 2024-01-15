@@ -232,7 +232,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <label>
                 <input class="inputSection1" value="timeslot1" type="radio" name="time"
-                       id="time-3" <?php if (count($errors) > 0 and isset($_POST["time"])) {
+                       id="time-1" <?php if (count($errors) > 0 and isset($_POST["time"])) {
                     if ($_POST['time'] == 'timeslot3') {
                         echo 'checked="checked"';
                     }
@@ -244,7 +244,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </label>
             <label>
                 <input class="inputSection1" value="timeslot2" type="radio" name="time"
-                       id="time-3" <?php if (count($errors) > 0 and isset($_POST["time"])) {
+                       id="time-2" <?php if (count($errors) > 0 and isset($_POST["time"])) {
                     if ($_POST['time'] == 'timeslot3') {
                         echo 'checked="checked"';
                     }
