@@ -211,16 +211,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     echo '';
                 } ?>
             </p>
-                <div class="flex-people">
-                    <label for="amount_people">Hoe veel mensen?</label>
-                    <div>
-                        <button type="button" class="left-button" id="left-button-id">-</button>
-                        <input class="amount-value inputSection1" type="number" value="2" name="amount_people" min="2"
-                               max="16"
-                               readonly="readonly">
-                        <button type="button" class="right-button" id="right-button-id">+</button>
-                    </div>
+            <div class="flex-people">
+                <label for="amount_people">Hoe veel mensen?</label>
+                <div>
+                    <button type="button" class="left-button" id="left-button-id">-</button>
+                    <input class="amount-value inputSection1" type="number" value="2" name="amount_people" min="2"
+                           max="16"
+                           readonly="readonly">
+                    <button type="button" class="right-button" id="right-button-id">+</button>
                 </div>
+            </div>
 
             <p class="error">
                 <?php if (isset($errors['amount_people'])) {
@@ -276,11 +276,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 } ?>
             </p>
             <p id="jsError"></p>
-            <div class = "button-right">
-            <button id="nextButton" class = "nextButton" type="button">Volgende stap</button>
+            <div class="button-right">
+                <button id="nextButton" class="nextButton" type="button">Volgende stap</button>
             </div>
     </div>
-    <div id="section2">
+    <div id="section2" class="section2">
+
         <h1>Persoonlijke gegevens</h1>
         <div class="first-name-form">
             <label for="fName">Voornaam</label>
@@ -366,7 +367,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </p>
         <div class="extra-info-form">
             <label for="extraInfo">Zijn er nog bijzonderheden?</label>
-            <input class="extraInfo" id="extraInfo" type="text" name="extraInfo">
+            <textarea class="extraInfo" id="extraInfo" type="text" name="extraInfo" rows="10"></textarea>
         </div>
 
         <button id="prevButton" type="button">Vorige stap</button>

@@ -140,8 +140,14 @@ input{
     border: 2px solid #2D3835;
     border-radius: 4px;
 }
-
-form button{
+textarea{
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid #2D3835;
+    border-radius: 4px;
+}
+button{
     background-color: #84A59D;
     color: #f7EDE2;
     padding: 16px 32px;
@@ -151,11 +157,11 @@ form button{
     margin: 4px 2px;
     cursor: pointer;
 }
-form button:hover{
-    background-color: #84A59D;
+button:hover{
+    background-color: #475b4f;
     color: #f7EDE2;
     padding: 16px 32px;
-    border: 2px solid #84A59D;
+    border: 2px solid #475b4f;
     border-radius: 4px;
     text-decoration: none;
     margin: 4px 2px;
@@ -302,3 +308,9 @@ form button:hover{
     border: 2px solid #84A59D;
     cursor: auto;
 }
+/* form tweede pagina */
+.section2 div{
+    display: flex;
+    flex-direction: column;
+}
+
