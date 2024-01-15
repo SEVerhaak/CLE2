@@ -26,7 +26,6 @@ mysqli_close($db);
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="css/style.css" rel="stylesheet">
     <link href="css/admin.css" rel="stylesheet" >
-    <link href="css/example.css" rel="stylesheet">
     <link href="css/calendar.css" rel="stylesheet">
     <title>Denise Kookt!</title>
 </head>
@@ -81,6 +80,7 @@ $daysInMonth = cal_days_in_month(0, $numMonth, $numYear);
 $dayOfWeek = date('w', $firstDay);
 ?>
 <!-- Tabel met reserveringen uit de Database -->
+<div class="calendar">
 <table>
     <caption><?php echo($strMonth); ?></caption>
     <thead>
@@ -111,6 +111,7 @@ $dayOfWeek = date('w', $firstDay);
     </tr>
     </tbody>
 </table>
+</div>
 <!-- Footer -->
 </body>
 <footer>
