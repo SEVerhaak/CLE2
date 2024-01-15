@@ -11,6 +11,17 @@ error_reporting(E_ALL);
 require_once 'includes/database.php';
 require_once 'includes/functions.php';
 
+$sqlUserID = "SELECT * FROM settings WHERE 1";
+$result = mysqli_query($db, $sqlUserID)
+or die('Error ' . mysqli_error($db) . ' with query ' . $sqlUserID);
+$settings = [];
+while ($row = mysqli_fetch_assoc($result))
+    $settings[] = $row;
+if (count($settings) === 0) {
+    //header("Location: index.php");
+}
+print_r($settings);
+
 // huidige tijd
 $currentTime = time();
 //huidige tijd met SQL formatting
@@ -215,7 +226,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="amount_people">Hoe veel mensen?</label>
                 <div>
                     <button type="button" class="left-button" id="left-button-id">-</button>
-                    <input class="amount-value inputSection1" type="number" value="2" name="amount_people" min="2"
+                    <input class="amount-value inputSection1" id="amount_people" type="number" value="2"
+                           name="amount_people" min="2"
                            max="16"
                            readonly="readonly">
                     <button type="button" class="right-button" id="right-button-id">+</button>
@@ -238,8 +250,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     }
                 } ?>>
                 <div class="available-time">
-                    <p><?php echo date('G:i', strtotime($timeSlots[0][0])) ?>-<?php echo date('G:i', strtotime($timeSlots[0][1])) ?></p>
-                    <p>prijs</p>
+                    <p><?php echo date('G:i', strtotime($timeSlots[0][0])) ?>
+                        -<?php echo date('G:i', strtotime($timeSlots[0][1])) ?></p>
+                    <p class="price"><?php echo $settings[0]['price'] ?></p>
                 </div>
             </label>
             <label>
@@ -250,13 +263,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     }
                 } ?>>
                 <div class="available-time">
-                    <p><?php echo date('G:i', strtotime($timeSlots[1][0])) ?>-<?php echo date('G:i', strtotime($timeSlots[1][1])) ?></p>
-                    <p>prijs</p>
+                    <p><?php echo date('G:i', strtotime($timeSlots[1][0])) ?>
+                        -<?php echo date('G:i', strtotime($timeSlots[1][1])) ?></p>
+                    <p class="price"><?php echo $settings[0]['price'] ?></p>
                 </div>
             </label>
             <p id="jsError"></p>
-            <div class="button-right">
-                <button id="nextButton" class="nextButton" type="button">Volgende stap</button>
+            <div class = "button-right">
+            <button id="nextButton" class = "nextButton" type="button">Volgende stap</button>
             </div>
     </div>
     <div id="section2" class="section2">
@@ -365,6 +379,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 </footer>
 </html>
+<script>
+    let amountElement = '';
+    let priceArray = '';
+
+    window.addEventListener('load', function () {
+        amountElement = document.getElementById('amount_people');
+        priceArray = document.getElementsByClassName('price');
+
+        for (let i = 0; i < priceArray.length; i++) {
+            let currentPriceElement = priceArray[i];
+            console.log(currentPriceElement.value);
+        }
+    });
+
+</script>
 <script>
     init();
 
