@@ -11,8 +11,6 @@ error_reporting(E_ALL);
 require_once 'includes/database.php';
 require_once 'includes/functions.php';
 
-// tijdelijke userID waarde
-$userID = 100;
 // huidige tijd
 $currentTime = time();
 //huidige tijd met SQL formatting
@@ -24,8 +22,6 @@ $timeSlots = array(
     array('17:00:00', '18:00:00', '19:00:00'),
     array('18:00:00', '19:00:00', '20:00:00')
 );
-
-//takenDatesCheckerDataFetch($db);
 
 // error array
 $errors = [];
@@ -101,8 +97,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $errors['passwordRepeat'] = 'Wachtwoorden komen niet overeen met elkaar!';
         } else {
             // sql statement
-            $sqlUser = "INSERT INTO `users`(`firstName`, `lastName`, `email`, `password`, `phoneNumber`, `isAdmin`) 
-                        VALUES ('$fName','$lName','$email','$password','$phone',0)";
+            $sqlUser = "INSERT INTO `users`(`firstName`, `lastName`, `email`, `password`, `phoneNumber`,`creationDate`, `isAdmin`) 
+                        VALUES ('$fName','$lName','$email','$password','$phone','$currentTimeSQL',0)";
             $userResult = mysqli_query($db, $sqlUser)
             or die('Error ' . mysqli_error($db) . ' with query ' . $sqlUser);
 

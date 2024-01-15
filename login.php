@@ -47,9 +47,8 @@ if (isset($_POST['submit'])) {
 
                 // Store the user in the session
                 $_SESSION['user'] = [
-                    'name' => $user['first_name'],
-                    'email' => $user['email'],
                     'id' => $user['user_id'],
+                    'admin' => $user['isAdmin'],
                 ];
 
                 // Redirect to secure page
@@ -102,22 +101,20 @@ if (isset($_POST['submit'])) {
         <p>Terug naar de <a href="index.php">Homepagina</a></p>
         <h1 class="title">Log in</h1>
         <form class="form-login" action="" method="post">
+
             <label class="label" for="email">Email</label>
             <input class="input" id="email" type="text" name="email" value="<?= isset($email) ? $email : '' ?>"/>
-
             <p>
-                <?= isset($errors['loginFailed']) ? $errors['loginFailed'] : '' ?>
+                <?php echo $errorEmail ?>
             </p>
+
             <label class="label" for="password">Password</label>
             <input class="input" id="password" type="password" name="password"/>
-
             <p class="help is-danger">
-                <?= isset($errors['loginFailed']) ? $errors['loginFailed'] : '' ?>
+                <?php echo $errorPassword ?>
             </p>
 
-
             <button type="submit" name="submit">Log in With Email</button>
-
 
         </form>
         <section>
