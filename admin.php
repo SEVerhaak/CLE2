@@ -51,7 +51,7 @@ mysqli_close($db);
     <a href="#mail"><img src = "img/mail.png"></a>
     <a href="#calender"><img src = "img/agenda.png"></a>
     <a href="#money"><img src = "img/dollar.png"></a>
-    <a href="#settings"><img src = "img/settings.png"></a>
+    <a href="settings.php"><img src = "img/settings.png"></a>
 </div>
 <div class="admin-box">
     <!-- Tabel met reserveringen uit de Database -->

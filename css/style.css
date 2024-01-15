@@ -328,7 +328,7 @@ button:hover{
     padding: 0;
     width: 3.5rem;
     background-color: #F5CAC3;
-    position: fixed;
+    position: absolute;
     height: 100%;
     overflow: auto;
 }
