@@ -23,19 +23,19 @@ if (isset($_POST['submit'])) {
     // Server-side validation
     if (isset($_POST['firstName'], $_POST['lastName'], $_POST['email'], $_POST['password'], $_POST['phoneNumber'], $_POST['isAdmin'])) {
         if (empty($_POST['firstName'])) {
-            $errorEmail = 'firstname cannot be empty';
+            $errorFirstname = 'firstname cannot be empty';
         }
         if (empty($_POST['lastName'])) {
-            $errorEmail = 'lastname cannot be empty';
+            $errorLastname = 'lastname cannot be empty';
         }
         if (empty($_POST['email'])) {
             $errorEmail = 'Email cannot be empty';
         }
         if (empty($_POST['password'])) {
-            $errorEmail = 'password cannot be empty';
+            $errorPassword = 'password cannot be empty';
         }
         if (empty($_POST['phoneNumber'])) {
-            $errorEmail = 'phoneNumber cannot be empty';
+            $errorPhonenumber = 'phoneNumber cannot be empty';
         }
 
         if (empty($_POST['isAdmin'])) {
@@ -97,61 +97,56 @@ if (isset($_POST['submit'])) {
         <h2 class="title">Register With Email</h2>
         <form class="form-login" action="" method="post">
             <!-- First name -->
-            <label class="label" for="firstName">First name</label>
-            <input class="input" id="firstName" type="text" name="firstName"
-                   value="<?= isset($firstName) ? $firstName : '' ?>"/>
-            <p class="help is-danger">
+            <p class="warning" >
                 <?php echo $errorFirstname ?>
             </p>
-            <!-- Last name -->
+            <label class="label" for="firstName">Voornaam</label>
+            <input class="input" id="firstName" type="text" name="firstName"
+                   value="<?= isset($firstName) ? $firstName : '' ?>"/>
 
-            <label class="label" for="lastName">Last name</label>
+
+            <!-- Last name -->
+            <p class="warning">
+                <?php echo $errorLastname ?>
+            </p>
+            <label class="label" for="lastName">Achternaam</label>
             <input class="input" id="lastName" type="text" name="lastName"
                    value="<?= isset($lastName) ? $lastName : '' ?>"/>
 
-
-            <p class="help is-danger">
-                <?php echo $errorLastname ?>
-            </p>
-
             <!-- Email -->
+            <p class="warning">
+                <?php echo $errorEmail ?>
+            </p>
             <label class="label" for="email">Email</label>
             <input class="input" id="email" type="text" name="email"
                    value="<?= isset($email) ? $email : '' ?>"/>
 
-            <p class="help is-danger">
-                <?php echo $errorEmail ?>
-            </p>
+
             <!-- Password -->
-
-            <label class="label" for="password">Password</label>
-
-            <input class="input" id="password" type="password" name="password"/>
-
-            <p class="help is-danger">
+            <p class="warning">
                 <?php echo $errorPassword ?>
             </p>
+            <label class="label" for="password">Wachtwoord</label>
+            <input class="input" id="password" type="password" name="password"/>
+
 
             <!-- Phonenumber -->
-
-            <label class="label" for="phoneNumber">Phonenumber</label>
-
+            <p class="warning">
+                <?php echo $errorPhonenumber ?>
+            </p>
+            <label class="label" for="phoneNumber">Telefoonnummer</label>
             <input class="input" id="phoneNumber" type="number" name="phoneNumber"
                    value="<?= isset($phonenumber) ? $phonenumber : '' ?>"/>
 
-            <p class="help is-danger">
-                <?php echo $errorPhonenumber ?>
-            </p>
+
             <!-- isAdmin -->
-
-            <label class="label" for="isAdmin">isAdmin</label>
-
-            <input class="input" id="isAdmin" type="number" name="isAdmin"
-                   value="<?= isset($isAdmin) ? $isAdmin : '' ?>"/>
-
-            <p class="help is-danger">
+            <p class="warning">
                 <?php echo $errorIsAdmin ?>
             </p>
+
+            <label class="label" for="isAdmin">isAdmin</label>
+            <input class="input" id="isAdmin" type="number" name="isAdmin"
+                   value="<?= isset($isAdmin) ? $isAdmin : '' ?>"/>
 
 
             <!-- Submit -->
@@ -159,7 +154,7 @@ if (isset($_POST['submit'])) {
             <button class="button is-link is-fullwidth" type="submit" name="submit">Register</button>
         </form>
         <section>
-            <p>Heb je al een account?<a href="login.php"> Inloggen</a></p>
+            <p>Heb je al een account?<a href="login.php">Inloggen</a></p>
         </section>
     </div>
 </div>
