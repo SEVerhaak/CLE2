@@ -162,29 +162,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <form action="#" method="POST">
             <div class="flex-side">
                 <div class="catering-box">
-                    <img class="catering" src="img/icon1.png">
+
                     <div class="catering-radio">
+                        <label>
                         <input class="inputSection1" type="radio" name="service" id="catering"
                                value="catering" <?php if (count($errors) > 0 and isset($_POST["service"])) {
                             if ($_POST['service'] == 'catering') {
                                 echo 'checked="checked"';
                             }
                         } ?>>
-
-                        <label for="service1"> Catering </label>
+                            <img class="catering" src="img/icon1.png">
+                        </label>
+                        <p>Catering</p>
                     </div>
                 </div>
                 <div class="workshop-box">
-                    <img class="workshop" src="img/icon2.png">
+
                     <div class="workshop-radio">
+                        <label>
                         <input class="inputSection1" type="radio" name="service" id="workshop"
                                value="workshop" <?php if (count($errors) > 0 and isset($_POST["service"])) {
                             if ($_POST['service'] == 'workshop') {
                                 echo 'checked="checked"';
                             }
-                        } ?>>
-
-                        <label for="service2"> Workshop </label>
+                        } ?> >
+                            <img class="workshop" src="img/icon2.png">
+                        </label>
+                        <p>Workshop</p>
                     </div>
                 </div>
             </div>
@@ -192,7 +196,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <?php if (isset($errors['service'])) {
                     echo $errors['service'];
                 } else {
-                    echo 'hoi';
+                    echo '';
                 } ?>
             </p>
             <div class="flex-down">
@@ -211,7 +215,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 } ?>
             </p>
             <div class="flex-people">
-                <label for="amount_people">Amount of people</label>
+                <label for="amount_people">Hoe veel mensen?</label>
                 <button type="button" class="left-button" id="left-button-id">-</button>
                 <input class="amount-value inputSection1" type="number" value="2" name="amount_people" min="2" max="16"
                        readonly="readonly">
@@ -224,43 +228,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     echo '';
                 } ?>
             </p>
-            <div class="available-time">
-                <p>16:00-17:00</p>
-                <div>
+            <label>
+                <input class="inputSection1" value="timeslot1" type="radio" name="time"
+                       id="time-3" <?php if (count($errors) > 0 and isset($_POST["time"])) {
+                    if ($_POST['time'] == 'timeslot3') {
+                        echo 'checked="checked"';
+                    }
+                } ?>>
+                <div class="available-time">
+                    <p>18:00-19:00</p>
                     <p>prijs</p>
-                    <input class="inputSection1" value="timeslot1" type="radio" name="time"
-                           id="time-1" <?php if (count($errors) > 0 and isset($_POST["time"])) {
-                        if ($_POST['time'] == 'timeslot1') {
-                            echo 'checked="checked"';
-                        }
-                    } ?>>
                 </div>
-            </div>
-            <div class="available-time">
-                <p>17:00-18:00</p>
-                <div>
+            </label>
+            <label>
+                <input class="inputSection1" value="timeslot2" type="radio" name="time"
+                       id="time-3" <?php if (count($errors) > 0 and isset($_POST["time"])) {
+                    if ($_POST['time'] == 'timeslot3') {
+                        echo 'checked="checked"';
+                    }
+                } ?>>
+                <div class="available-time">
+                    <p>18:00-19:00</p>
                     <p>prijs</p>
-                    <input class="inputSection1" value="timeslot2" type="radio" name="time"
-                           id="time-2" <?php if (count($errors) > 0 and isset($_POST["time"])) {
-                        if ($_POST['time'] == 'timeslot2') {
-                            echo 'checked="checked"';
-                        }
-                    } ?>>
                 </div>
-            </div>
-            <div class="available-time">
-                <p>18:00-19:00</p>
-                <div>
-                <p>prijs</p>
+            </label>
+            <label>
+                <input class="inputSection1" value="timeslot3" type="radio" name="time"
+                       id="time-3" <?php if (count($errors) > 0 and isset($_POST["time"])) {
+                    if ($_POST['time'] == 'timeslot3') {
+                        echo 'checked="checked"';
+                    }
+                } ?>>
+                <div class="available-time">
+                    <p>18:00-19:00</p>
+                    <p>prijs</p>
+                </div>
+            </label>
 
-                    <input class="inputSection1" value="timeslot3" type="radio" name="time"
-                           id="time-3" <?php if (count($errors) > 0 and isset($_POST["time"])) {
-                        if ($_POST['time'] == 'timeslot3') {
-                            echo 'checked="checked"';
-                        }
-                    } ?>>
-                </div>
-            </div>
+
             <p class="error">
                 <?php if (isset($errors['time'])) {
                     echo $errors['time'];

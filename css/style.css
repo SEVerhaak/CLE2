@@ -176,10 +176,11 @@ form button:hover{
 .reservation-box{
     max-width: 40vw;
     background-color: #f7EDE2;
-    height: 100vh;
+    height: 100%;
     margin: auto;
     padding: 2rem;
     display: flex;
+    padding-bottom: 3rem;
     flex-direction: column;
 }
 .reservation-box h1{
@@ -210,7 +211,7 @@ form button:hover{
     color: #f7EDE2;
     margin: 1rem 0;
     padding: 0 0.5rem;
-    border: 2px solid #84A59D;
+    border: 5px solid #84A59D;
     border-radius: 20px;
     display: flex;
     flex-direction: row;
@@ -219,4 +220,36 @@ form button:hover{
 .available-time div{
     display: flex;
     flex-direction: row;
+}
+[type = radio]{
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* IMAGE STYLES */
+.catering-radio [type=radio] + img {
+    cursor: pointer;
+}
+
+/* CHECKED STYLES */
+.catering-radio [type=radio]:checked + img {
+    border: 3px solid #f28482;
+}
+
+/* IMAGE STYLES */
+.workshop-radio [type=radio] + img {
+    cursor: pointer;
+}
+
+/* CHECKED STYLES */
+.workshop-radio [type=radio]:checked + img {
+    border: 3px solid #f28482;
+}
+[type = radio] + div{
+    cursor: pointer;
+}
+[type = radio]:checked + div{
+    border: 5px solid #2D3835;
 }
