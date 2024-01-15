@@ -192,7 +192,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <?php if (isset($errors['service'])) {
                     echo $errors['service'];
                 } else {
-                    echo '';
+                    echo 'hoi';
                 } ?>
             </p>
             <div class="flex-down">
