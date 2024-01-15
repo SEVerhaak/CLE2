@@ -95,6 +95,7 @@ if (isset($_POST['submit'])) {
     </nav>
 </header>
 <body>
+
 <!-- form -->
 <div class="center-box">
     <div class="login-container">
@@ -120,10 +121,9 @@ if (isset($_POST['submit'])) {
         <section>
             <p><a href="registeren.php">Registreren</a></p>
         </section>
-
-
     </div>
 </div>
+
 </body>
 <footer>
     <div class="footer-style">

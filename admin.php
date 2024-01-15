@@ -48,26 +48,26 @@ mysqli_close($db);
 <body>
 <!-- Tabel met reserveringen uit de Database -->
 <div class="table">
-<table border="1">
-    <thead>
-    <tr>
-        <?php
-        foreach (array_keys($reservations[0]) as $columnName) {
-            echo '<th>' . $columnName . '</th>';
-        }
-        ?>
-    </tr>
-    </thead>
-    <tbody>
-    <?php foreach ($reservations as $reservation): ?>
+    <table border="1">
+        <thead>
         <tr>
-            <?php foreach ($reservation as $value): ?>
-                <td><?php echo $value; ?></td>
-            <?php endforeach; ?>
+            <?php
+            foreach (array_keys($reservations[0]) as $columnName) {
+                echo '<th>' . $columnName . '</th>';
+            }
+            ?>
         </tr>
-    <?php endforeach; ?>
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+        <?php foreach ($reservations as $reservation): ?>
+            <tr>
+                <?php foreach ($reservation as $value): ?>
+                    <td><?php echo $value; ?></td>
+                <?php endforeach; ?>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
 </div>
 <!-- Evenementen aan de kalender toevoegen (moet nog verbonden worden met de database) -->
 <?php
