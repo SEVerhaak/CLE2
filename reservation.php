@@ -93,6 +93,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         } else {
             $passwordRepeat = mysqli_real_escape_string($db, $_POST['passwordRepeat']);
         }
+        $extraInfo = $_POST["extraInfo"];
     }
     // fName lName email phone password passwordRepeat
     if (empty($errors)) {
@@ -116,8 +117,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
 
             $userID = $userData[0]['id'];
-            $sqlReservation = "INSERT INTO `reservations`(userId, amountPeople, reservationDate, reservationBeginTime, reservationEndTime ,reservationCreationDate, reservationType) 
-        VALUES ('$userID','$amount_people','$date','$timeBegin','$timeEnd','$currentTimeSQL','$service')";
+            $sqlReservation = "INSERT INTO `reservations`(userId, amountPeople, reservationDate, reservationBeginTime, reservationEndTime ,reservationCreationDate, reservationType, extraInfo) 
+        VALUES ('$userID','$amount_people','$date','$timeBegin','$timeEnd','$currentTimeSQL','$service', '$extraInfo')";
             if (mysqli_query($db, $sqlReservation)) {
                 // echo "New record created successfully";
                 header('Location: index.php');
@@ -337,6 +338,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo '';
             } ?>
         </p>
+        <div class="extra-info-form">
+            <label for="extraInfo">Herhaal wachtwoord</label>
+            <input class="extraInfo" id="extraInfo" type="text" name="extraInfo">
+        </div>
+
         <button id="prevButton" type="button">Vorige stap</button>
         <button id="submit-button" type="submit">Reserveren</button>
 
