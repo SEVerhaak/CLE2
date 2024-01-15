@@ -46,7 +46,7 @@ if (isset($_POST['submit'])) {
     // If data valid
     if (empty($errorFirstname) && empty($errorLastname) && empty($errorEmail) && empty($errorPassword) && empty($errorPhonenumber) && empty($errorIsAdmin)) {
         // create a secure password, with the PHP function password_hash()
-        $password = password_hash("$password", PASSWORD_BCRYPT, ['cost' => 10]);
+        $password = password_hash("$password", PASSWORD_BCRYPT, ['cost' => 12]);
 
         // store the new user in the database.
         $sql = "INSERT INTO users (firstName, lastName, email, password, phoneNumber, isAdmin) VALUES ('$firstName', '$lastName', '$email', '$password', '$phoneNumber', '$isAdmin')";
@@ -90,12 +90,14 @@ if (isset($_POST['submit'])) {
         <a class="login" href="admin.php">Login</a>
     </div>
 </nav>
+
 <body>
 <!-- form  -->
 <div class="center-box">
     <div class="login-container">
         <h2 class="title">Register With Email</h2>
         <form class="form-login" action="" method="post">
+
             <!-- First name -->
             <p class="warning" >
                 <?php echo $errorFirstname ?>
@@ -103,7 +105,6 @@ if (isset($_POST['submit'])) {
             <label class="label" for="firstName">Voornaam</label>
             <input class="input" id="firstName" type="text" name="firstName"
                    value="<?= isset($firstName) ? $firstName : '' ?>"/>
-
 
             <!-- Last name -->
             <p class="warning">
@@ -121,14 +122,12 @@ if (isset($_POST['submit'])) {
             <input class="input" id="email" type="text" name="email"
                    value="<?= isset($email) ? $email : '' ?>"/>
 
-
             <!-- Password -->
             <p class="warning">
                 <?php echo $errorPassword ?>
             </p>
             <label class="label" for="password">Wachtwoord</label>
             <input class="input" id="password" type="password" name="password"/>
-
 
             <!-- Phonenumber -->
             <p class="warning">
@@ -138,19 +137,15 @@ if (isset($_POST['submit'])) {
             <input class="input" id="phoneNumber" type="number" name="phoneNumber"
                    value="<?= isset($phonenumber) ? $phonenumber : '' ?>"/>
 
-
             <!-- isAdmin -->
             <p class="warning">
                 <?php echo $errorIsAdmin ?>
             </p>
-
             <label class="label" for="isAdmin">isAdmin</label>
             <input class="input" id="isAdmin" type="number" name="isAdmin"
                    value="<?= isset($isAdmin) ? $isAdmin : '' ?>"/>
 
-
             <!-- Submit -->
-
             <button class="button is-link is-fullwidth" type="submit" name="submit">Register</button>
         </form>
         <section>
