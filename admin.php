@@ -26,7 +26,6 @@ mysqli_close($db);
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="css/style.css" rel="stylesheet">
     <link href="css/admin.css" rel="stylesheet" >
-    <link href="css/example.css" rel="stylesheet">
     <link href="css/calendar.css" rel="stylesheet">
     <title>Denise Kookt!</title>
 </head>
@@ -69,20 +68,49 @@ mysqli_close($db);
     </tbody>
 </table>
 </div>
-<!-- Evenementen aan de kalender toevoegen (moet nog verbonden worden met de database) -->
+<!-- Variabelen voor de Tabel -->
 <?php
-include 'Calendar.php';
-$calendar = new Calendar();
-$calendar->add_event('Workshop 18:00', '2024-01-03', 1, 'green');
-$calendar->add_event('Catering 17:00', '2024-01-07', 1, 'yellow');
-$calendar->add_event('Workshop 16:30', '2024-01-23', 1, 'green');
-$calendar->add_event('Catering 17:30', '2024-01-31', 1, 'yellow');
+$time = time();
+$numDay = date('d', $time);
+$numMonth = date('m', $time);
+$strMonth = date('F', $time);
+$numYear = date('Y', $time);
+$firstDay = mktime(0,0,0,$numMonth,1,$numYear);
+$daysInMonth = cal_days_in_month(0, $numMonth, $numYear);
+$dayOfWeek = date('w', $firstDay);
 ?>
-<!-- Kalender met navigatieknoppen -->
-<div class="content home">
-    <a href="?month=<?= $calendar->getPrevMonth() ?>" class="linkOne">Previous Month</a>
-    <a href="?month=<?= $calendar->getNextMonth() ?>" class="linkTwo">Next Month</a>
-    <?=$calendar?>
+<!-- Tabel met reserveringen uit de Database -->
+<div class="calendar">
+<table>
+    <caption><?php echo($strMonth); ?></caption>
+    <thead>
+    <tr>
+        <th abbr="Sunday" scope="col" title="Sunday">S</th>
+        <th abbr="Monday" scope="col" title="Monday">M</th>
+        <th abbr="Tuesday" scope="col" title="Tuesday">T</th>
+        <th abbr="Wednesday" scope="col" title="Wednesday">W</th>
+        <th abbr="Thursday" scope="col" title="Thursday">T</th>
+        <th abbr="Friday" scope="col" title="Friday">F</th>
+        <th abbr="Saturday" scope="col" title="Saturday">S</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <?php
+        if(0 != $dayOfWeek) { echo('<td colspan="'.$dayOfWeek.'"> </td>'); }
+        for($i=1;$i<=$daysInMonth;$i++) {
+
+            if($i == $numDay) { echo('<td id="today">'); } else { echo("<td>"); }
+            echo($i);
+            echo("</td>");
+            if(date('w', mktime(0,0,0,$numMonth, $i, $numYear)) == 6) {
+                echo("</tr><tr>");
+            }
+        }
+        ?>
+    </tr>
+    </tbody>
+</table>
 </div>
 <!-- Footer -->
 </body>

@@ -1,85 +1,43 @@
-<!-- CSS connectie -->
-<link rel="stylesheet" href="css/calendar.css">
-<!-- Code voor de interactieve kalender -->
 <?php
-class Calendar {
 
-    private $active_year, $active_month, $active_day;
-    private $events = [];
+$time = time();
 
-    public function __construct($date = null) {
-        if ($date !== null) {
-            $this->active_year = date('Y', strtotime($date));
-            $this->active_month = date('m', strtotime($date));
-        } else {
-            $this->active_year = date('Y');
-            $this->active_month = date('m');
-        }
-
-        $this->active_day = date('d', strtotime($date ?? 'now'));
-
-        if (isset($_GET['month'])) {
-            $requestedDate = strtotime($_GET['month'] . '-01');
-            $this->active_year = date('Y', $requestedDate);
-            $this->active_month = date('m', $requestedDate);
-        }
-    }
-
-    public function add_event($txt, $date, $days = 1, $color = '') {
-        $color = $color ? ' ' . $color : $color;
-        $this->events[] = [$txt, $date, $days, $color];
-    }
-
-    public function getPrevMonth() {
-        $prevMonth = strtotime('-1 month', strtotime($this->active_year . '-' . $this->active_month . '-01'));
-        return date('Y-m', $prevMonth);
-    }
-
-    public function getNextMonth() {
-        $nextMonth = strtotime('+1 month', strtotime($this->active_year . '-' . $this->active_month . '-01'));
-        return date('Y-m', $nextMonth);
-    }
-
-    public function __toString() {
-        $num_days = date('t', strtotime($this->active_day . '-' . $this->active_month . '-' . $this->active_year));
-        $num_days_last_month = date('j', strtotime('last day of previous month', strtotime($this->active_day . '-' . $this->active_month . '-' . $this->active_year)));
-        $days = [0 => 'Sun', 1 => 'Mon', 2 => 'Tue', 3 => 'Wed', 4 => 'Thu', 5 => 'Fri', 6 => 'Sat'];
-        $first_day_of_week = array_search(date('D', strtotime($this->active_year . '-' . $this->active_month . '-01')), $days);
-        $html = '<div class="calendar">';
-        $html .= '<div class="header">';
-        $html .= '<div class="month-year">';
-        $html .= date('F Y', strtotime($this->active_year . '-' . $this->active_month . '-' . $this->active_day));
-        $html .= '</div>';
-        $html .= '</div>';
-        $html .= '<div class="days">';
-        foreach ($days as $day) {
-            $html .= '<div class="day_name">' . $day . '</div>';
-        }
-        for ($i = $first_day_of_week; $i > 0; $i--) {
-            $html .= '<div class="day_num ignore">' . ($num_days_last_month-$i+1) . '</div>';
-        }
-        for ($i = 1; $i <= $num_days; $i++) {
-            $selected = '';
-            if ($i == $this->active_day) {
-                $selected = ' selected';
-            }
-            $html .= '<div class="day_num' . $selected . '">';
-            $html .= '<span>' . $i . '</span>';
-            foreach ($this->events as $event) {
-                for ($d = 0; $d <= ($event[2]-1); $d++) {
-                    if (date('y-m-d', strtotime($this->active_year . '-' . $this->active_month . '-' . $i . ' -' . $d . ' day')) == date('y-m-d', strtotime($event[1]))) {
-                        $html .= '<div class="event' . $event[3] . '">' . $event[0] . '</div>';
-                    }
-                }
-            }
-            $html .= '</div>';
-        }
-        for ($i = 1; $i <= (42-$num_days-max($first_day_of_week, 0)); $i++) {
-            $html .= '<div class="day_num ignore">' . $i . '</div>';
-        }
-        $html .= '</div>';
-        $html .= '</div>';
-        return $html;
-    }
-}
+$numDay = date('d', $time);
+$numMonth = date('m', $time);
+$strMonth = date('F', $time);
+$numYear = date('Y', $time);
+$firstDay = mktime(0,0,0,$numMonth,1,$numYear);
+$daysInMonth = cal_days_in_month(0, $numMonth, $numYear);
+$dayOfWeek = date('w', $firstDay);
 ?>
+<table>
+    <caption><?php echo($strMonth); ?></caption>
+    <thead>
+    <tr>
+        <th abbr="Sunday" scope="col" title="Sunday">S</th>
+        <th abbr="Monday" scope="col" title="Monday">M</th>
+        <th abbr="Tuesday" scope="col" title="Tuesday">T</th>
+        <th abbr="Wednesday" scope="col" title="Wednesday">W</th>
+        <th abbr="Thursday" scope="col" title="Thursday">T</th>
+        <th abbr="Friday" scope="col" title="Friday">F</th>
+        <th abbr="Saturday" scope="col" title="Saturday">S</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <?php
+        if(0 != $dayOfWeek) { echo('<td colspan="'.$dayOfWeek.'"> </td>'); }
+        for($i=1;$i<=$daysInMonth;$i++) {
+
+            if($i == $numDay) { echo('<td id="today">'); } else { echo("<td>"); }
+            echo($i);
+            echo("</td>");
+            if(date('w', mktime(0,0,0,$numMonth, $i, $numYear)) == 6) {
+                echo("</tr><tr>");
+            }
+        }
+        ?>
+    </tr>
+    </tbody>
+</table>
