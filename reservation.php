@@ -238,7 +238,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     }
                 } ?>>
                 <div class="available-time">
-                    <p>18:00-19:00</p>
+                    <p><?php echo date('G:i', strtotime($timeSlots[0][0])) ?>-<?php echo date('G:i', strtotime($timeSlots[0][1])) ?></p>
                     <p>prijs</p>
                 </div>
             </label>
@@ -250,31 +250,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     }
                 } ?>>
                 <div class="available-time">
-                    <p>18:00-19:00</p>
+                    <p><?php echo date('G:i', strtotime($timeSlots[1][0])) ?>-<?php echo date('G:i', strtotime($timeSlots[1][1])) ?></p>
                     <p>prijs</p>
                 </div>
             </label>
-            <label>
-                <input class="inputSection1" value="timeslot3" type="radio" name="time"
-                       id="time-3" <?php if (count($errors) > 0 and isset($_POST["time"])) {
-                    if ($_POST['time'] == 'timeslot3') {
-                        echo 'checked="checked"';
-                    }
-                } ?>>
-                <div class="available-time">
-                    <p>18:00-19:00</p>
-                    <p>prijs</p>
-                </div>
-            </label>
-
-
-            <p class="error">
-                <?php if (isset($errors['time'])) {
-                    echo $errors['time'];
-                } else {
-                    echo '';
-                } ?>
-            </p>
             <p id="jsError"></p>
             <div class="button-right">
                 <button id="nextButton" class="nextButton" type="button">Volgende stap</button>
