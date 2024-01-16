@@ -84,7 +84,7 @@ mysqli_close($db);
             <h1>Agenda</h1>
             <div class = "calender">
                 <img  src = "img/Buttonright.png">
-                <img  src = "img/calender.png" class = "calender_img">
+                <img href = "agenda.php" ><img  src = "img/calender.png" class = "calender_img"></a>
                 <img  src = "img/buttonleft.png">
             </div>
         </div>
