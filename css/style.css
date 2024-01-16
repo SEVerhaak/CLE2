@@ -387,12 +387,12 @@ button:hover{
     padding: 1rem;
 }
 .admin-section1{
-    flex-grow: 1.2;
+    flex: 1.5;
     height: 80vh;
     margin: 1rem;
 }
 .admin-section2{
-    flex-grow: 1;
+    flex: 1;
     height: 40vh;
     background-color: #f7EDE2;
     border-radius: 1rem;
@@ -403,7 +403,7 @@ button:hover{
     align-items: center;
 }
 .admin-section3{
-    flex-grow: 1.6;
+    flex: 1.5;
     background-color: #f7EDE2;
     border-radius: 1rem;
     height: 82vh;
@@ -456,5 +456,72 @@ button:hover{
 }
 .admin-reservation h2{
     margin: 0;
+}
+.admin-text{
+    background-color: white;
+    height: 100%;
+    width: 100%;
+    border-radius: 1rem;
+    margin: 0.3rem;
+    display: flex;
+    flex-direction: column;
+    padding: 0.3rem;
+}
+.admin-text a{
+    display: block;
+    width: 90%;
+    border-radius: 0.3rem;
+    text-align: center;
+    text-decoration: none;
+    background-color: #84A59D;
+    color: #f7EDE2;
+    padding: 0.5rem;
+    align-self: center;
+}
+.message{
+    display: flex;
+    width: 90%;
+    height: 15%;
+    border-radius: 1rem;
+    text-decoration: none;
+    background-color: white;
+    color: #2D3835;
+    padding: 0.5rem;
+    align-self: center;
+    margin: 0.3rem;
+}
+.admin-section3 a {
+    background-color: #84A59D;
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+    color: #f7EDE2;
+    text-decoration: none;
+    align-self: flex-start;
+    margin: 1rem;
+}
+.person{
+    border-radius: 50%;
+    background-color: #f7EDE2;
+    height: 100%;
+    aspect-ratio: 1/1;
+    align-self: center;
+    padding: 1rem;
+    margin-right: 1rem;
+}
+.message h2{
+    margin: 0;
+}
+.message p{
+    margin: 0;
+    font-size: 0.8rem;
+}
+.calender{
+    margin-top:1rem;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+.calender_img{
+    width: 100%;
 }
 
