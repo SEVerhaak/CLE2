@@ -58,7 +58,7 @@ mysqli_close($db);
     <a href="admin.php"><img src="img/home.png"></a>
     <a href="#mail"><img src="img/mail.png"></a>
     <a href="testCalender.php"><img src="img/agenda.png"></a>
-    <a href="reservation.php"><img src="img/dollar.png"></a>
+    <a href="admin_reservations.php"><img src="img/dollar.png"></a>
     <a href="settings.php"><img src="img/settings.png"></a>
 </div>
 <div class="admin-box">
