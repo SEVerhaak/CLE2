@@ -1,7 +1,11 @@
 <?php
-//session_start();
+session_start();
 /** @var array $db */
 /** @var array $takendates */
+
+if (isset($_SESSION['user'])){
+    header('location: reservationUser.php');
+}
 
 // tijdelijke error reporting opties
 ini_set('display_errors', '1');
@@ -20,8 +24,6 @@ while ($row = mysqli_fetch_assoc($result))
 if (count($settings) === 0) {
     header("Location: index.php");
 } else {
-
-
 // huidige tijd
     $currentTime = time();
 //huidige tijd met SQL&HTML formatting
@@ -93,14 +95,14 @@ if (count($settings) === 0) {
                 while ($row = mysqli_fetch_assoc($sqlEmailCheckResult))
                     $emailMatch[] = $row;
                 if (count($emailMatch) > 0) {
-                    $errors['email'] = 'E-Mail adres is al in gebruik';
+                    $errors['email'] = 'E-Mail adres is al in gebruik of niet geldig';
                 }
             }
             if (empty($_POST["phone"])) {
                 $errors['phone'] = 'Telefoonnummer is vereist';
             } else {
                 $phone = mysqli_real_escape_string($db, $_POST['phone']);
-                if (strlen(strval($phone)) > 8  and strlen(strval($phone)) < 10){
+                if (strlen(strval($phone)) > 8 and strlen(strval($phone)) < 11) {
 
                 } else {
                     $errors['phone'] = 'Voer een geldig telefoonnummer in';
@@ -155,8 +157,10 @@ if (count($settings) === 0) {
                 }
                 mysqli_close($db);
             }
+
         }
     }
+
 }
 ?>
 <!doctype html>
@@ -444,7 +448,7 @@ if (count($settings) === 0) {
         let errorElementsPage2 = document.getElementsByClassName("error page-2")
         let errorBool = false;
         for (let i = 0; i < errorElementsPage2.length; i++) {
-            if (errorElementsPage2[i].innerHTML.includes("vereist") || errorElementsPage2[i].innerHTML.includes("is")) {
+            if (errorElementsPage2[i].innerHTML.includes("vereist") || errorElementsPage2[i].innerHTML.includes("geldig")) {
                 errorBool = true;
             }
         }

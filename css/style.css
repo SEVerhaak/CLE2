@@ -528,3 +528,9 @@ button:hover{
     width: 100%;
 }
 
+.extra-info-logged-in-form{
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-direction: column;
+}

@@ -23,7 +23,6 @@ if (count($settings) === 0) {
     //header("Location: index.php");
     $error = 'could not load settings';
 }
-//print_r($settings);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST['price'])) {
