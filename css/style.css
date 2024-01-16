@@ -337,7 +337,7 @@ button:hover{
 .sidebar a {
     display: block;
     color: black;
-    padding: 16px;
+    padding: 0.5rem;
     text-decoration: none;
 }
 
@@ -351,6 +351,9 @@ button:hover{
 .sidebar a:hover:not(.active) {
     background-color: #f28482;
     color: white;
+}
+.sidebar img{
+    width: 2.5rem;
 }
 
 

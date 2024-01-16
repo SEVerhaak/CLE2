@@ -51,10 +51,11 @@ mysqli_close($db);
     <a href="#mail"><img src = "img/mail.png"></a>
     <a href="#calender"><img src = "img/agenda.png"></a>
     <a href="#money"><img src = "img/dollar.png"></a>
-    <a href="settings.php"><img src = "img/settings.png"></a>
+    <a href="#settings"><img src = "img/settings.png"></a>
 </div>
 <div class="admin-box">
     <!-- Tabel met reserveringen uit de Database -->
+    <!--
     <div class="table">
         <table border="1">
             <thead>
@@ -77,7 +78,7 @@ mysqli_close($db);
             </tbody>
         </table>
     </div>
-    <!-- Evenementen aan de kalender toevoegen (moet nog verbonden worden met de database) -->
+     Evenementen aan de kalender toevoegen (moet nog verbonden worden met de database)
     <?php
     include 'Calendar.php';
     $calendar = new Calendar();
@@ -86,13 +87,14 @@ mysqli_close($db);
     $calendar->add_event('Workshop 16:30', '2024-01-23', 1, 'green');
     $calendar->add_event('Catering 17:30', '2024-01-31', 1, 'yellow');
     ?>
-    <!-- Kalender met navigatieknoppen -->
+    Kalender met navigatieknoppen
     <div class="content home">
         <a href="?month=<?= $calendar->getPrevMonth() ?>" class="linkOne">Previous Month</a>
         <a href="?month=<?= $calendar->getNextMonth() ?>" class="linkTwo">Next Month</a>
         <?= $calendar ?>
     </div>
-    <!-- Footer -->
+    Footer
+    -->
 </div>
 </body>
 <footer>

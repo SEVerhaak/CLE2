@@ -10,7 +10,7 @@ error_reporting(E_ALL);
 // includes
 require_once 'includes/database.php';
 require_once 'includes/functions.php';
-
+/*
 $sqlUserID = "SELECT * FROM settings WHERE 1";
 $result = mysqli_query($db, $sqlUserID)
 or die('Error ' . mysqli_error($db) . ' with query ' . $sqlUserID);
@@ -21,7 +21,7 @@ if (count($settings) === 0) {
     //header("Location: index.php");
 }
 print_r($settings);
-
+*/
 // huidige tijd
 $currentTime = time();
 //huidige tijd met SQL formatting
