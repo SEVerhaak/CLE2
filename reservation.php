@@ -20,7 +20,6 @@ while ($row = mysqli_fetch_assoc($result))
 if (count($settings) === 0) {
     //header("Location: index.php");
 }
-print_r($settings);
 
 // huidige tijd
 $currentTime = time();
@@ -30,8 +29,8 @@ $currentTimeHTML = date("Y-m-d", $currentTime + 259200);
 
 // tijdsloten variable, eerste array is begin tijd en tweede array is eind tijd
 $timeSlots = array(
-    array('12:00:00', '18:00:00'),
-    array('16:00:00', '22:00:00')
+    array($settings[0]['timeSlotBegin1'], $settings[0]['timeSlotEnd1']),
+    array($settings[0]['timeSlotBegin2'], $settings[0]['timeSlotEnd2'])
 );
 
 // error array
@@ -52,6 +51,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $errors['amount_people'] = 'Datum is vereist';
     } else {
         $amount_people = mysqli_real_escape_string($db, $_POST['amount_people']);
+        if ($amount_people > $settings[0]["maxGuest"] or $amount_people < $settings[0]["minGuest"]){
+            $errors = 'Maximaal aantal gasten overschreden';
+        }
     }
     if (empty($_POST["time"])) {
         $errors['time'] = 'Datum is vereist';
@@ -105,6 +107,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $errors['passwordRepeat'] = 'Wachtwoorden komen niet overeen met elkaar!';
         } else {
             // sql statement
+            $password = password_hash($password, PASSWORD_DEFAULT);
             $sqlUser = "INSERT INTO `users`(`firstName`, `lastName`, `email`, `password`, `phoneNumber`,`creationDate`, `isAdmin`) 
                         VALUES ('$fName','$lName','$email','$password','$phone','$currentTimeSQL',0)";
             $userResult = mysqli_query($db, $sqlUser)
@@ -211,9 +214,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="date">Voor welke datum?</label>
                 <input class="inputSection1" type="date" name="date" id="date-id" min='<?= $currentTimeHTML ?>'
                        value='<?php if (count($errors) > 0 and isset($_POST["date"])) {
-                           echo $_POST['date'];
+                           echo htmlentities($_POST['date']);
                        }
-                       ?>'>
+                       ?>' >
             </div>
             <p class="error" id="date-error">
                 <?php if (isset($errors['date'])) {
@@ -226,10 +229,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="amount_people">Hoe veel mensen?</label>
                 <div>
                     <button type="button" class="left-button" id="left-button-id">-</button>
-                    <input class="amount-value inputSection1" id="amount_people" type="number" value="2"
-                           name="amount_people" min="2"
-                           max="16"
-                           readonly="readonly">
+                    <input class="amount-value inputSection1" id="amount_people" type="number" value="<?= $settings[0]['minGuest']  ?>" name="amount_people" readonly="readonly">
                     <button type="button" class="right-button" id="right-button-id">+</button>
                 </div>
             </div>
@@ -251,8 +251,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 } ?>>
                 <div class="available-time">
                     <p><?php echo date('G:i', strtotime($timeSlots[0][0])) ?>
-                        -<?php echo date('G:i', strtotime($timeSlots[0][1])) ?></p>
-                    <p class="price"><?php echo $settings[0]['price'] ?></p>
+                        - <?php echo date('G:i', strtotime($timeSlots[0][1])) ?></p>
+                    <p class="price"></p>
                 </div>
             </label>
             <label>
@@ -264,8 +264,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 } ?>>
                 <div class="available-time">
                     <p><?php echo date('G:i', strtotime($timeSlots[1][0])) ?>
-                        -<?php echo date('G:i', strtotime($timeSlots[1][1])) ?></p>
-                    <p class="price"><?php echo $settings[0]['price'] ?></p>
+                        - <?php echo date('G:i', strtotime($timeSlots[1][1])) ?></p>
+                    <p class="price"></p>
                 </div>
             </label>
             <p id="jsError"></p>
@@ -280,7 +280,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="fName">Voornaam</label>
             <input class="inputSection2" id="fName" type="text" name="fName"
                    value='<?php if (count($errors) > 0 and isset($_POST["fName"])) {
-                       echo $_POST['fName'];
+                       echo htmlentities($_POST['fName']);
                    }
                    ?>'>
         </div>
@@ -295,7 +295,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="lName">Achternaam</label>
             <input class="inputSection2" id="lName" type="text" name="lName"
                    value='<?php if (count($errors) > 0 and isset($_POST["lName"])) {
-                       echo $_POST['fName'];
+                       echo htmlentities( $_POST['fName']);
                    }
                    ?>'>
         </div>
@@ -310,7 +310,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="email">Email</label>
             <input class="inputSection2" id="email" type="email" name="email"
                    value='<?php if (count($errors) > 0 and isset($_POST["email"])) {
-                       echo $_POST['email'];
+                       echo htmlentities($_POST['email']);
                    }
                    ?>'>
         </div>
@@ -325,7 +325,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="phone">Telefoonnummer</label>
             <input class="inputSection2" id="phone" type="number" name="phone"
                    value='<?php if (count($errors) > 0 and isset($_POST["phone"])) {
-                       echo $_POST['phone'];
+                       echo htmlentities($_POST['phone']);
                    }
                    ?>'>
         </div>
@@ -380,19 +380,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </footer>
 </html>
 <script>
-    let amountElement = '';
-    let priceArray = '';
-
-    window.addEventListener('load', function () {
-        amountElement = document.getElementById('amount_people');
-        priceArray = document.getElementsByClassName('price');
-
-        for (let i = 0; i < priceArray.length; i++) {
-            let currentPriceElement = priceArray[i];
-            console.log(currentPriceElement.value);
-        }
+    document.getElementById("date-id").addEventListener('focus', function(event) {
+        event.target.showPicker();
     });
 
+    const inputDate = document.querySelector("date-id");
+
+    inputDate.addEventListener("keydown", function (e) {
+        e.preventDefault();
+    });
+</script>
+<script>
+
+    let leftButtonPrice = document.getElementsByClassName('left-button')[0];
+    let rightButtonPrice = document.getElementsByClassName('right-button')[0];
+
+    let price = parseInt("<?= $settings[0]['price'] ?>")
+    let amountElement = document.getElementById('amount_people')
+    let timeSlot = document.getElementsByClassName('price')
+    calcPrice();
+
+    function calcPrice(){
+        console.log('test');
+        for (let i = 0; i < timeSlot.length; i++) {
+            timeSlot[i].innerHTML = price * parseInt(amountElement.value);
+            timeSlot[i].innerHTML = "€" + timeSlot[i].innerHTML;
+        }
+    }
 </script>
 <script>
     init();
@@ -491,27 +505,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </script>
 <script>
     let element = document.getElementsByClassName('amount-value')[0];
+    let currentElementValue = element.value
+    let maxValue = parseInt("<?php echo $settings[0]['maxGuest'] ?>")
+    let minValue = parseInt("<?php echo $settings[0]['minGuest'] ?>")
+    console.log(currentElementValue)
     let leftButton = document.getElementsByClassName('left-button')[0];
     let rightButton = document.getElementsByClassName('right-button')[0];
     leftButton.addEventListener("click", decrease);
     rightButton.addEventListener("click", increase);
 
+
     function increase() {
-        let value = parseInt(element.value)
-        if (value >= 16) {
-        } else {
-            element.value = value + 1;
+        currentElementValue = parseInt(element.value)
+        if (currentElementValue >= maxValue){
+        } else{
+            element.value = currentElementValue + 1
+            calcPrice();
+            console.log(element.value)
         }
     }
 
     function decrease() {
-        let value = parseInt(element.value)
-        if (value <= 2) {
+        currentElementValue = parseInt(element.value)
+        if (currentElementValue <= minValue){
 
         } else {
-            element.value = value - 1;
+            element.value = currentElementValue - 1
+            calcPrice();
+            console.log(element.value)
         }
-
     }
 
 </script>
