@@ -4,7 +4,7 @@
 
 require_once 'includes/database.php';
 
-$query = "SELECT * FROM reservations";
+$query = "SELECT reservations.id, amountPeople, reservationDate, reservationBeginTime, reservationEndTime, reservationType, extraInfo, users.firstName, users.lastName, users.phoneNumber, users.email FROM `reservations` JOIN users on userId = users.id ORDER by reservationDate";
 
 $result = mysqli_query($db, $query) or die('Error ' . htmlentities(mysqli_error($db)) . ' with query ' . htmlentities($query));
 
@@ -19,12 +19,6 @@ mysqli_free_result($result);
 
 
 // SQL-query
-$sqlQuery = "SELECT reservationDate FROM reservations";
-$result = $db->query($sqlQuery);
-
-$sqlQuery1 = "SELECT CONCAT(reservationType, ' ', reservationBeginTime) AS planning FROM reservations";
-$result1 = $db->query($sqlQuery1);
-
 
 
 
@@ -40,9 +34,6 @@ mysqli_close($db);
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="css/style.css" rel="stylesheet">
-    <link href="css/admin.css" rel="stylesheet">
-    <link href="css/example.css" rel="stylesheet">
-    <link href="css/calendar.css" rel="stylesheet">
     <title>Denise Kookt!</title>
 </head>
 <!-- Header -->
@@ -68,38 +59,17 @@ mysqli_close($db);
     <a href="admin_reservations.php"><img src="img/dollar.png"></a>
     <a href="settings.php"><img src="img/settings.png"></a>
 </div>
-<div class="admin-box">
-    <!-- Tabel met reserveringen uit de Database -->
-    <div class="table">
-        <table border="1">
-            <thead>
-            <tr>
-                <?php
-                foreach (array_keys($reservations[0]) as $columnName) {
-                    echo '<th>' . $columnName . '</th>';
-                }
-                ?>
-            </tr>
-            </thead>
-            <tbody>
-            <?php foreach ($reservations as $reservation): ?>
-                <tr>
-                    <?php foreach ($reservation as $value): ?>
-                        <td><?php echo $value; ?></td>
-                    <?php endforeach; ?>
-                </tr>
-            <?php endforeach; ?>
-            </tbody>
-        </table>
+<div class="info-reservation-box">
+    <?php foreach($reservations as $index => $reservation){ ?>
+    <div class="info-reservation">
+        <h2>Datum reservering: <?= $reservations[$index]['reservationDate'] ?></h2>
+        <p>Reservering op naam: <?= $reservations[$index]['firstName'].' '.$reservations[0]['lastName']?></p>
+        <p>Hoeveelheid mensen: <?= $reservations[$index]['amountPeople']?></p>
+        <p>Type reservering: <?= $reservations[$index]['reservationType']?></p>
+        <p>E-mail reserveerder: <?= $reservations[$index]['email']?></p>
+        <p>Tel reserveerder: <?= $reservations[$index]['phoneNumber']?></p>
     </div>
-
-    <!-- Kalender met navigatieknoppen -->
-    <div class="content home">
-        <a href="?month=<?= $calendar->getPrevMonth() ?>" class="linkOne">Previous Month</a>
-        <a href="?month=<?= $calendar->getNextMonth() ?>" class="linkTwo">Next Month</a>
-        <?= $calendar ?>
-    </div>
-    <!-- Footer -->
+<?php } ?>
 </div>
 </body>
 <footer>
