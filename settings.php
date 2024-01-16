@@ -110,6 +110,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </header>
     <body>
     <form method="post">
+    <div class = "center-box">
+        <div class = "login-container">
         <div class="price-form">
             <label for="fName">Prijs per persoon</label>
             <input class="input-settings" id="price" type="number" min='0' max='9999' name='price' value='<?php if (isset($_POST['price']) and count($errors) > 0) {
@@ -230,6 +232,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             } ?>
         </p>
         <button type="submit">Opslaan</button> <a href="admin.php">Terug</a>
+        </div>
+    </div>
     </form>
     <p class="succes"><?php if (isset($succes)){echo $succes;} ?></p>
     </body>
