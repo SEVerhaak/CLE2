@@ -79,7 +79,7 @@ mysqli_close($db);
     </div>
     <!-- Evenementen aan de kalender toevoegen (moet nog verbonden worden met de database) -->
     <?php
-    include 'Calendar.php';
+    include 'calender2.0.php';
     $calendar = new Calendar();
     $calendar->add_event('Workshop 18:00', '2024-01-03', 1, 'green');
     $calendar->add_event('Catering 17:00', '2024-01-07', 1, 'yellow');
