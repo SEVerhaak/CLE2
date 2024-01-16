@@ -84,160 +84,177 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //print_r($errors);
 }
 ?>
-    <!doctype html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport"
-              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link href="css/style.css" rel="stylesheet">
-        <title>Denise Kookt!</title>
-    </head>
-    <header>
-        <nav>
-            <div class="nav-right">
-                <img class="logo" src="img/logo_dk.png">
-                <a class="header-link-text" href="reservation.php">Reserveren</a>
-                <a class="header-link-text" href="about.php">Over ons</a>
-                <a class="header-link-text" href="news.php">Nieuws</a>
-                <a class="header-link-text" href="contact.php">Contact</a>
-            </div>
-            <div class="nav-left">
-                <a class="login" href="login.php">Login</a>
-            </div>
-        </nav>
-    </header>
-    <body>
-    <form method="post">
-        <div class="price-form">
-            <label for="fName">Prijs per persoon</label>
-            <input class="input-settings" id="price" type="number" min='0' max='9999' name='price' value='<?php if (isset($_POST['price']) and count($errors) > 0) {
-                //echo $settings[0]['price'];
-                echo $_POST['price'];
-            } else {
-                echo $settings[0]['price'];
-            }
-            ?>'>
-        </div>
-        <p class="error">
-            <?php if (isset($errors['price'])) {
-                echo $errors['price'];
-            } else {
-                echo '';
-            } ?>
-        </p>
-        <div class="timeslot-begin-1-form">
-            <label for="fName">Begin tijd tijdslot 1</label>
-            <input class="input-settings" id="timeslotB1" type="time" name='timeslotB1' value='<?php if (isset($_POST['timeslotB1']) and count($errors) > 0) {
-                //echo $settings[0]['price'];
-                echo $_POST['timeslotB1'];
-            } else {
-                echo $settings[0]['timeSlotBegin1'];
-            }
-            ?>'>
-        </div>
-        <p class="error">
-            <?php if (isset($errors['timeslotB1'])) {
-                echo $errors['timeslotB1'];
-            } else {
-                echo '';
-            } ?>
-        </p>
-        <div class="timeslot-end-1-form">
-            <label for="fName">Eind tijd tijdslot 1</label>
-            <input class="input-settings" id="timeslotE1" type="time" name='timeslotE1' value='<?php if (isset($_POST['timeslotE1']) and count($errors) > 0) {
-                //echo $settings[0]['price'];
-                echo $_POST['timeslotE1'];
-            } else {
-                echo $settings[0]['timeSlotEnd1'];
-            }
-            ?>'>
-        </div>
-        <p class="error">
-            <?php if (isset($errors['timeslotE1'])) {
-                echo $errors['timeslotE1'];
-            } else {
-                echo '';
-            } ?>
-        </p>
-        <div class="timeslot-begin-2-form">
-            <label for="fName">Begin tijd tijdslot 2</label>
-            <input class="input-settings" id="timeslotB2" type="time" name='timeslotB2' value='<?php if (isset($_POST['timeslotB2']) and count($errors) > 0) {
-                //echo $settings[0]['price'];
-                echo $_POST['timeslotB2'];
-            } else {
-                echo $settings[0]['timeSlotBegin2'];
-            }
-            ?>'>
-        </div>
-        <p class="error">
-            <?php if (isset($errors['timeslotB2'])) {
-                echo $errors['timeslotB2'];
-            } else {
-                echo '';
-            } ?>
-        </p>
-        <div class="timeslot-end-2-form">
-            <label for="fName">Eind tijd tijdslot 2</label>
-            <input class="input-settings" id="timeslotE2" type="time" name='timeslotE2' value='<?php if (isset($_POST['timeslotE2']) and count($errors) > 0) {
-                //echo $settings[0]['price'];
-                echo $_POST['timeslotE2'];
-            } else {
-                echo $settings[0]['timeSlotEnd2'];
-            }
-            ?>'>
-        </div>
-        <p class="error">
-            <?php if (isset($errors['timeSlotEnd2'])) {
-                echo $errors['timeSlotEnd2'];
-            } else {
-                echo '';
-            } ?>
-        </p>
-        <div class="min-guest-form">
-            <label for="minGuest">Minimaal aantal gasten</label>
-            <input class="input-settings" id="minGuest" type="number" min='0' max='99' name='minGuest' value='<?php if (isset($_POST['minGuest']) and count($errors) > 0) {
-                //echo $settings[0]['price'];
-                echo $_POST['minGuest'];
-            } else {
-                echo $settings[0]['minGuest'];
-            }
-            ?>'>
-        </div>
-        <p class="error">
-            <?php if (isset($errors['minGuest'])) {
-                echo $errors['minGuest'];
-            } else {
-                echo '';
-            } ?>
-        </p>
-        <div class="max-guest-form">
-            <label for="minGuest">Maximaal aantal gasten</label>
-            <input class="input-settings" id="minGuest" type="number" min='2' max='99' name='maxGuest' value='<?php if (isset($_POST['maxGuest']) and count($errors) > 0) {
-                //echo $settings[0]['price'];
-                echo $_POST['maxGuest'];
-            } else {
-                echo $settings[0]['maxGuest'];
-            }
-            ?>'>
-        </div>
-        <p class="error">
-            <?php if (isset($errors['maxGuest'])) {
-                echo $errors['maxGuest'];
-            } else {
-                echo '';
-            } ?>
-        </p>
-        <button type="submit">Opslaan</button> <a href="admin.php">Terug</a>
-    </form>
-    <p class="succes"><?php if (isset($succes)){echo $succes;} ?></p>
-    </body>
-    <footer>
-        <div class="footer-style">
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="css/style.css" rel="stylesheet">
+    <title>Denise Kookt!</title>
+</head>
+<header>
+    <nav>
+        <div class="nav-right">
             <img class="logo" src="img/logo_dk.png">
-            <p class="footer-main-text">Denise Kookt!</p>
-            <p class="footer-social-text">Socials</p>
+            <a class="header-link-text" href="reservation.php">Reserveren</a>
+            <a class="header-link-text" href="about.php">Over ons</a>
+            <a class="header-link-text" href="news.php">Nieuws</a>
+            <a class="header-link-text" href="contact.php">Contact</a>
         </div>
-    </footer>
-    </html>
+        <div class="nav-left">
+            <a class="login" href="login.php">Login</a>
+        </div>
+    </nav>
+</header>
+<body>
+<div class = "center-box">
+    <div class = "login-container">
+        <h1> Instellingen </h1>
+        <form method="post" class="form-login">
+            <div class="section2">
+            <div class="price-form">
+                <label for="fName">Prijs per persoon</label>
+                <input class="input-settings" id="price" type="number" min='0' max='9999' name='price'
+                       value='<?php if (isset($_POST['price']) and count($errors) > 0) {
+                           //echo $settings[0]['price'];
+                           echo $_POST['price'];
+                       } else {
+                           echo $settings[0]['price'];
+                       }
+                       ?>'>
+            </div>
+            <p class="error">
+                <?php if (isset($errors['price'])) {
+                    echo $errors['price'];
+                } else {
+                    echo '';
+                } ?>
+            </p>
+            <div class="timeslot-begin-1-form">
+                <label for="fName">Begin tijd tijdslot 1</label>
+                <input class="input-settings" id="timeslotB1" type="time" name='timeslotB1'
+                       value='<?php if (isset($_POST['timeslotB1']) and count($errors) > 0) {
+                           //echo $settings[0]['price'];
+                           echo $_POST['timeslotB1'];
+                       } else {
+                           echo $settings[0]['timeSlotBegin1'];
+                       }
+                       ?>'>
+            </div>
+            <p class="error">
+                <?php if (isset($errors['timeslotB1'])) {
+                    echo $errors['timeslotB1'];
+                } else {
+                    echo '';
+                } ?>
+            </p>
+            <div class="timeslot-end-1-form">
+                <label for="fName">Eind tijd tijdslot 1</label>
+                <input class="input-settings" id="timeslotE1" type="time" name='timeslotE1'
+                       value='<?php if (isset($_POST['timeslotE1']) and count($errors) > 0) {
+                           //echo $settings[0]['price'];
+                           echo $_POST['timeslotE1'];
+                       } else {
+                           echo $settings[0]['timeSlotEnd1'];
+                       }
+                       ?>'>
+            </div>
+            <p class="error">
+                <?php if (isset($errors['timeslotE1'])) {
+                    echo $errors['timeslotE1'];
+                } else {
+                    echo '';
+                } ?>
+            </p>
+            <div class="timeslot-begin-2-form">
+                <label for="fName">Begin tijd tijdslot 2</label>
+                <input class="input-settings" id="timeslotB2" type="time" name='timeslotB2'
+                       value='<?php if (isset($_POST['timeslotB2']) and count($errors) > 0) {
+                           //echo $settings[0]['price'];
+                           echo $_POST['timeslotB2'];
+                       } else {
+                           echo $settings[0]['timeSlotBegin2'];
+                       }
+                       ?>'>
+            </div>
+            <p class="error">
+                <?php if (isset($errors['timeslotB2'])) {
+                    echo $errors['timeslotB2'];
+                } else {
+                    echo '';
+                } ?>
+            </p>
+            <div class="timeslot-end-2-form">
+                <label for="fName">Eind tijd tijdslot 2</label>
+                <input class="input-settings" id="timeslotE2" type="time" name='timeslotE2'
+                       value='<?php if (isset($_POST['timeslotE2']) and count($errors) > 0) {
+                           //echo $settings[0]['price'];
+                           echo $_POST['timeslotE2'];
+                       } else {
+                           echo $settings[0]['timeSlotEnd2'];
+                       }
+                       ?>'>
+            </div>
+            <p class="error">
+                <?php if (isset($errors['timeSlotEnd2'])) {
+                    echo $errors['timeSlotEnd2'];
+                } else {
+                    echo '';
+                } ?>
+            </p>
+            <div class="min-guest-form">
+                <label for="minGuest">Minimaal aantal gasten</label>
+                <input class="input-settings" id="minGuest" type="number" min='0' max='99' name='minGuest'
+                       value='<?php if (isset($_POST['minGuest']) and count($errors) > 0) {
+                           //echo $settings[0]['price'];
+                           echo $_POST['minGuest'];
+                       } else {
+                           echo $settings[0]['minGuest'];
+                       }
+                       ?>'>
+            </div>
+            <p class="error">
+                <?php if (isset($errors['minGuest'])) {
+                    echo $errors['minGuest'];
+                } else {
+                    echo '';
+                } ?>
+            </p>
+            <div class="max-guest-form">
+                <label for="minGuest">Maximaal aantal gasten</label>
+                <input class="input-settings" id="minGuest" type="number" min='2' max='99' name='maxGuest'
+                       value='<?php if (isset($_POST['maxGuest']) and count($errors) > 0) {
+                           //echo $settings[0]['price'];
+                           echo $_POST['maxGuest'];
+                       } else {
+                           echo $settings[0]['maxGuest'];
+                       }
+                       ?>'>
+            </div>
+            <p class="error">
+                <?php if (isset($errors['maxGuest'])) {
+                    echo $errors['maxGuest'];
+                } else {
+                    echo '';
+                } ?>
+            </p>
+            <button type="submit">Opslaan</button>
+            <a href="admin.php">Terug</a>
+            </div>
+        </form>
+    </div>
+<p class="succes"><?php if (isset($succes)) {
+        echo $succes;
+    } ?></p>
+</div>
+</body>
+<footer>
+    <div class="footer-style">
+        <img class="logo" src="img/logo_dk.png">
+        <p class="footer-main-text">Denise Kookt!</p>
+        <p class="footer-social-text">Socials</p>
+    </div>
+</footer>
+</html>
