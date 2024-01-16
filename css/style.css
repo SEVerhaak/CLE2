@@ -521,6 +521,9 @@ button:hover{
     display: flex;
     justify-content: space-between;
 }
+.img_a{
+    width: 40%;
+}
 .calender_img{
     width: 100%;
 }
