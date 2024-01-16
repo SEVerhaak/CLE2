@@ -1,4 +1,4 @@
-<!-- Verbinding met de Database maken en de reserveringen ophalen -->
+
 <?php
 /** @var mysqli $db */
 
@@ -69,33 +69,30 @@ mysqli_close($db);
     <a href="settings.php"><img src="img/settings.png"></a>
 </div>
 <div class="admin-box">
+    <!-- Tabel met reserveringen uit de Database -->
+    <div class="table">
+        <table border="1">
+            <thead>
+            <tr>
+                <?php
+                foreach (array_keys($reservations[0]) as $columnName) {
+                    echo '<th>' . $columnName . '</th>';
+                }
+                ?>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($reservations as $reservation): ?>
+                <tr>
+                    <?php foreach ($reservation as $value): ?>
+                        <td><?php echo $value; ?></td>
+                    <?php endforeach; ?>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
 
-
-    <!-- Evenementen aan de kalender toevoegen (moet nog verbonden worden met de database) -->
-    <?php
-    include 'calender2.0.php';
-    $calendar = new Calendar();
-
-
-
-    // Check of er resultaten zijn en voeg ze toe aan de kalender
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            // Haal de reserveringsdatum op
-            $reservationDate = $row["reservationDate"];
-
-            // Voeg de reserveringsdatum toe aan de kalender
-            $calendar->add_event('Reservering', $reservationDate, 1, 'green');
-        }
-    } else {
-        echo "Geen resultaten gevonden.";
-    }
-
-
-
-
-
-    ?>
     <!-- Kalender met navigatieknoppen -->
     <div class="content home">
         <a href="?month=<?= $calendar->getPrevMonth() ?>" class="linkOne">Previous Month</a>
@@ -113,3 +110,4 @@ mysqli_close($db);
     </div>
 </footer>
 </html>
+<?php
