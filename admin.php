@@ -82,13 +82,70 @@ mysqli_close($db);
         </div>
         <div class="admin-reservations">
             <h1>Agenda</h1>
+            <div class = "calender">
+                <img  src = "img/Buttonright.png">
+                <img  src = "img/calender.png" class = "calender_img">
+                <img  src = "img/buttonleft.png">
+            </div>
         </div>
     </section>
     <section class="admin-section2">
         <h1>Welkom, admin</h1>
+        <div class = "admin-text">
+            <p>Openstaande reserveringen: <?= count($reservations) ?></p>
+            <a href = "#reserveringen">Ga naar reserveringen</a>
+            <p>Nieuwe berichten: 5</p>
+            <a href = "#reserveringen">Ga naar mail</a>
+        </div>
     </section>
     <section class="admin-section3">
         <h1>Berichten</h1>
+            <div class = "message">
+                <div class = "person">
+                    <h1> P.J.</h1>
+                </div>
+                <div>
+                    <h2>Aanvullende informatie over levering</h2>
+                    <p>Beste catering service, ik zou graag meer informatie ontvangen over de leveringsopties en eventuele kosten voor een bestelling op [datum].</p>
+                </div>
+            </div>
+            <div class = "message">
+                <div class = "person">
+                    <h1> P.J.</h1>
+                </div>
+                <div>
+                    <h2>Offerte aanvragen voor bedrijfslunch</h2>
+                    <p>Beste catering service, kunt u mij een offerte sturen voor een bedrijfslunch op [datum] voor ongeveer [aantal] personen?</p>
+                </div>
+            </div>
+            <div class = "message">
+                <div class = "person">
+                    <h1> P.J.</h1>
+                </div>
+                <div>
+                    <h2>Beschikbaarheid checken voor evenement</h2>
+                    <p>Hallo catering team, kunnen jullie bevestigen of jullie beschikbaar zijn op [datum] voor ons evenement?</p>
+                </div>
+            </div>
+            <div class = "message">
+                <div class = "person">
+                    <h1> P.J.</h1>
+                </div>
+                <div>
+                    <h2>Menu-opties voor feest</h2>
+                    <p>Beste cateraar, graag ontvang ik informatie over jullie menu-opties en prijzen voor een feest op [datum].</p>
+                </div>
+            </div>
+        <div class = "message">
+            <div class = "person">
+                <h1> P.J.</h1>
+            </div>
+            <div>
+                <h2>Dieetwensen bespreken</h2>
+                <p>Hallo catering team, kunnen jullie rekening houden met specifieke dieetwensen voor een catering op [datum]?</p>
+            </div>
+        </div>
+        <a href = "#messages">Alle mails</a>
     </section>
 </div>
 </body>
