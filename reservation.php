@@ -20,7 +20,6 @@ while ($row = mysqli_fetch_assoc($result))
 if (count($settings) === 0) {
     //header("Location: index.php");
 }
-print_r($settings);
 
 // huidige tijd
 $currentTime = time();
