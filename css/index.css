@@ -1,12 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Libre+Baskerville&family=Mulish&family=Roboto+Mono:wght@300&family=Titan+One&display=swap');
 h1 {
     padding: 1vw 0.5vw 0vw 0.5vw;
-    margin-top: 30vh;
     font-family: 'Open Sans', sans-serif;
     color: #f28482;
     text-align: center;
     font-size: 5rem;
-    text-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+}
+main{
+    display: flex;
+    align-items: center;
+    height: 100vh;
 }
 
 .links {
@@ -44,4 +48,5 @@ h1 {
     margin: auto;
     width: 50%;
     border-radius: 1vw;
+
 }
