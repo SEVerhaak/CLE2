@@ -109,6 +109,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </nav>
 </header>
 <body>
+<div class="sidebar">
+    <a href="admin.php"><img src="img/home.png"></a>
+    <a href="#mail"><img src="img/mail.png"></a>
+    <a href="testCalender.php"><img src="img/agenda.png"></a>
+    <a href="reservation.php"><img src="img/dollar.png"></a>
+    <a href="settings.php"><img src="img/settings.png"></a>
+</div>
 <div class = "center-box">
     <div class = "login-container">
         <h1> Instellingen </h1>

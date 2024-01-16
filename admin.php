@@ -55,10 +55,10 @@ mysqli_close($db);
 </header>
 <body>
 <div class="sidebar">
-    <a href="index.php"><img src="img/home.png"></a>
+    <a href="admin.php"><img src="img/home.png"></a>
     <a href="#mail"><img src="img/mail.png"></a>
-    <a href="#calender"><img src="img/agenda.png"></a>
-    <a href="#money"><img src="img/dollar.png"></a>
+    <a href="testCalender.php"><img src="img/agenda.png"></a>
+    <a href="reservation.php"><img src="img/dollar.png"></a>
     <a href="settings.php"><img src="img/settings.png"></a>
 </div>
 <div class="admin-box">
