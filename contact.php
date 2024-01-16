@@ -9,7 +9,6 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="css/style.css" rel="stylesheet">
-    <link href="css/about.css" rel="stylesheet">
     <title>Denise Kookt!</title>
 </head>
 <header>
@@ -27,6 +26,9 @@
     </nav>
 </header>
 <body>
+<main>
+    <h1>Contact</h1>
+</main>
 </body>
 <footer>
     <div class="footer-style">

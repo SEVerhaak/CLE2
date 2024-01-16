@@ -27,6 +27,9 @@
     </nav>
 </header>
 <body>
+<main>
+    <h1>Over Ons</h1>
+</main>
 </body>
 <footer>
     <div class="footer-style">
