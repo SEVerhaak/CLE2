@@ -28,10 +28,12 @@
 </header>
 <body>
 <main>
+    <div class="block">
     <h1>Welkom bij Denise Kookt!</h1>
     <div class="links">
-    <a href="reservation.php">Reserveer een kookworkshop!</a>
-    <a href="about.php">Meer infomatie</a>
+    <a href="reservation.php" class="indexLink">Reserveren</a>
+    <a href="about.php" class="indexLink">Meer infomatie</a>
+    </div>
     </div>
 </main>
 </body>
