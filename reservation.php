@@ -3,7 +3,9 @@ session_start();
 /** @var array $db */
 /** @var array $takendates */
 
-$loggedIn = false;
+if (isset($_SESSION['user'])){
+    header('location: reservationUser.php');
+}
 
 // tijdelijke error reporting opties
 ini_set('display_errors', '1');
@@ -22,7 +24,6 @@ while ($row = mysqli_fetch_assoc($result))
 if (count($settings) === 0) {
     header("Location: index.php");
 } else {
-    print_r($settings);
 // huidige tijd
     $currentTime = time();
 //huidige tijd met SQL&HTML formatting
