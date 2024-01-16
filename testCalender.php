@@ -40,9 +40,7 @@ mysqli_close($db);
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="css/style.css" rel="stylesheet">
-    <link href="css/admin.css" rel="stylesheet">
     <link href="css/example.css" rel="stylesheet">
-    <link href="css/calendar.css" rel="stylesheet">
     <title>Denise Kookt!</title>
 </head>
 <!-- Header -->
@@ -68,7 +66,7 @@ mysqli_close($db);
     <a href="admin_reservations.php"><img src="img/dollar.png"></a>
     <a href="settings.php"><img src="img/settings.png"></a>
 </div>
-<div class="admin-box">
+<div class="calender-box">
 
 
     <!-- Evenementen aan de kalender toevoegen (moet nog verbonden worden met de database) -->
@@ -97,10 +95,11 @@ mysqli_close($db);
 
     ?>
     <!-- Kalender met navigatieknoppen -->
-    <div class="content home">
+    <div class="content-home">
         <a href="?month=<?= $calendar->getPrevMonth() ?>" class="linkOne">Previous Month</a>
-        <a href="?month=<?= $calendar->getNextMonth() ?>" class="linkTwo">Next Month</a>
+
         <?= $calendar ?>
+        <a href="?month=<?= $calendar->getNextMonth() ?>" class="linkTwo">Next Month</a>
     </div>
     <!-- Footer -->
 </div>

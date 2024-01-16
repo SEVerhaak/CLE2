@@ -68,6 +68,7 @@ mysqli_close($db);
         <p>Type reservering: <?= $reservations[$index]['reservationType']?></p>
         <p>E-mail reserveerder: <?= $reservations[$index]['email']?></p>
         <p>Tel reserveerder: <?= $reservations[$index]['phoneNumber']?></p>
+        <p>Bijzonderheden: <?= $reservations[$index]['extraInfo']?></p>
     </div>
 <?php } ?>
 </div>

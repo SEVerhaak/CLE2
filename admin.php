@@ -33,9 +33,6 @@ mysqli_close($db);
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="css/style.css" rel="stylesheet">
-    <link href="css/admin.css" rel="stylesheet">
-    <link href="css/example.css" rel="stylesheet">
-    <link href="css/calendar.css" rel="stylesheet">
     <title>Denise Kookt!</title>
 </head>
 <!-- Header -->
@@ -69,14 +66,14 @@ mysqli_close($db);
                 <h2><?= $reservationsAdminBox[0]["reservationDate"] ?></h2>
                 <div>
                     <p><?php echo $reservationsAdminBox[0]["amountPeople"] . ' personen, ' . $reservationsAdminBox[0]["reservationType"] ?> </p>
-                    <a href="#reservations"> Details </a>
+                    <a href="admin_reservations.php"> Details </a>
                 </div>
             </div>
             <div class="admin-reservation">
                 <h2><?= $reservationsAdminBox[1]["reservationDate"] ?></h2>
                 <div>
-                    <p><?php echo $reservationsAdminBox[0]["amountPeople"] . ' personen, ' . $reservationsAdminBox[0]["reservationType"] ?> </p>
-                    <a href="#reservations"> Details </a>
+                    <p><?php echo $reservationsAdminBox[1]["amountPeople"] . ' personen, ' . $reservationsAdminBox[0]["reservationType"] ?> </p>
+                    <a href="admin_reservations.php"> Details </a>
                 </div>
             </div>
         </div>
@@ -93,9 +90,9 @@ mysqli_close($db);
         <h1>Welkom, admin</h1>
         <div class = "admin-text">
             <p>Openstaande reserveringen: <?= count($reservations) ?></p>
-            <a href = "#reserveringen">Ga naar reserveringen</a>
-            <p>Nieuwe berichten: 5</p>
-            <a href = "#reserveringen">Ga naar mail</a>
+            <a href = "admin_reservations.php">Ga naar reserveringen</a>
+            <p>Nieuwe berichten: 4</p>
+            <a href = "#mail">Ga naar mail</a>
         </div>
     </section>
     <section class="admin-section3">
@@ -125,15 +122,6 @@ mysqli_close($db);
                 <div>
                     <h2>Beschikbaarheid checken voor evenement</h2>
                     <p>Hallo catering team, kunnen jullie bevestigen of jullie beschikbaar zijn op [datum] voor ons evenement?</p>
-                </div>
-            </div>
-            <div class = "message">
-                <div class = "person">
-                    <h1> P.J.</h1>
-                </div>
-                <div>
-                    <h2>Menu-opties voor feest</h2>
-                    <p>Beste cateraar, graag ontvang ik informatie over jullie menu-opties en prijzen voor een feest op [datum].</p>
                 </div>
             </div>
         <div class = "message">
