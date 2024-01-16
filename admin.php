@@ -14,6 +14,14 @@ while ($reservation = mysqli_fetch_assoc($result)) {
     $reservations[] = $reservation;
 }
 
+$queryAdminBox = "SELECT reservationDate, amountPeople, reservationType FROM reservations ORDER BY reservationDate LIMIT 2";
+$resultAdminBox = mysqli_query($db, $queryAdminBox) or die('Error ' . htmlentities(mysqli_error($db)) . ' with query ' . htmlentities($query));
+
+$reservationsAdminBox = [];
+
+while ($reservationAdminBox = mysqli_fetch_assoc($resultAdminBox)) {
+    $reservationsAdminBox[] = $reservationAdminBox;
+}
 mysqli_close($db);
 ?>
 <!-- Documentinformatie en CSS connectie -->
@@ -47,54 +55,41 @@ mysqli_close($db);
 </header>
 <body>
 <div class="sidebar">
-    <a href="#home"><img src = "img/home.png"></a>
-    <a href="#mail"><img src = "img/mail.png"></a>
-    <a href="#calender"><img src = "img/agenda.png"></a>
-    <a href="#money"><img src = "img/dollar.png"></a>
-    <a href="#settings"><img src = "img/settings.png"></a>
+    <a href="index.php"><img src="img/home.png"></a>
+    <a href="#mail"><img src="img/mail.png"></a>
+    <a href="#calender"><img src="img/agenda.png"></a>
+    <a href="#money"><img src="img/dollar.png"></a>
+    <a href="settings.php"><img src="img/settings.png"></a>
 </div>
 <div class="admin-box">
-    <!-- Tabel met reserveringen uit de Database -->
-    <!--
-    <div class="table">
-        <table border="1">
-            <thead>
-            <tr>
-                <?php
-                foreach (array_keys($reservations[0]) as $columnName) {
-                    echo '<th>' . $columnName . '</th>';
-                }
-                ?>
-            </tr>
-            </thead>
-            <tbody>
-            <?php foreach ($reservations as $reservation): ?>
-                <tr>
-                    <?php foreach ($reservation as $value): ?>
-                        <td><?php echo $value; ?></td>
-                    <?php endforeach; ?>
-                </tr>
-            <?php endforeach; ?>
-            </tbody>
-        </table>
-    </div>
-     Evenementen aan de kalender toevoegen (moet nog verbonden worden met de database)
-    <?php
-    include 'Calendar.php';
-    $calendar = new Calendar();
-    $calendar->add_event('Workshop 18:00', '2024-01-03', 1, 'green');
-    $calendar->add_event('Catering 17:00', '2024-01-07', 1, 'yellow');
-    $calendar->add_event('Workshop 16:30', '2024-01-23', 1, 'green');
-    $calendar->add_event('Catering 17:30', '2024-01-31', 1, 'yellow');
-    ?>
-    Kalender met navigatieknoppen
-    <div class="content home">
-        <a href="?month=<?= $calendar->getPrevMonth() ?>" class="linkOne">Previous Month</a>
-        <a href="?month=<?= $calendar->getNextMonth() ?>" class="linkTwo">Next Month</a>
-        <?= $calendar ?>
-    </div>
-    Footer
-    -->
+    <section class="admin-section1">
+        <div class="admin-reservations">
+            <h1>Openstaande reserveringen</h1>
+            <div class="admin-reservation">
+                <h2><?= $reservationsAdminBox[0]["reservationDate"] ?></h2>
+                <div>
+                    <p><?php echo $reservationsAdminBox[0]["amountPeople"] . ' personen, ' . $reservationsAdminBox[0]["reservationType"] ?> </p>
+                    <a href="#reservations"> Details </a>
+                </div>
+            </div>
+            <div class="admin-reservation">
+                <h2><?= $reservationsAdminBox[1]["reservationDate"] ?></h2>
+                <div>
+                    <p><?php echo $reservationsAdminBox[0]["amountPeople"] . ' personen, ' . $reservationsAdminBox[0]["reservationType"] ?> </p>
+                    <a href="#reservations"> Details </a>
+                </div>
+            </div>
+        </div>
+        <div class="admin-reservations">
+            <h1>Agenda</h1>
+        </div>
+    </section>
+    <section class="admin-section2">
+        <h1>Welkom, admin</h1>
+    </section>
+    <section class="admin-section3">
+        <h1>Berichten</h1>
+    </section>
 </div>
 </body>
 <footer>

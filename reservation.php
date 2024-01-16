@@ -18,123 +18,143 @@ $settings = [];
 while ($row = mysqli_fetch_assoc($result))
     $settings[] = $row;
 if (count($settings) === 0) {
-    //header("Location: index.php");
-}
-print_r($settings);
+    header("Location: index.php");
+} else {
+
 
 // huidige tijd
-$currentTime = time();
-//huidige tijd met SQL formatting
-$currentTimeSQL = date("Y-m-d h:i:s", $currentTime);
-$currentTimeHTML = date("Y-m-d", $currentTime + 259200);
+    $currentTime = time();
+//huidige tijd met SQL&HTML formatting
+    $currentTimeSQL = date("Y-m-d h:i:s", $currentTime);
+    $currentTimeHTML = date("Y-m-d", $currentTime + 259200);
 
 // tijdsloten variable, eerste array is begin tijd en tweede array is eind tijd
-$timeSlots = array(
-    array($settings[0]['timeSlotBegin1'], $settings[0]['timeSlotEnd1']),
-    array($settings[0]['timeSlotBegin2'], $settings[0]['timeSlotEnd2'])
-);
+    $timeSlots = array(
+        array($settings[0]['timeSlotBegin1'], $settings[0]['timeSlotEnd1']),
+        array($settings[0]['timeSlotBegin2'], $settings[0]['timeSlotEnd2'])
+    );
 
 // error array
-$errors = [];
-// Na POST voer de volgende code uit:
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (empty($_POST["service"])) {
-        $errors['service'] = 'Dienst is vereist';
-    } else {
-        $service = mysqli_real_escape_string($db, $_POST['service']);
-    }
-    if (empty($_POST["date"])) {
-        $errors['date'] = 'Datum is vereist';
-    } else {
-        $date = mysqli_real_escape_string($db, $_POST['date']);
-    }
-    if (empty($_POST["amount_people"])) {
-        $errors['amount_people'] = 'Datum is vereist';
-    } else {
-        $amount_people = mysqli_real_escape_string($db, $_POST['amount_people']);
-        if ($amount_people > $settings[0]["maxGuest"] or $amount_people < $settings[0]["minGuest"]){
-            $errors = 'Maximaal aantal gasten overschreden';
-        }
-    }
-    if (empty($_POST["time"])) {
-        $errors['time'] = 'Datum is vereist';
-    } else {
-        $time = mysqli_real_escape_string($db, $_POST['time']);
-        // timeslot omzetten naar daadwerkelijke tijd
-        if ($time == 'timeslot1') {
-            $timeBegin = $timeSlots[0][0];
-            $timeEnd = $timeSlots[1][0];
-        } else if ($time == 'timeslot2') {
-            $timeBegin = $timeSlots[0][1];
-            $timeEnd = $timeSlots[1][1];
+    $errors = [];
+// Na POST check of alle input ingevuld is
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (empty($_POST["service"])) {
+            $errors['service'] = 'Dienst is vereist';
         } else {
-            $errors['time'] = 'Datum is onjuist ingevoerd';
+            $service = mysqli_real_escape_string($db, $_POST['service']);
         }
-        if (empty($_POST["fName"])) {
-            $errors['fName'] = 'Voornaam is vereist';
+        if (empty($_POST["date"])) {
+            $errors['date'] = 'Datum is vereist';
         } else {
-            $fName = mysqli_real_escape_string($db, $_POST['fName']);
+            $date = mysqli_real_escape_string($db, $_POST['date']);
         }
-        if (empty($_POST["lName"])) {
-            $errors['lName'] = 'Achternaam is vereist';
+        if (empty($_POST["amount_people"])) {
+            $errors['amount_people'] = 'Datum is vereist';
         } else {
-            $lName = mysqli_real_escape_string($db, $_POST['lName']);
-        }
-        if (empty($_POST["email"])) {
-            $errors['email'] = 'Email is vereist';
-        } else {
-            $email = mysqli_real_escape_string($db, $_POST['email']);
-        }
-        if (empty($_POST["phone"])) {
-            $errors['phone'] = 'Telefoonnummer is vereist';
-        } else {
-            $phone = mysqli_real_escape_string($db, $_POST['phone']);
-        }
-        if (empty($_POST["password"])) {
-            $errors['password'] = 'Wachtwoord is vereist';
-        } else {
-            $password = mysqli_real_escape_string($db, $_POST['password']);
-        }
-        if (empty($_POST["passwordRepeat"])) {
-            $errors['passwordRepeat'] = 'Wachtwoord is vereist';
-        } else {
-            $passwordRepeat = mysqli_real_escape_string($db, $_POST['passwordRepeat']);
-        }
-        $extraInfo = $_POST["extraInfo"];
-    }
-    // fName lName email phone password passwordRepeat
-    if (empty($errors)) {
-        if ($password !== $passwordRepeat) {
-            $errors['passwordRepeat'] = 'Wachtwoorden komen niet overeen met elkaar!';
-        } else {
-            // sql statement
-            $password = password_hash($password, PASSWORD_DEFAULT);
-            $sqlUser = "INSERT INTO `users`(`firstName`, `lastName`, `email`, `password`, `phoneNumber`,`creationDate`, `isAdmin`) 
-                        VALUES ('$fName','$lName','$email','$password','$phone','$currentTimeSQL',0)";
-            $userResult = mysqli_query($db, $sqlUser)
-            or die('Error ' . mysqli_error($db) . ' with query ' . $sqlUser);
-
-            $sqlUserID = "SELECT * FROM users WHERE email LIKE '$email'";
-            $result = mysqli_query($db, $sqlUserID)
-            or die('Error ' . mysqli_error($db) . ' with query ' . $sqlUserID);
-            $userData = [];
-            while ($row = mysqli_fetch_assoc($result))
-                $userData[] = $row;
-            if (count($userData) === 0) {
-                //header("Location: index.php");
+            // extra check om te kijken of er geen verkeerde waarde ingevuld is voor de max en min aantal gasten.
+            $amount_people = mysqli_real_escape_string($db, $_POST['amount_people']);
+            if ($amount_people > $settings[0]["maxGuest"] or $amount_people < $settings[0]["minGuest"]) {
+                $errors = 'Maximaal aantal gasten overschreden';
             }
-
-            $userID = $userData[0]['id'];
-            $sqlReservation = "INSERT INTO `reservations`(userId, amountPeople, reservationDate, reservationBeginTime, reservationEndTime ,reservationCreationDate, reservationType, extraInfo) 
-        VALUES ('$userID','$amount_people','$date','$timeBegin','$timeEnd','$currentTimeSQL','$service', '$extraInfo')";
-            if (mysqli_query($db, $sqlReservation)) {
-                // echo "New record created successfully";
-                header('Location: index.php');
+        }
+        if (empty($_POST["time"])) {
+            $errors['time'] = 'Datum is vereist';
+        } else {
+            $time = mysqli_real_escape_string($db, $_POST['time']);
+            // timeslot omzetten naar daadwerkelijke tijd
+            if ($time == 'timeslot1') {
+                $timeBegin = $timeSlots[0][0];
+                $timeEnd = $timeSlots[1][0];
+            } else if ($time == 'timeslot2') {
+                $timeBegin = $timeSlots[0][1];
+                $timeEnd = $timeSlots[1][1];
             } else {
-                //echo "Error: " . $sql . "<br>" . mysqli_error($db);
-                $errorMessage = "An error has occurred";
+                $errors['time'] = 'Datum is onjuist ingevoerd';
             }
-            mysqli_close($db);
+            if (empty($_POST["fName"])) {
+                $errors['fName'] = 'Voornaam is vereist';
+            } else {
+                $fName = mysqli_real_escape_string($db, $_POST['fName']);
+            }
+            if (empty($_POST["lName"])) {
+                $errors['lName'] = 'Achternaam is vereist';
+            } else {
+                $lName = mysqli_real_escape_string($db, $_POST['lName']);
+            }
+            if (empty($_POST["email"])) {
+                $errors['email'] = 'Email is vereist';
+            } else {
+                $email = mysqli_real_escape_string($db, $_POST['email']);
+                //check of email al in gebruik is
+                $sqlEmailCheck = "SELECT * FROM users WHERE email LIKE '$email'";
+                $sqlEmailCheckResult = mysqli_query($db, $sqlEmailCheck)
+                or die('Error ' . mysqli_error($db) . ' with query ' . $sqlEmailCheck);
+                $emailMatch = [];
+                while ($row = mysqli_fetch_assoc($sqlEmailCheckResult))
+                    $emailMatch[] = $row;
+                if (count($emailMatch) > 0) {
+                    $errors['email'] = 'E-Mail adres is al in gebruik';
+                }
+            }
+            if (empty($_POST["phone"])) {
+                $errors['phone'] = 'Telefoonnummer is vereist';
+            } else {
+                $phone = mysqli_real_escape_string($db, $_POST['phone']);
+                if (strlen(strval($phone)) > 8  and strlen(strval($phone)) < 10){
+
+                } else {
+                    $errors['phone'] = 'Voer een geldig telefoonnummer in';
+                }
+            }
+            if (empty($_POST["password"])) {
+                $errors['password'] = 'Wachtwoord is vereist';
+            } else {
+                $password = mysqli_real_escape_string($db, $_POST['password']);
+            }
+            if (empty($_POST["passwordRepeat"])) {
+                $errors['passwordRepeat'] = 'Wachtwoord is vereist';
+            } else {
+                $passwordRepeat = mysqli_real_escape_string($db, $_POST['passwordRepeat']);
+            }
+            $extraInfo = $_POST["extraInfo"];
+        }
+        // als er geen errors zijn voer query uit
+
+        if (empty($errors)) {
+            // check of wachtwoorden overeen komen met elkaar
+            if ($password !== $passwordRepeat) {
+                $errors['passwordRepeat'] = 'Wachtwoorden komen niet overeen met elkaar!';
+            } else {
+                // sql statement voor toevoegen van gebruiker
+                $password = password_hash($password, PASSWORD_DEFAULT);
+                $sqlUser = "INSERT INTO `users`(`firstName`, `lastName`, `email`, `password`, `phoneNumber`,`creationDate`, `isAdmin`) 
+                        VALUES ('$fName','$lName','$email','$password','$phone','$currentTimeSQL',0)";
+                $userResult = mysqli_query($db, $sqlUser)
+                or die('Error ' . mysqli_error($db) . ' with query ' . $sqlUser);
+                // sql statement voor ophalen user ID gebaseerd op uniek email adres
+                $sqlUserID = "SELECT * FROM users WHERE email LIKE '$email'";
+                $result = mysqli_query($db, $sqlUserID)
+                or die('Error ' . mysqli_error($db) . ' with query ' . $sqlUserID);
+                $userData = [];
+                while ($row = mysqli_fetch_assoc($result))
+                    $userData[] = $row;
+                if (count($userData) === 0) {
+                    //header("Location: index.php");
+                }
+                // sla nieuw aangemaakt user id op
+                $userID = $userData[0]['id'];
+                // sql statement voor toevoegen van reservering gekoppeld aan user id
+                $sqlReservation = "INSERT INTO `reservations`(userId, amountPeople, reservationDate, reservationBeginTime, reservationEndTime ,reservationCreationDate, reservationType, extraInfo) 
+        VALUES ('$userID','$amount_people','$date','$timeBegin','$timeEnd','$currentTimeSQL','$service', '$extraInfo')";
+                if (mysqli_query($db, $sqlReservation)) {
+                    // echo "New record created successfully";
+                    header('Location: index.php');
+                } else {
+                    //echo "Error: " . $sql . "<br>" . mysqli_error($db);
+                    $errorMessage = "An error has occurred";
+                }
+                mysqli_close($db);
+            }
         }
     }
 }
@@ -164,7 +184,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </nav>
 </header>
 <div class="hidden-meta-data" style="display: none;">
-    <?php for ($i = 0; $i < count(takenDatesCheckerDataFetch($db)); $i++) { ?>
+    <?php for ($i = 0;
+               $i < count(takenDatesCheckerDataFetch($db));
+               $i++) { ?>
         <p class="dateInvisible"><?= takenDatesCheckerDataFetch($db)[$i] ?></p>
     <?php } ?>
 </div>
@@ -217,7 +239,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                        value='<?php if (count($errors) > 0 and isset($_POST["date"])) {
                            echo htmlentities($_POST['date']);
                        }
-                       ?>' >
+                       ?>'>
             </div>
             <p class="error" id="date-error">
                 <?php if (isset($errors['date'])) {
@@ -230,7 +252,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label for="amount_people">Hoe veel mensen?</label>
                 <div>
                     <button type="button" class="left-button" id="left-button-id">-</button>
-                    <input class="amount-value inputSection1" id="amount_people" type="number" value="<?= $settings[0]['minGuest']  ?>" name="amount_people" readonly="readonly">
+                    <input class="amount-value inputSection1" id="amount_people" type="number"
+                           value="<?= $settings[0]['minGuest'] ?>" name="amount_people" readonly="readonly">
                     <button type="button" class="right-button" id="right-button-id">+</button>
                 </div>
             </div>
@@ -246,7 +269,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label>
                 <input class="inputSection1" value="timeslot1" type="radio" name="time"
                        id="time-1" <?php if (count($errors) > 0 and isset($_POST["time"])) {
-                    if ($_POST['time'] == 'timeslot3') {
+                    if ($_POST['time'] == 'timeslot1') {
                         echo 'checked="checked"';
                     }
                 } ?>>
@@ -259,7 +282,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label>
                 <input class="inputSection1" value="timeslot2" type="radio" name="time"
                        id="time-2" <?php if (count($errors) > 0 and isset($_POST["time"])) {
-                    if ($_POST['time'] == 'timeslot3') {
+                    if ($_POST['time'] == 'timeslot2') {
                         echo 'checked="checked"';
                     }
                 } ?>>
@@ -270,8 +293,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </div>
             </label>
             <p id="jsError"></p>
-            <div class = "button-right">
-            <button id="nextButton" class = "nextButton" type="button">Volgende stap</button>
+            <div class="button-right">
+                <button id="nextButton" class="nextButton" type="button">Volgende stap</button>
             </div>
     </div>
     <div id="section2" class="section2">
@@ -296,7 +319,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <label for="lName">Achternaam</label>
             <input class="inputSection2" id="lName" type="text" name="lName"
                    value='<?php if (count($errors) > 0 and isset($_POST["lName"])) {
-                       echo htmlentities( $_POST['fName']);
+                       echo htmlentities($_POST['fName']);
                    }
                    ?>'>
         </div>
@@ -381,15 +404,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </footer>
 </html>
 <script>
-    document.getElementById("date-id").addEventListener('focus', function(event) {
+    document.getElementById("date-id").addEventListener('focus', function (event) {
         event.target.showPicker();
     });
 
-    const inputDate = document.querySelector("date-id");
-
-    inputDate.addEventListener("keydown", function (e) {
-        e.preventDefault();
-    });
 </script>
 <script>
 
@@ -401,8 +419,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     let timeSlot = document.getElementsByClassName('price')
     calcPrice();
 
-    function calcPrice(){
-        console.log('test');
+    function calcPrice() {
         for (let i = 0; i < timeSlot.length; i++) {
             timeSlot[i].innerHTML = price * parseInt(amountElement.value);
             timeSlot[i].innerHTML = "€" + timeSlot[i].innerHTML;
@@ -427,10 +444,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         let errorElementsPage2 = document.getElementsByClassName("error page-2")
         let errorBool = false;
         for (let i = 0; i < errorElementsPage2.length; i++) {
-            if (errorElementsPage2[i].innerHTML.includes("vereist")) {
+            if (errorElementsPage2[i].innerHTML.includes("vereist") || errorElementsPage2[i].innerHTML.includes("is")) {
                 errorBool = true;
             }
         }
+        console.log('errors:' + errorBool)
         if (errorBool) {
             window.addEventListener('load', function () {
                 nextPage();
@@ -446,7 +464,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         let amountChecked = 0;
         let emptyFields = 0;
         for (let i = 0; i < inputElements.length; i++) {
-            // console.log(inputElements[i].checked)
             if (inputElements[i].checked) {
                 amountChecked += 1;
             }
@@ -454,8 +471,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 emptyFields += 1;
             }
         }
-        //console.log(amountChecked);
-        //console.log(emptyFields);
         if (amountChecked === 2 && emptyFields === 0) {
             nextPage();
             document.getElementById("jsError").innerHTML = '';
@@ -501,7 +516,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             document.getElementById("date-error").innerHTML = ''
 
         }
-        console.log(taken);
     });
 </script>
 <script>
@@ -509,7 +523,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     let currentElementValue = element.value
     let maxValue = parseInt("<?php echo $settings[0]['maxGuest'] ?>")
     let minValue = parseInt("<?php echo $settings[0]['minGuest'] ?>")
-    console.log(currentElementValue)
     let leftButton = document.getElementsByClassName('left-button')[0];
     let rightButton = document.getElementsByClassName('right-button')[0];
     leftButton.addEventListener("click", decrease);
@@ -518,22 +531,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     function increase() {
         currentElementValue = parseInt(element.value)
-        if (currentElementValue >= maxValue){
-        } else{
+        if (currentElementValue >= maxValue) {
+        } else {
             element.value = currentElementValue + 1
             calcPrice();
-            console.log(element.value)
         }
     }
 
     function decrease() {
         currentElementValue = parseInt(element.value)
-        if (currentElementValue <= minValue){
+        if (currentElementValue <= minValue) {
 
         } else {
             element.value = currentElementValue - 1
             calcPrice();
-            console.log(element.value)
         }
     }
 
