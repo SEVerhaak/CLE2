@@ -81,10 +81,10 @@ if (isset($_POST['submit'])) {
 <nav>
     <div class="nav-right">
         <img class="logo" src="img/logo_dk.png">
-        <a class="header-link-text" href="#">Reserveren</a>
-        <a class="header-link-text" href="#">Over ons</a>
-        <a class="header-link-text" href="#">Nieuws</a>
-        <a class="header-link-text" href="#">Contact</a>
+        <a class="header-link-text" href="reservation.php">Reserveren</a>
+        <a class="header-link-text" href="about.php">Over ons</a>
+        <a class="header-link-text" href="news.php">Nieuws</a>
+        <a class="header-link-text" href="contact.php">Contact</a>
     </div>
     <div class="nav-left">
         <a class="login" href="admin.php">Login</a>
