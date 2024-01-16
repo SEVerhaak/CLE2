@@ -26,7 +26,6 @@
     </nav>
 </header>
 <body>
-
 </body>
 <footer>
     <div class="footer-style">
