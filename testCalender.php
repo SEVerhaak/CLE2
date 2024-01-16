@@ -14,6 +14,21 @@ while ($reservation = mysqli_fetch_assoc($result)) {
     $reservations[] = $reservation;
 }
 
+// Sluit de resultaatset, maar laat de verbinding open
+mysqli_free_result($result);
+
+
+// SQL-query
+$sqlQuery = "SELECT reservationDate FROM reservations";
+$result = $db->query($sqlQuery);
+
+$sqlQuery1 = "SELECT CONCAT(reservationType, ' ', reservationBeginTime) AS planning FROM reservations";
+$result1 = $db->query($sqlQuery1);
+
+
+
+
+
 mysqli_close($db);
 ?>
 <!-- Documentinformatie en CSS connectie -->
@@ -81,10 +96,26 @@ mysqli_close($db);
     <?php
     include 'calender2.0.php';
     $calendar = new Calendar();
-    $calendar->add_event('Workshop 18:00', '2024-01-03', 1, 'green');
-    $calendar->add_event('Catering 17:00', '2024-01-07', 1, 'yellow');
-    $calendar->add_event('Workshop 16:30', '2024-01-23', 1, 'green');
-    $calendar->add_event('Catering 17:30', '2024-01-31', 1, 'yellow');
+
+
+
+    // Check of er resultaten zijn en voeg ze toe aan de kalender
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            // Haal de reserveringsdatum op
+            $reservationDate = $row["reservationDate"];
+
+            // Voeg de reserveringsdatum toe aan de kalender
+            $calendar->add_event('Reservering', $reservationDate, 1, 'green');
+        }
+    } else {
+        echo "Geen resultaten gevonden.";
+    }
+
+
+
+
+
     ?>
     <!-- Kalender met navigatieknoppen -->
     <div class="content home">
