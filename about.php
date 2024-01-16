@@ -27,7 +27,7 @@
 </header>
 <body>
 <main>
-    <h1>Over Ons</h1>
+        <h1>Over Ons</h1>
 </main>
 </body>
 <footer>
