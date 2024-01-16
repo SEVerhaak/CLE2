@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Libre+Baskerville&family=Mulish&family=Roboto+Mono:wght@300&family=Titan+One&display=swap');
+h1 {
+    margin-top: 30vh;
+    font-family: 'Open Sans', sans-serif;
+    color: white;
+    text-align: center;
+    font-size: 5rem;
+    text-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.links {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
