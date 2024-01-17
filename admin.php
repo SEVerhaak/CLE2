@@ -26,6 +26,15 @@ $reservationsAdminBox = [];
 while ($reservationAdminBox = mysqli_fetch_assoc($resultAdminBox)) {
     $reservationsAdminBox[] = $reservationAdminBox;
 }
+$queryUsers = "SELECT * FROM users";
+
+$resultUser = mysqli_query($db, $queryUsers) or die('Error ' . htmlentities(mysqli_error($db)) . ' with query ' . htmlentities($query));
+
+$users = [];
+
+while ($user = mysqli_fetch_assoc($resultUser)) {
+    $users[] = $user;
+}
 mysqli_close($db);
 ?>
 <!-- Documentinformatie en CSS connectie -->
@@ -64,7 +73,7 @@ mysqli_close($db);
 <?php if(isset($_SESSION['user']['admin'])){ ?>
     <div class="sidebar">
         <a href="admin.php"><img src="img/home.png"></a>
-        <a href="#mail"><img src="img/mail.png"></a>
+        <a href="users.php"><img src="img/mail.png"></a>
         <a href="testCalender.php"><img src="img/agenda.png"></a>
         <a href="admin_reservations.php"><img src="img/dollar.png"></a>
         <a href="settings.php"><img src="img/settings.png"></a>
@@ -103,8 +112,8 @@ mysqli_close($db);
         <div class = "admin-text">
             <p>Openstaande reserveringen: <?= count($reservations) ?></p>
             <a href = "admin_reservations.php">Ga naar reserveringen</a>
-            <p>Nieuwe berichten: 4</p>
-            <a href = "#mail">Ga naar mail</a>
+            <p>Gebruikers: <?= count($users) ?></p>
+            <a href = "users.php">Ga naar gebruikers</a>
         </div>
         <img id="important-image" src="img/dc6.gif" style="margin-top: 10rem; width: 300px; visibility: hidden; display: none;">
         <script>
@@ -125,44 +134,20 @@ mysqli_close($db);
     </section>
 
     <section class="admin-section3">
-        <h1>Berichten</h1>
+        <h1>Gebruikers</h1>
+        <?php for($x = 0; $x < 5; $x++) { ?>
             <div class = "message">
                 <div class = "person">
-                    <h1> P.J.</h1>
+                    <h1> <?= mb_strimwidth($users[$x]['firstName'], 0, 1).'.'.mb_strimwidth($users[$x]['lastName'], 0, 1).'.'; ?></h1>
                 </div>
                 <div>
-                    <h2>Aanvullende informatie over levering</h2>
-                    <p>Beste catering service, ik zou graag meer informatie ontvangen over de leveringsopties en eventuele kosten voor een bestelling op [datum].</p>
+                    <h2>Naam gebruiker: <?= $users[$x]['firstName'].' '.$users[$x]['lastName']?></h2>
+                    <p>E-mail gebruiker: <?= $users[$x]['email']?></p>
+                    <p>Tel gebruiker: <?= $users[$x]['phoneNumber']?></p>
                 </div>
             </div>
-            <div class = "message">
-                <div class = "person">
-                    <h1> P.J.</h1>
-                </div>
-                <div>
-                    <h2>Offerte aanvragen voor bedrijfslunch</h2>
-                    <p>Beste catering service, kunt u mij een offerte sturen voor een bedrijfslunch op [datum] voor ongeveer [aantal] personen?</p>
-                </div>
-            </div>
-            <div class = "message">
-                <div class = "person">
-                    <h1> P.J.</h1>
-                </div>
-                <div>
-                    <h2>Beschikbaarheid checken voor evenement</h2>
-                    <p>Hallo catering team, kunnen jullie bevestigen of jullie beschikbaar zijn op [datum] voor ons evenement?</p>
-                </div>
-            </div>
-        <div class = "message">
-            <div class = "person">
-                <h1> P.J.</h1>
-            </div>
-            <div>
-                <h2>Dieetwensen bespreken</h2>
-                <p>Hallo catering team, kunnen jullie rekening houden met specifieke dieetwensen voor een catering op [datum]?</p>
-            </div>
-        </div>
-        <a href = "#messages">Alle mails</a>
+            <?php } ?>
+        <a href = "users.php">Alle gebruikers</a>
     </section>
 </div>
 </body>

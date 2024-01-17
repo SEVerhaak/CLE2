@@ -383,7 +383,7 @@ button:hover{
     margin-left: 3.5rem;
     max-width: 100%;
     background-color: white;
-    height: 100vh;
+    height: auto;
     padding-bottom: 5rem;
     display: flex;
     flex-direction: row;
@@ -412,7 +412,7 @@ button:hover{
     flex: 1.5;
     background-color: #f7EDE2;
     border-radius: 1rem;
-    height: 89vh;
+    height: auto;
     margin: 1rem;
     padding: 0.5rem;
     display: flex;
@@ -420,7 +420,7 @@ button:hover{
     align-items: center;
 }
 .admin-reservations{
-    height: 40vh;
+    height: auto;
     background-color: #f7EDE2;
     border-radius: 1rem;
     margin-bottom: 1rem;
@@ -522,7 +522,7 @@ button:hover{
     margin: 0;
 }
 .message p{
-    margin: 0;
+    margin: 0.5rem;
     font-size: 0.8rem;
 }
 .calender{

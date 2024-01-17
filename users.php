@@ -8,18 +8,16 @@ if(!isset($_SESSION['user'])){
 
 require_once 'includes/database.php';
 
-$query = "SELECT reservations.id, amountPeople, reservationDate, reservationBeginTime, reservationEndTime, reservationType, extraInfo, users.firstName, users.lastName, users.phoneNumber, users.email FROM `reservations` JOIN users on userId = users.id ORDER by reservationDate";
-
+$query = "SELECT * FROM `users`";
 $result = mysqli_query($db, $query) or die('Error ' . htmlentities(mysqli_error($db)) . ' with query ' . htmlentities($query));
 
-$reservations = [];
+$users = [];
 
-while ($reservation = mysqli_fetch_assoc($result)) {
-    $reservations[] = $reservation;
+while ($user = mysqli_fetch_assoc($result)) {
+    $users[] = $user;
 }
 
 // Sluit de resultaatset, maar laat de verbinding open
-mysqli_free_result($result);
 
 
 // SQL-query
@@ -65,26 +63,23 @@ mysqli_close($db);
 <?php if(isset($_SESSION['user']['admin'])){ ?>
     <div class="sidebar">
         <a href="admin.php"><img src="img/home.png"></a>
-        <a href="#mail"><img src="img/mail.png"></a>
+        <a href="users.php"><img src="img/mail.png"></a>
         <a href="testCalender.php"><img src="img/agenda.png"></a>
         <a href="admin_reservations.php"><img src="img/dollar.png"></a>
         <a href="settings.php"><img src="img/settings.png"></a>
     </div>
 <?php } ?>
 <div class="info-reservation-box">
-    <?php foreach($reservations as $index => $reservation){ ?>
-    <div class="info-reservation">
-        <h2>Datum reservering: <?= $reservations[$index]['reservationDate'] ?></h2>
-        <p>Reservering op naam: <?= $reservations[$index]['firstName'].' '.$reservations[$index]['lastName']?></p>
-        <p>Hoeveelheid mensen: <?= $reservations[$index]['amountPeople']?></p>
-        <p>Type reservering: <?= $reservations[$index]['reservationType']?></p>
-        <p>E-mail reserveerder: <?= $reservations[$index]['email']?></p>
-        <p>Tel reserveerder: <?= $reservations[$index]['phoneNumber']?></p>
-        <p>Bijzonderheden: <?= $reservations[$index]['extraInfo']?></p>
-        <a href = "delete.php?id=<?= $reservations[$index]['id']?>">Verwijder reservering</a>
-        <a href = "edit.php?id=<?= $reservations[$index]['id']?>">Verander reservering</a>
-    </div>
-<?php } ?>
+    <?php foreach($users as $index => $user){ ?>
+        <div class="info-reservation">
+            <h2>Naam gebruiker: <?= $users[$index]['firstName'].' '.$users[$index]['lastName']?></h2>
+            <p>E-mail gebruiker: <?= $users[$index]['email']?></p>
+            <p>Tel gebruiker: <?= $users[$index]['phoneNumber']?></p>
+            <p>Is de gebruiker admin: <?= $users[$index]['isAdmin']?></p>
+            <a href = "deleteUser.php?id=<?= $users[$index]['id']?>">Verwijder gebruiker</a>
+            <a href = "editUser.php?id=<?= $users[$index]['id']?>">Verander gebruiker</a>
+        </div>
+    <?php } ?>
 </div>
 </body>
 <footer>
