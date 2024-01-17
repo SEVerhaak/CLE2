@@ -2,11 +2,11 @@
 session_start();
 /** @var array $db */
 /** @var array $takendates */
-/*
+
 if (isset($_SESSION['user'])){
     header('location: reservationUser.php');
 }
-*/
+
 // tijdelijke error reporting opties
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
