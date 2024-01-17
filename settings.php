@@ -1,4 +1,8 @@
 <?php
+session_start();
+if(!isset($_SESSION['user'])){
+    header('Location: index.php');
+}
 //session_start();
 /** @var array $db */
 /** @var array $takendates */
@@ -105,18 +109,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
         <div class="nav-left">
-            <a class="login" href="login.php">Login</a>
+            <?php if(!isset($_SESSION['user'])){?>
+                <a class="login" href="login.php">Login</a>
+            <?php }else{ ?>
+                <a class="login" href = "logout.php">Log uit</a>
+            <?php } ?>
         </div>
     </nav>
 </header>
 <body>
-<div class="sidebar">
-    <a href="admin.php"><img src="img/home.png"></a>
-    <a href="#mail"><img src="img/mail.png"></a>
-    <a href="testCalender.php"><img src="img/agenda.png"></a>
-    <a href="admin_reservations.php"><img src="img/dollar.png"></a>
-    <a href="settings.php"><img src="img/settings.png"></a>
-</div>
+<?php if(isset($_SESSION['user']['admin'])){ ?>
+    <div class="sidebar">
+        <a href="admin.php"><img src="img/home.png"></a>
+        <a href="#mail"><img src="img/mail.png"></a>
+        <a href="testCalender.php"><img src="img/agenda.png"></a>
+        <a href="admin_reservations.php"><img src="img/dollar.png"></a>
+        <a href="settings.php"><img src="img/settings.png"></a>
+    </div>
+<?php } ?>
 <div class="center-box">
     <div class="login-container">
         <h1> Instellingen </h1>

@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 ?>
 <!doctype html>
 <html lang="en">
@@ -23,11 +23,24 @@
             </div>
         </div>
         <div class="nav-left">
-            <a class="login" href="admin.php">Login</a>
+            <?php if(!isset($_SESSION['user'])){?>
+                <a class="login" href="login.php">Login</a>
+            <?php }else{ ?>
+                <a class="login" href = "logout.php">Log uit</a>
+            <?php } ?>
         </div>
     </nav>
 </header>
 <body>
+<?php if(isset($_SESSION['user']['admin'])){ ?>
+    <div class="sidebar">
+        <a href="admin.php"><img src="img/home.png"></a>
+        <a href="#mail"><img src="img/mail.png"></a>
+        <a href="testCalender.php"><img src="img/agenda.png"></a>
+        <a href="admin_reservations.php"><img src="img/dollar.png"></a>
+        <a href="settings.php"><img src="img/settings.png"></a>
+    </div>
+<?php } ?>
 <main>
         <h1>Over Ons</h1>
 </main>
