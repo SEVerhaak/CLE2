@@ -17,6 +17,7 @@ nav{
     justify-content: space-between;
     align-items: center;
     position: fixed;
+    padding: 0.3rem;
 }
 .header-link-text{
     text-decoration: none;
@@ -30,12 +31,12 @@ img{
     align-items: center;
     margin-left: 0.6rem;
 }
-.nav-right a{
+.header-links a{
     padding: 1rem;
     border-bottom: 3px solid transparent;
     border-top: 3px solid transparent;
 }
-.nav-right a:hover{
+.header-links a:hover{
     padding: 1rem;
     border-bottom: 3px solid #f7EDE2;
     border-top: 3px solid transparent;
