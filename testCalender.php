@@ -98,7 +98,6 @@ mysqli_close($db);
     $calendar = new Calendar();
 
 
-
     // Check of er resultaten zijn en voeg ze toe aan de kalender
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
@@ -111,6 +110,23 @@ mysqli_close($db);
     } else {
         echo "Geen resultaten gevonden.";
     }
+
+
+
+    // Check of er resultaten zijn en loop door de resultaten
+    if ($result1->num_rows > 0) {
+        while ($row = $result1->fetch_assoc()) {
+            // Haal de geplande gegevens op
+            $planning = $row["planning"];
+
+            // Voeg de geplande gegevens toe aan de kalender
+            $calendar->add_event($planning, '2024-01-07', 1, 'green');
+        }
+    } else {
+        echo "Geen resultaten gevonden.";
+    }
+
+
 
 
 
