@@ -2,11 +2,11 @@
 session_start();
 /** @var array $db */
 /** @var array $takendates */
-
+/*
 if (isset($_SESSION['user'])){
     header('location: reservationUser.php');
 }
-
+*/
 // tijdelijke error reporting opties
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
@@ -254,24 +254,8 @@ if (count($settings) === 0) {
                     echo '';
                 } ?>
             </p>
-            <div class="flex-people">
-                <label for="amount_people">Hoe veel mensen?</label>
-                <div>
-                    <button type="button" class="left-button" id="left-button-id">-</button>
-                    <input class="amount-value inputSection1" id="amount_people" type="number"
-                           value="<?= $settings[0]['minGuest'] ?>" name="amount_people" readonly="readonly">
-                    <button type="button" class="right-button" id="right-button-id">+</button>
-                </div>
-            </div>
 
-            <p class="error">
-                <?php if (isset($errors['amount_people'])) {
-                    echo $errors['amount_people'];
-                } else {
-                    echo '';
-                } ?>
-            </p>
-
+            <div id="hidden-info">
             <label>
                 <input class="inputSection1" value="timeslot1" type="radio" name="time"
                        id="time-1" <?php if (count($errors) > 0 and isset($_POST["time"])) {
@@ -297,7 +281,25 @@ if (count($settings) === 0) {
                         - <?php echo date('G:i', strtotime($timeSlots[1][1])) ?></p>
                     <p class="price"></p>
                 </div>
+                <div class="flex-people">
+                    <label for="amount_people">Hoe veel mensen?</label>
+                    <div>
+                        <button type="button" class="left-button" id="left-button-id">-</button>
+                        <input class="amount-value inputSection1" id="amount_people" type="number"
+                               value="<?= $settings[0]['minGuest'] ?>" name="amount_people" readonly="readonly">
+                        <button type="button" class="right-button" id="right-button-id">+</button>
+                    </div>
+                </div>
+
+                <p class="error">
+                    <?php if (isset($errors['amount_people'])) {
+                        echo $errors['amount_people'];
+                    } else {
+                        echo '';
+                    } ?>
+                </p>
             </label>
+            </div>
             <p id="jsError"></p>
             <div class="button-right">
                 <button id="nextButton" class="nextButton" type="button">Volgende stap</button>
@@ -504,6 +506,10 @@ if (count($settings) === 0) {
 
 </script>
 <script>
+    let hiddenElement = document.getElementById('hidden-info');
+    hiddenElement.style.display = 'none';
+    hiddenElement.style.visibility = 'hidden';
+
     let dateElement = document.getElementById("date-id");
     let taken = false;
     dateElement.addEventListener("input", function () {
@@ -515,9 +521,13 @@ if (count($settings) === 0) {
             }
         }
         if (taken) {
+            hiddenElement.style.display = 'none';
+            hiddenElement.style.visibility = 'hidden';
             document.getElementById("nextButton").disabled = true;
             document.getElementById("date-error").innerHTML = 'deze datum is niet meer beschikbaar'
         } else {
+            hiddenElement.style.display = 'block';
+            hiddenElement.style.visibility = 'visible';
             document.getElementById("nextButton").disabled = false;
             document.getElementById("date-error").innerHTML = ''
 

@@ -176,22 +176,7 @@ if (count($settings) === 0) {
                 echo '';
             } ?>
         </p>
-        <div class="flex-people">
-            <label for="amount_people">Hoe veel mensen?</label>
-            <div>
-                <button type="button" class="left-button" id="left-button-id">-</button>
-                <input class="amount-value inputSection1" id="amount_people" type="number"
-                       value="<?= $settings[0]['minGuest'] ?>" name="amount_people" readonly="readonly">
-                <button type="button" class="right-button" id="right-button-id">+</button>
-            </div>
-        </div>
-        <p class="error">
-            <?php if (isset($errors['amount_people'])) {
-                echo $errors['amount_people'];
-            } else {
-                echo '';
-            } ?>
-        </p>
+
         <div class="flex-down">
             <label for="date">Voor welke datum?</label>
             <input class="inputSection1" type="date" name="date" id="date-id" min='<?= $currentTimeHTML ?>'
@@ -207,37 +192,53 @@ if (count($settings) === 0) {
                 } ?>
             </p>
         </div>
-
-
-        <label>
-            <input class="inputSection1" value="timeslot1" type="radio" name="time"
-                   id="time-1" <?php if (count($errors) > 0 and isset($_POST["time"])) {
-                if ($_POST['time'] == 'timeslot1') {
-                    echo 'checked="checked"';
-                }
-            } ?>>
-            <div class="available-time">
-                <p><?php echo date('G:i', strtotime($timeSlots[0][0])) ?>
-                    - <?php echo date('G:i', strtotime($timeSlots[0][1])) ?></p>
-                <p class="price"></p>
+        <div id="hidden-info">
+            <label>
+                <input class="inputSection1" value="timeslot1" type="radio" name="time"
+                       id="time-1" <?php if (count($errors) > 0 and isset($_POST["time"])) {
+                    if ($_POST['time'] == 'timeslot1') {
+                        echo 'checked="checked"';
+                    }
+                } ?>>
+                <div class="available-time">
+                    <p><?php echo date('G:i', strtotime($timeSlots[0][0])) ?>
+                        - <?php echo date('G:i', strtotime($timeSlots[0][1])) ?></p>
+                    <p class="price"></p>
+                </div>
+            </label>
+            <label>
+                <input class="inputSection1" value="timeslot2" type="radio" name="time"
+                       id="time-2" <?php if (count($errors) > 0 and isset($_POST["time"])) {
+                    if ($_POST['time'] == 'timeslot2') {
+                        echo 'checked="checked"';
+                    }
+                } ?>>
+                <div class="available-time">
+                    <p><?php echo date('G:i', strtotime($timeSlots[1][0])) ?>
+                        - <?php echo date('G:i', strtotime($timeSlots[1][1])) ?></p>
+                    <p class="price"></p>
+                </div>
+            </label>
+            <div class="flex-people">
+                <label for="amount_people">Hoe veel mensen?</label>
+                <div>
+                    <button type="button" class="left-button" id="left-button-id">-</button>
+                    <input class="amount-value inputSection1" id="amount_people" type="number"
+                           value="<?= $settings[0]['minGuest'] ?>" name="amount_people" readonly="readonly">
+                    <button type="button" class="right-button" id="right-button-id">+</button>
+                </div>
             </div>
-        </label>
-        <label>
-            <input class="inputSection1" value="timeslot2" type="radio" name="time"
-                   id="time-2" <?php if (count($errors) > 0 and isset($_POST["time"])) {
-                if ($_POST['time'] == 'timeslot2') {
-                    echo 'checked="checked"';
-                }
-            } ?>>
-            <div class="available-time">
-                <p><?php echo date('G:i', strtotime($timeSlots[1][0])) ?>
-                    - <?php echo date('G:i', strtotime($timeSlots[1][1])) ?></p>
-                <p class="price"></p>
+            <p class="error">
+                <?php if (isset($errors['amount_people'])) {
+                    echo $errors['amount_people'];
+                } else {
+                    echo '';
+                } ?>
+            </p>
+            <div class="extra-info-logged-in-form">
+                <label for="extraInfo">Zijn er nog bijzonderheden?</label>
+                <textarea class="extraInfo" id="extraInfo" type="text" name="extraInfo" rows="10"></textarea>
             </div>
-        </label>
-        <div class="extra-info-logged-in-form">
-            <label for="extraInfo">Zijn er nog bijzonderheden?</label>
-            <textarea class="extraInfo" id="extraInfo" type="text" name="extraInfo" rows="10"></textarea>
         </div>
         <p id="jsError"></p>
         <div class="button-right">
@@ -256,6 +257,7 @@ if (count($settings) === 0) {
     </div>
 </footer>
 </html>
+
 <script>
     document.getElementById("date-id").addEventListener('focus', function (event) {
         event.target.showPicker();
@@ -279,6 +281,14 @@ if (count($settings) === 0) {
     }
 </script>
 <script>
+
+
+</script>
+<script>
+    let hiddenElement = document.getElementById('hidden-info');
+    hiddenElement.style.display = 'none';
+    hiddenElement.style.visibility = 'hidden';
+
     let dateElement = document.getElementById("date-id");
     let taken = false;
     dateElement.addEventListener("input", function () {
@@ -290,9 +300,13 @@ if (count($settings) === 0) {
             }
         }
         if (taken) {
+            hiddenElement.style.display = 'none';
+            hiddenElement.style.visibility = 'hidden';
             document.getElementById("nextButton").disabled = true;
             document.getElementById("date-error").innerHTML = 'deze datum is niet meer beschikbaar'
         } else {
+            hiddenElement.style.display = 'block';
+            hiddenElement.style.visibility = 'visible';
             document.getElementById("nextButton").disabled = false;
             document.getElementById("date-error").innerHTML = ''
 
