@@ -94,7 +94,24 @@ mysqli_close($db);
             <p>Nieuwe berichten: 4</p>
             <a href = "#mail">Ga naar mail</a>
         </div>
+        <img id="important-image" src="img/dc6.gif" style="margin-top: 10rem; width: 300px; visibility: hidden; display: none;">
+        <script>
+        let img = document.getElementById('important-image');
+        let amazingBool = false;
+        function amazing(){
+            if(!amazingBool){
+                img.style.visibility = 'visible';
+                img.style.display = 'block';
+                amazingBool = true;
+            } else {
+                img.style.visibility = 'hidden';
+                img.style.display = 'none';
+                amazingBool = false;
+            }
+        }
+        </script>
     </section>
+
     <section class="admin-section3">
         <h1>Berichten</h1>
             <div class = "message">
