@@ -546,7 +546,7 @@ button:hover{
 }
 /* admin reservations css */
 .info-reservation{
-    width: 95%;
+    width: 45%;
     background-color: #f7EDE2;
     padding: 1rem;
     border-radius: 1rem;
@@ -570,9 +570,10 @@ p{
     padding-bottom: 5rem;
     margin-top: 0;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     padding: 1rem;
     margin-bottom: 3rem;
+    flex-wrap: wrap;
 }
 .section2 a{
     background-color: #84A59D;
