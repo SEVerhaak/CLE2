@@ -21,3 +21,11 @@ main {
     color: #2D3835;
     font-size: 1.25rem;
 }
+
+h1 {
+    text-align: center;
+    background-color: #F7EDE2;
+    width: 50%;
+    padding: 1rem 0 1rem 0;
+    border-radius: 1rem;
+}
