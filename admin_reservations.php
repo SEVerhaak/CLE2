@@ -8,8 +8,7 @@ if(!isset($_SESSION['user'])){
 
 require_once 'includes/database.php';
 
-$query = "SELECT reservations.id, amountPeople, reservationDate, reservationBeginTime, reservationEndTime, reservationType, extraInfo, users.firstName, users.lastName, users.phoneNumber, users.email FROM `reservations` JOIN users on userId = users.id ORDER by reservationDate";
-
+$query = "SELECT reservations.id, amountPeople, reservationDate, reservationBeginTime, reservationEndTime, reservationType, extraInfo, users.firstName, users.lastName, users.phoneNumber, users.email FROM `reservations` JOIN users on userId = users.id WHERE reservations.id != '1' ORDER by reservationDate ";
 $result = mysqli_query($db, $query) or die('Error ' . htmlentities(mysqli_error($db)) . ' with query ' . htmlentities($query));
 
 $reservations = [];
@@ -65,10 +64,11 @@ mysqli_close($db);
 <?php if(isset($_SESSION['user']['admin'])){ ?>
     <div class="sidebar">
         <a href="admin.php"><img src="img/home.png"></a>
-        <a href="#mail"><img src="img/mail.png"></a>
+        <a href="users.php"><img src="img/users.png"></a>
         <a href="testCalender.php"><img src="img/agenda.png"></a>
         <a href="admin_reservations.php"><img src="img/dollar.png"></a>
         <a href="settings.php"><img src="img/settings.png"></a>
+        <a href="adminSelectDates.php"><img src="img/trash.png"></a>
     </div>
 <?php } ?>
 <div class="info-reservation-box">
@@ -78,6 +78,7 @@ mysqli_close($db);
         <p>Reservering op naam: <?= $reservations[$index]['firstName'].' '.$reservations[$index]['lastName']?></p>
         <p>Hoeveelheid mensen: <?= $reservations[$index]['amountPeople']?></p>
         <p>Type reservering: <?= $reservations[$index]['reservationType']?></p>
+        <p>Tijd reservering: <?= $reservations[$index]['reservationBeginTime'].'-'.$reservations[$index]['reservationEndTime']?></p>
         <p>E-mail reserveerder: <?= $reservations[$index]['email']?></p>
         <p>Tel reserveerder: <?= $reservations[$index]['phoneNumber']?></p>
         <p>Bijzonderheden: <?= $reservations[$index]['extraInfo']?></p>

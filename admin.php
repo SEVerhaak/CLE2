@@ -1,7 +1,7 @@
 <!-- Verbinding met de Database maken en de reserveringen ophalen -->
 <?php
 session_start();
-if(!isset($_SESSION['user'])){
+if(!isset($_SESSION['user']['admin'])){
     header('Location: index.php');
 }
 /** @var mysqli $db */
@@ -18,7 +18,7 @@ while ($reservation = mysqli_fetch_assoc($result)) {
     $reservations[] = $reservation;
 }
 
-$queryAdminBox = "SELECT reservationDate, amountPeople, reservationType FROM reservations ORDER BY reservationDate LIMIT 2";
+$queryAdminBox = "SELECT reservationDate, amountPeople, reservationType, id FROM reservations ORDER BY reservationDate LIMIT 2";
 $resultAdminBox = mysqli_query($db, $queryAdminBox) or die('Error ' . htmlentities(mysqli_error($db)) . ' with query ' . htmlentities($query));
 
 $reservationsAdminBox = [];
@@ -73,10 +73,11 @@ mysqli_close($db);
 <?php if(isset($_SESSION['user']['admin'])){ ?>
     <div class="sidebar">
         <a href="admin.php"><img src="img/home.png"></a>
-        <a href="users.php"><img src="img/mail.png"></a>
+        <a href="users.php"><img src="img/users.png"></a>
         <a href="testCalender.php"><img src="img/agenda.png"></a>
         <a href="admin_reservations.php"><img src="img/dollar.png"></a>
         <a href="settings.php"><img src="img/settings.png"></a>
+        <a href="adminSelectDates.php"><img src="img/trash.png"></a>
     </div>
 <?php } ?>
 <div class="admin-box">
@@ -87,23 +88,23 @@ mysqli_close($db);
                 <h2><?= $reservationsAdminBox[0]["reservationDate"] ?></h2>
                 <div>
                     <p><?php echo $reservationsAdminBox[0]["amountPeople"] . ' personen, ' . $reservationsAdminBox[0]["reservationType"] ?> </p>
-                    <a href="admin_reservations.php"> Details </a>
+                    <a href="edit.php?id=<?=$reservationsAdminBox[0]["id"]?>"> Details </a>
                 </div>
             </div>
             <div class="admin-reservation">
                 <h2><?= $reservationsAdminBox[1]["reservationDate"] ?></h2>
                 <div>
                     <p><?php echo $reservationsAdminBox[1]["amountPeople"] . ' personen, ' . $reservationsAdminBox[0]["reservationType"] ?> </p>
-                    <a href="admin_reservations.php"> Details </a>
+                    <a href="edit.php?id=<?=$reservationsAdminBox[1]["id"]?>"> Details </a>
                 </div>
             </div>
         </div>
         <div class="admin-reservations">
             <h1>Agenda</h1>
             <div class = "calender">
-                <img  src = "img/Buttonright.png">
+                <img  src = "img/leftButton.png">
                 <a href = "testCalender.php" class = "img_a" ><img  src = "img/calender.png" class = "calender_img"></a>
-                <img  src = "img/buttonleft.png">
+                <img  src = "img/rightButton.png">
             </div>
         </div>
     </section>
