@@ -2,6 +2,7 @@
     display: flex;
     flex-flow: column;
     background-color: white;
+    width: 60vw;
 }
 .calendar .header .month-year {
     font-size: 20px;
@@ -15,14 +16,14 @@
 }
 .calendar .days .day_name {
     width: calc(100% / 7);
-    border-right: 1px solid #2c7aca;
+    border-right: 1px solid #84A59D;
     padding: 20px;
     text-transform: uppercase;
     font-size: 12px;
     font-weight: bold;
     color: #818589;
-    color: #fff;
-    background-color: #448cd6;
+    color: #f7EDE2;
+    background-color: #2D3835;
 }
 .calendar .days .day_name:nth-child(7) {
     border: none;

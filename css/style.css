@@ -5,6 +5,9 @@ body{
     background-image: url(../img/bg.png);
     font-family: 'Open Sans', sans-serif;
 }
+header{
+    padding-bottom: 3.5rem;
+}
 /* nav css */
 nav{
     background-color: #84A59D;
@@ -13,6 +16,8 @@ nav{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: fixed;
+    padding: 0.3rem;
 }
 .header-link-text{
     text-decoration: none;
@@ -26,12 +31,12 @@ img{
     align-items: center;
     margin-left: 0.6rem;
 }
-.nav-right a{
+.header-links a{
     padding: 1rem;
     border-bottom: 3px solid transparent;
     border-top: 3px solid transparent;
 }
-.nav-right a:hover{
+.header-links a:hover{
     padding: 1rem;
     border-bottom: 3px solid #f7EDE2;
     border-top: 3px solid transparent;
@@ -319,12 +324,11 @@ button:hover{
 /* sidebar */
 /* The side navigation menu */
 .sidebar {
-    margin: 0;
     padding: 0;
     width: 3.5rem;
     background-color: #F5CAC3;
-    position: absolute;
-    height: 100%;
+    position: fixed;
+    height: 100vh;
     overflow: auto;
 }
 
@@ -379,12 +383,14 @@ button:hover{
     margin-left: 3.5rem;
     max-width: 100%;
     background-color: white;
-    height: 100vh;
+    height: auto;
     padding-bottom: 5rem;
-    margin-top: 0;
     display: flex;
     flex-direction: row;
-    padding: 1rem;
+
+}
+.admin-box h2{
+    font-size: 1.2rem;
 }
 .admin-section1{
     flex: 1.5;
@@ -406,7 +412,7 @@ button:hover{
     flex: 1.5;
     background-color: #f7EDE2;
     border-radius: 1rem;
-    height: 82vh;
+    height: auto;
     margin: 1rem;
     padding: 0.5rem;
     display: flex;
@@ -414,7 +420,7 @@ button:hover{
     align-items: center;
 }
 .admin-reservations{
-    height: 40vh;
+    height: auto;
     background-color: #f7EDE2;
     border-radius: 1rem;
     margin-bottom: 1rem;
@@ -432,9 +438,9 @@ button:hover{
     background-color: white;
     border-radius: 1rem;
     height: 40%;
-    width: 100%;
+    width: 90%;
     padding: 1rem;
-    margin: 0.5rem;
+    margin: 1rem;
 }
 .admin-reservation div{
     display: flex;
@@ -460,7 +466,7 @@ button:hover{
 .admin-text{
     background-color: white;
     height: 100%;
-    width: 100%;
+    width: 90%;
     border-radius: 1rem;
     margin: 0.3rem;
     display: flex;
@@ -477,6 +483,7 @@ button:hover{
     color: #f7EDE2;
     padding: 0.5rem;
     align-self: center;
+    margin-bottom: 2rem;
 }
 .message{
     display: flex;
@@ -502,17 +509,20 @@ button:hover{
 .person{
     border-radius: 50%;
     background-color: #f7EDE2;
-    height: 100%;
+    height: 4rem;
     aspect-ratio: 1/1;
     align-self: center;
-    padding: 1rem;
     margin-right: 1rem;
+}
+.person h1{
+    padding: 1rem;
+    text-align: center;
 }
 .message h2{
     margin: 0;
 }
 .message p{
-    margin: 0;
+    margin: 0.5rem;
     font-size: 0.8rem;
 }
 .calender{
@@ -534,3 +544,65 @@ button:hover{
     align-items: stretch;
     flex-direction: column;
 }
+/* admin reservations css */
+.info-reservation{
+    width: 42%;
+    background-color: #f7EDE2;
+    padding: 2rem;
+    border-radius: 1rem;
+    height: auto;
+    margin: 1rem;
+}
+p{
+    padding:0;
+    margin-top: 0;
+}
+.info-reservation h2{
+    margin: 0;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+.info-reservation a{
+    background-color: #84A59D;
+    color: #f7EDE2;
+    padding: 6px 16px;
+    border: 2px solid #84A59D;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+.info-reservation-box{
+    margin-left: 3.5rem;
+    max-width: 100%;
+    background-color: white;
+    height: 100%;
+    padding-bottom: 5rem;
+    margin-top: 0;
+    display: flex;
+    flex-direction: row;
+    padding: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+.section2 a{
+    background-color: #84A59D;
+    color: #f7EDE2;
+    padding: 16px 32px;
+    border: 2px solid #84A59D;
+    border-radius: 4px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+.calender-box{
+        margin-left: 3.5rem;
+        max-width: 100%;
+        background-color: white;
+        padding-bottom: 5rem;
+        display: flex;
+        flex-direction: row;
+    justify-content: center;
+}
+

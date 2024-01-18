@@ -176,17 +176,33 @@ if (count($settings) === 0) {
 <header>
     <nav>
         <div class="nav-right">
-            <img class="logo" src="img/logo_dk.png">
-            <a class="header-link-text" href="reservation.php">Reserveren</a>
-            <a class="header-link-text" href="about.php">Over ons</a>
-            <a class="header-link-text" href="news.php">Nieuws</a>
-            <a class="header-link-text" href="contact.php">Contact</a>
+            <a href = "index.php"><img class="logo" src="img/logo_dk.png"></a>
+            <div class = "header-links">
+                <a class="header-link-text" href="reservation.php">Reserveren</a>
+                <a class="header-link-text" href="about.php">Over ons</a>
+                <a class="header-link-text" href="news.php">Nieuws</a>
+                <a class="header-link-text" href="contact.php">Contact</a>
+            </div>
         </div>
         <div class="nav-left">
-            <a class="login" href="admin.php">Login</a>
+            <?php if(!isset($_SESSION['user'])){?>
+                <a class="login" href="login.php">Login</a>
+            <?php }else{ ?>
+                <a class="login" href = "logout.php">Log uit</a>
+            <?php } ?>
         </div>
     </nav>
 </header>
+<body>
+<?php if(isset($_SESSION['user']['admin'])){ ?>
+    <div class="sidebar">
+        <a href="admin.php"><img src="img/home.png"></a>
+        <a href="#mail"><img src="img/mail.png"></a>
+        <a href="testCalender.php"><img src="img/agenda.png"></a>
+        <a href="admin_reservations.php"><img src="img/dollar.png"></a>
+        <a href="settings.php"><img src="img/settings.png"></a>
+    </div>
+<?php } ?>
 <div class="hidden-meta-data" style="display: none;">
     <?php for ($i = 0;
                $i < count(takenDatesCheckerDataFetch($db));
@@ -252,24 +268,8 @@ if (count($settings) === 0) {
                     echo '';
                 } ?>
             </p>
-            <div class="flex-people">
-                <label for="amount_people">Hoe veel mensen?</label>
-                <div>
-                    <button type="button" class="left-button" id="left-button-id">-</button>
-                    <input class="amount-value inputSection1" id="amount_people" type="number"
-                           value="<?= $settings[0]['minGuest'] ?>" name="amount_people" readonly="readonly">
-                    <button type="button" class="right-button" id="right-button-id">+</button>
-                </div>
-            </div>
 
-            <p class="error">
-                <?php if (isset($errors['amount_people'])) {
-                    echo $errors['amount_people'];
-                } else {
-                    echo '';
-                } ?>
-            </p>
-
+            <div id="hidden-info">
             <label>
                 <input class="inputSection1" value="timeslot1" type="radio" name="time"
                        id="time-1" <?php if (count($errors) > 0 and isset($_POST["time"])) {
@@ -295,7 +295,25 @@ if (count($settings) === 0) {
                         - <?php echo date('G:i', strtotime($timeSlots[1][1])) ?></p>
                     <p class="price"></p>
                 </div>
+                <div class="flex-people">
+                    <label for="amount_people">Hoe veel mensen?</label>
+                    <div>
+                        <button type="button" class="left-button" id="left-button-id">-</button>
+                        <input class="amount-value inputSection1" id="amount_people" type="number"
+                               value="<?= $settings[0]['minGuest'] ?>" name="amount_people" readonly="readonly">
+                        <button type="button" class="right-button" id="right-button-id">+</button>
+                    </div>
+                </div>
+
+                <p class="error">
+                    <?php if (isset($errors['amount_people'])) {
+                        echo $errors['amount_people'];
+                    } else {
+                        echo '';
+                    } ?>
+                </p>
             </label>
+            </div>
             <p id="jsError"></p>
             <div class="button-right">
                 <button id="nextButton" class="nextButton" type="button">Volgende stap</button>
@@ -502,6 +520,10 @@ if (count($settings) === 0) {
 
 </script>
 <script>
+    let hiddenElement = document.getElementById('hidden-info');
+    hiddenElement.style.display = 'none';
+    hiddenElement.style.visibility = 'hidden';
+
     let dateElement = document.getElementById("date-id");
     let taken = false;
     dateElement.addEventListener("input", function () {
@@ -513,9 +535,13 @@ if (count($settings) === 0) {
             }
         }
         if (taken) {
+            hiddenElement.style.display = 'none';
+            hiddenElement.style.visibility = 'hidden';
             document.getElementById("nextButton").disabled = true;
             document.getElementById("date-error").innerHTML = 'deze datum is niet meer beschikbaar'
         } else {
+            hiddenElement.style.display = 'block';
+            hiddenElement.style.visibility = 'visible';
             document.getElementById("nextButton").disabled = false;
             document.getElementById("date-error").innerHTML = ''
 

@@ -1,5 +1,9 @@
 <!-- Verbinding met de Database maken en de reserveringen ophalen -->
 <?php
+session_start();
+if(!isset($_SESSION['user'])){
+    header('Location: index.php');
+}
 /** @var mysqli $db */
 
 require_once 'includes/database.php';
@@ -40,35 +44,41 @@ mysqli_close($db);
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="css/style.css" rel="stylesheet">
-    <link href="css/admin.css" rel="stylesheet">
     <link href="css/example.css" rel="stylesheet">
-    <link href="css/calendar.css" rel="stylesheet">
     <title>Denise Kookt!</title>
 </head>
 <!-- Header -->
 <header>
     <nav>
         <div class="nav-right">
-            <img class="logo" src="img/logo_dk.png">
-            <a class="header-link-text" href="#">Reserveren</a>
-            <a class="header-link-text" href="#">Over ons</a>
-            <a class="header-link-text" href="#">Nieuws</a>
-            <a class="header-link-text" href="#">Contact</a>
+            <a href = "index.php"><img class="logo" src="img/logo_dk.png"></a>
+            <div class = "header-links">
+                <a class="header-link-text" href="reservation.php">Reserveren</a>
+                <a class="header-link-text" href="about.php">Over ons</a>
+                <a class="header-link-text" href="news.php">Nieuws</a>
+                <a class="header-link-text" href="contact.php">Contact</a>
+            </div>
         </div>
         <div class="nav-left">
-            <a class="login" href="admin.php">Login</a>
+            <?php if(!isset($_SESSION['user'])){?>
+                <a class="login" href="login.php">Login</a>
+            <?php }else{ ?>
+                <a class="login" href = "logout.php">Log uit</a>
+            <?php } ?>
         </div>
     </nav>
 </header>
 <body>
-<div class="sidebar">
-    <a href="admin.php"><img src="img/home.png"></a>
-    <a href="#mail"><img src="img/mail.png"></a>
-    <a href="testCalender.php"><img src="img/agenda.png"></a>
-    <a href="admin_reservations.php"><img src="img/dollar.png"></a>
-    <a href="settings.php"><img src="img/settings.png"></a>
-</div>
-<div class="admin-box">
+<?php if(isset($_SESSION['user']['admin'])){ ?>
+    <div class="sidebar">
+        <a href="admin.php"><img src="img/home.png"></a>
+        <a href="#mail"><img src="img/mail.png"></a>
+        <a href="testCalender.php"><img src="img/agenda.png"></a>
+        <a href="admin_reservations.php"><img src="img/dollar.png"></a>
+        <a href="settings.php"><img src="img/settings.png"></a>
+    </div>
+<?php } ?>
+<div class="calender-box">
 
 
     <!-- Evenementen aan de kalender toevoegen (moet nog verbonden worden met de database) -->
@@ -97,10 +107,11 @@ mysqli_close($db);
 
     ?>
     <!-- Kalender met navigatieknoppen -->
-    <div class="content home">
+    <div class="content-home">
         <a href="?month=<?= $calendar->getPrevMonth() ?>" class="linkOne">Previous Month</a>
-        <a href="?month=<?= $calendar->getNextMonth() ?>" class="linkTwo">Next Month</a>
+
         <?= $calendar ?>
+        <a href="?month=<?= $calendar->getNextMonth() ?>" class="linkTwo">Next Month</a>
     </div>
     <!-- Footer -->
 </div>
