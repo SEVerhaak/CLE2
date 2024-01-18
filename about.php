@@ -46,8 +46,8 @@ session_start();
 <main>
     <div class="block">
         <h1>Over Ons</h1>
-        <p>Denise Kookt! is gespecialiseerd in het organiseren van kookworkshops, het verzorgen van thuisrestaurants en het leveren van catering. Denise Kookt! is een zelfstanige onderneming van Denise.</p>
-        <img src="./img/denisekookt.jpg" alt="Denise">
+        <p>Denise Kookt! is een kookbedrijf gespecialiseerd in het organiseren van kookworkshops, het verzorgen van thuisrestaurants en het leveren van catering. Denise Kookt! is een zelfstandige onderneming van Denise. Via het online-reserveringssysteem zijn workshops en catering snel en eenvoudig te boeken.</p>
+        <img src="./img/denisekookt.jpg" alt="Denise" class="Denise">
     </div>
 </main>
 </body>
