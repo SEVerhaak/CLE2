@@ -97,7 +97,9 @@ if (isset($_POST['submit'])) {
                 <a class="login" href="login.php">Login</a>
             <?php }else{ ?>
                 <a class="login" href = "logout.php">Log uit</a>
+                <a class="reservation-user" href = "reservation-user.php">Log uit</a>
             <?php } ?>
+
         </div>
     </nav>
 </header>

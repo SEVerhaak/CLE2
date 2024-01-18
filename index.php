@@ -25,10 +25,11 @@ session_start();
         </div>
         <div class="nav-left">
             <?php if(!isset($_SESSION['user'])){?>
-            <a class="login" href="login.php">Login</a>
+                <a class="login" href="login.php">Login</a>
             <?php }else{ ?>
-            <a class="login" href = "logout.php">Log uit</a>
-            <?php } ?>
+                <a class="login" href = "logout.php">Log uit</a>
+                <a class="login" href = "user-reservations.php">Mijn reserveringen</a>
+            <?php } ?>s
         </div>
     </nav>
 </header>
