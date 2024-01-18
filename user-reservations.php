@@ -1,14 +1,13 @@
-
 <?php
 session_start();
-if(!isset($_SESSION['user'])){
+if (!isset($_SESSION['user'])) {
     header('Location: index.php');
 }
 /** @var mysqli $db */
-
+$userId = $_SESSION['user']['id'];
 require_once 'includes/database.php';
 
-$query = "SELECT reservations.id, amountPeople, reservationDate, reservationBeginTime, reservationEndTime, reservationType, extraInfo, users.firstName, users.lastName, users.phoneNumber, users.email FROM `reservations` JOIN users on userId = users.id WHERE amountPeople != '0' ORDER by reservationDate ";
+$query = "SELECT reservations.id, amountPeople, reservationDate, reservationBeginTime, reservationEndTime, reservationType, extraInfo, users.firstName, users.lastName, users.phoneNumber, users.email FROM `reservations` JOIN users on userId = users.id WHERE userId = '$userId' ORDER by reservationDate";
 $result = mysqli_query($db, $query) or die('Error ' . htmlentities(mysqli_error($db)) . ' with query ' . htmlentities($query));
 
 $reservations = [];
@@ -22,8 +21,6 @@ mysqli_free_result($result);
 
 
 // SQL-query
-
-
 
 
 mysqli_close($db);
@@ -43,8 +40,8 @@ mysqli_close($db);
 <header>
     <nav>
         <div class="nav-right">
-            <a href = "index.php"><img class="logo" src="img/logo_dk.png"></a>
-            <div class = "header-links">
+            <a href="index.php"><img class="logo" src="img/logo_dk.png"></a>
+            <div class="header-links">
                 <a class="header-link-text" href="reservation.php">Reserveren</a>
                 <a class="header-link-text" href="about.php">Over ons</a>
                 <a class="header-link-text" href="news.php">Nieuws</a>
@@ -56,12 +53,13 @@ mysqli_close($db);
                 <a class="login" href="login.php">Login</a>
             <?php }else{ ?>
                 <a class="login" href = "logout.php">Log uit</a>
+                <a class="login" href = "user-reservations.php">Mijn reserveringen</a>
             <?php } ?>
         </div>
     </nav>
 </header>
 <body>
-<?php if(isset($_SESSION['user']['admin'])){ ?>
+<?php if (isset($_SESSION['user']['admin'])) { ?>
     <div class="sidebar">
         <a href="admin.php"><img src="img/home.png"></a>
         <a href="users.php"><img src="img/users.png"></a>
@@ -71,28 +69,33 @@ mysqli_close($db);
         <a href="adminSelectDates.php"><img src="img/trash.png"></a>
     </div>
 <?php } ?>
-<div class="info-reservation-box">
-    <?php foreach($reservations as $index => $reservation){ ?>
-        <div class="info-reservation">
-            <h2>Datum reservering: <?= date("D F j, Y", strtotime($reservations[$index]['reservationDate']))?></h2>
-            <p>Reservering op naam: <?= $reservations[$index]['firstName'].' '.$reservations[$index]['lastName']?></p>
-            <p>Hoeveelheid mensen: <?= $reservations[$index]['amountPeople']?></p>
-            <p>Type reservering: <?= $reservations[$index]['reservationType']?></p>
-            <p>Tijd reservering: <?= $reservations[$index]['reservationBeginTime'].'-'.$reservations[$index]['reservationEndTime']?></p>
-            <p>E-mail reserveerder: <?= $reservations[$index]['email']?></p>
-            <p>Tel reserveerder: <?= $reservations[$index]['phoneNumber']?></p>
-            <p>Bijzonderheden: <?= $reservations[$index]['extraInfo']?></p>
-            <a href = "delete.php?id=<?= $reservations[$index]['id']?>">Verwijder reservering</a>
-            <a href = "edit.php?id=<?= $reservations[$index]['id']?>">Verander reservering</a>
+<div class="center-box">
+    <div class="user-reservations">
+    <h2> Mijn reserveringen</h2>
+        <?php foreach ($reservations as $index => $reservation) { ?>
+            <div class="info-reservation-user">
+                <h2>Datum reservering: <?= date("D F j, Y", strtotime($reservations[$index]['reservationDate'])) ?></h2>
+                <p>Reservering op
+                    naam: <?= $reservations[$index]['firstName'] . ' ' . $reservations[$index]['lastName'] ?></p>
+                <p>Hoeveelheid mensen: <?= $reservations[$index]['amountPeople'] ?></p>
+                <p>Type reservering: <?= $reservations[$index]['reservationType'] ?></p>
+                <p>Tijd
+                    reservering: <?= $reservations[$index]['reservationBeginTime'] . '-' . $reservations[$index]['reservationEndTime'] ?></p>
+                <p>E-mail reserveerder: <?= $reservations[$index]['email'] ?></p>
+                <p>Tel reserveerder: <?= $reservations[$index]['phoneNumber'] ?></p>
+                <p>Bijzonderheden: <?= $reservations[$index]['extraInfo'] ?></p>
+                <a href="user_delete.php?id=<?= $reservations[$index]['id'] ?>">Verwijder reservering</a>
+            </div>
+        <?php } ?>
+
         </div>
-    <?php } ?>
 </div>
 </body>
 <footer>
     <div class="footer-style">
         <img class="logo" src="img/logo_dk.png">
         <p class="footer-main-text">Denise Kookt!</p>
-        <p class="footer-social-text">Socials</p>
+        <a href = "https://www.instagram.com/denisekookt/?hl=nl"><img class="insta" src="img/insta.png"></a>
     </div>
 </footer>
 </html>

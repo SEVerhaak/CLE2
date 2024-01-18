@@ -1,7 +1,7 @@
 
 <?php
 session_start();
-if(!isset($_SESSION['user'])){
+if (!isset($_SESSION['user'])) {
     header('Location: index.php');
 }
 /** @var mysqli $db */
@@ -22,8 +22,6 @@ mysqli_free_result($result);
 
 
 // SQL-query
-
-
 
 
 mysqli_close($db);
@@ -56,6 +54,7 @@ mysqli_close($db);
                 <a class="login" href="login.php">Login</a>
             <?php }else{ ?>
                 <a class="login" href = "logout.php">Log uit</a>
+                <a class="login" href = "user-reservations.php">Mijn reserveringen</a>
             <?php } ?>
         </div>
     </nav>
@@ -71,29 +70,103 @@ mysqli_close($db);
         <a href="adminSelectDates.php"><img src="img/trash.png"></a>
     </div>
 <?php } ?>
+<label for="search"></label>
+<div class="searchbar">
+<input type="text" id="search" onkeyup="searchResults()" placeholder="Zoeken..." style="margin-left: 5rem;">
+</div>
 <div class="info-reservation-box">
-    <?php foreach($reservations as $index => $reservation){ ?>
-    <div class="info-reservation">
-        <h2>Datum reservering: <?= date("D F j, Y", strtotime($reservations[$index]['reservationDate']))?></h2>
-        <p>Reservering op naam: <?= $reservations[$index]['firstName'].' '.$reservations[$index]['lastName']?></p>
-        <p>Hoeveelheid mensen: <?= $reservations[$index]['amountPeople']?></p>
-        <p>Type reservering: <?= $reservations[$index]['reservationType']?></p>
-        <p>Tijd reservering: <?= $reservations[$index]['reservationBeginTime'].'-'.$reservations[$index]['reservationEndTime']?></p>
-        <p>E-mail reserveerder: <?= $reservations[$index]['email']?></p>
-        <p>Tel reserveerder: <?= $reservations[$index]['phoneNumber']?></p>
-        <p>Bijzonderheden: <?= $reservations[$index]['extraInfo']?></p>
-        <a href = "delete.php?id=<?= $reservations[$index]['id']?>">Verwijder reservering</a>
-        <a href = "edit.php?id=<?= $reservations[$index]['id']?>">Verander reservering</a>
-    </div>
-<?php } ?>
+
+    <?php foreach ($reservations as $index => $reservation) { ?>
+        <div class="info-reservation" id="<?= 'resultBox' . $index ?>">
+            <div class="resulWrapper" data-display="0">
+                <h2 class="resultTitle">Datum reservering: </h2>
+                <h2 class="result"
+                    id="<?= 'dateResult' . $index ?>"> <?= $reservations[$index]['reservationDate'] ?></h2></div>
+            <div class="resulWrapper" data-display="0">
+                <p class="resultTitle">Reservering op naam:</p>
+                <p class="result"
+                   id="<?= 'firstNameResult' . $index ?>"> <?= $reservations[$index]['firstName'] . ' ' . $reservations[$index]['lastName'] ?></p>
+            </div>
+            <div class="resulWrapper" data-display="0">
+                <p class="resultTitle">Hoeveelheid mensen: </p>
+                <p class="result"
+                   id="<?= 'amountPeopleResult' . $index ?>"> <?= $reservations[$index]['amountPeople'] ?> </p></div>
+            <div class="resulWrapper" data-display="0">
+                <p class="resultTitle">Type reservering: </p>
+                <p class="result" id="<?= 'typeResult' . $index ?>"> <?= $reservations[$index]['reservationType'] ?></p>
+            </div>
+            <div class="resulWrapper" data-display="0">
+                <p class="resultTitle">Tijd reservering: </p>
+                <p class="result"
+                   id="<?= 'timeResult' . $index ?>"> <?= $reservations[$index]['reservationBeginTime'] . '-' . $reservations[$index]['reservationEndTime'] ?></p>
+            </div>
+            <div class="resulWrapper" data-display="0">
+                <p class="resultTitle">E-mail reserveerder:</p>
+                <p class="result" id="<?= 'emailResult' . $index ?>"> <?= $reservations[$index]['email'] ?></p></div>
+            <div class="resulWrapper" data-display="0">
+                <p class="resultTitle">Tel reserveerder: </p>
+                <p class="result" id="<?= 'phoneResult' . $index ?>"><?= $reservations[$index]['phoneNumber'] ?></p>
+            </div>
+            <div class="resulWrapper" data-display="0">
+                <p class="resultTitle">Bijzonderheden: </p>
+                <p class="result" id="<?= 'extraInfoResults' . $index ?>"><?= $reservations[$index]['extraInfo'] ?></p>
+            </div>
+            <a href="delete.php?id=<?= $reservations[$index]['id'] ?>">Verwijder reservering</a>
+            <a href="edit.php?id=<?= $reservations[$index]['id'] ?>">Verander reservering</a>
+        </div>
+    <?php } ?>
 </div>
 </body>
 <footer>
     <div class="footer-style">
         <img class="logo" src="img/logo_dk.png">
         <p class="footer-main-text">Denise Kookt!</p>
-        <p class="footer-social-text">Socials</p>
+        <a href = "https://www.instagram.com/denisekookt/?hl=nl"><img class="insta" src="img/insta.png"></a>
     </div>
 </footer>
-</html>
+<script>
+    // text elementen die doorzocht gaan worden met de zoek functie
+    let elementsToSearch = document.getElementsByClassName('result');
+    // elementen die doorzocht worden, hier wordt de lengte van de loop door bepaald
+    let elementsToHide = document.getElementsByClassName('resultTitle');
+    // het input element waaruit de string voor het zoeken uit gehaald wordt
+    let input = document.getElementById('search');
 
+    // functie voor het zoeken
+    function searchResults() {
+        let filter = input.value.toUpperCase();
+        let boxDiv = document.getElementsByClassName('info-reservation')
+        let wrapElement = document.getElementsByClassName('resulWrapper')
+
+        for (let i = 0; i < elementsToSearch.length; i++) {
+            let text = elementsToSearch[i].innerHTML.toUpperCase();
+            if (text.indexOf(filter) > -1) {
+                wrapElement[i].style.display = '';
+                wrapElement[i].setAttribute('data-display', '0')
+
+            } else {
+                wrapElement[i].style.display = 'none';
+                wrapElement[i].setAttribute('data-display', '1')
+            }
+        }
+        for (let j = 0; j < boxDiv.length; j++) {
+            let visibleCount = 0;
+            let inVisibleCount = 0;
+            for (let k = 0; k < boxDiv[j].children.length; k++) {
+                if (boxDiv[j].children[k].style.display === ''){
+                    visibleCount += 1;
+                } else {
+                    inVisibleCount += 1;
+                }
+            }
+            if (visibleCount === 2){
+                boxDiv[j].style.display = 'none'
+            } else {
+                boxDiv[j].style.display = ''
+            }
+        }
+
+    }
+</script>
+</html>
+<?php

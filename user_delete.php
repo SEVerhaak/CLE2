@@ -1,10 +1,9 @@
 <?php
 session_start();
-if(!isset($_SESSION['user']['admin'])){
+if(!isset($_SESSION['user'])){
     header('Location: index.php');
 }
 $reservationId = $_GET['id'];
-$page = $_GET['page'];
 /** @var mysqli $db */
 
 require_once 'includes/database.php';
@@ -17,9 +16,7 @@ $result = mysqli_query($db, $query) or die('Error ' . htmlentities(mysqli_error(
 
 // SQL-query
 mysqli_close($db);
-if($page == 'adminSelectDates'){
-    header('Location: adminSelectDates.php');
-}else {
-    header('Location: admin_reservations.php');
-    }
+
+header('Location: user-reservations.php');
+
 ?>
