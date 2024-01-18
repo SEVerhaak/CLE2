@@ -8,9 +8,11 @@ if (isset($_SESSION['user'])){
 }
 
 // tijdelijke error reporting opties
+/*
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
+*/
 // includes
 require_once 'includes/database.php';
 require_once 'includes/functions.php';
@@ -197,10 +199,11 @@ if (count($settings) === 0) {
 <?php if(isset($_SESSION['user']['admin'])){ ?>
     <div class="sidebar">
         <a href="admin.php"><img src="img/home.png"></a>
-        <a href="#mail"><img src="img/mail.png"></a>
+        <a href="users.php"><img src="img/users.png"></a>
         <a href="testCalender.php"><img src="img/agenda.png"></a>
         <a href="admin_reservations.php"><img src="img/dollar.png"></a>
         <a href="settings.php"><img src="img/settings.png"></a>
+        <a href="adminSelectDates.php"><img src="img/trash.png"></a>
     </div>
 <?php } ?>
 <div class="hidden-meta-data" style="display: none;">

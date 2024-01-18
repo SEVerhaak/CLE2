@@ -19,8 +19,6 @@ if (isset($_POST['submit'])) {
     $password = mysqli_escape_string($db, $_POST['password']);
     $phoneNumber = mysqli_escape_string($db, $_POST['phoneNumber']);
 
-    $isAdmin = mysqli_escape_string($db, $_POST['isAdmin']);
-
     // Server-side validation
     if (isset($_POST['firstName'], $_POST['lastName'], $_POST['email'], $_POST['password'], $_POST['phoneNumber'], $_POST['isAdmin'])) {
         if (empty($_POST['firstName'])) {
@@ -38,10 +36,6 @@ if (isset($_POST['submit'])) {
         if (empty($_POST['phoneNumber'])) {
             $errorPhonenumber = 'phoneNumber cannot be empty';
         }
-
-        if (empty($_POST['isAdmin'])) {
-            $errorEmail = 'admin cannot be empty';
-        }
     }
 
     // If data valid
@@ -50,7 +44,7 @@ if (isset($_POST['submit'])) {
         $password = password_hash("$password", PASSWORD_BCRYPT, ['cost' => 12]);
 
         // store the new user in the database.
-        $sql = "INSERT INTO users (firstName, lastName, email, password, phoneNumber, isAdmin) VALUES ('$firstName', '$lastName', '$email', '$password', '$phoneNumber', '$isAdmin')";
+        $sql = "INSERT INTO users (firstName, lastName, email, password, phoneNumber, isAdmin) VALUES ('$firstName', '$lastName', '$email', '$password', '$phoneNumber', '0')";
 
 
         $result = mysqli_query($db, $sql);
@@ -103,10 +97,11 @@ if (isset($_POST['submit'])) {
 <?php if(isset($_SESSION['user']['admin'])){ ?>
     <div class="sidebar">
         <a href="admin.php"><img src="img/home.png"></a>
-        <a href="#mail"><img src="img/mail.png"></a>
+        <a href="users.php"><img src="img/users.png"></a>
         <a href="testCalender.php"><img src="img/agenda.png"></a>
         <a href="admin_reservations.php"><img src="img/dollar.png"></a>
         <a href="settings.php"><img src="img/settings.png"></a>
+        <a href="adminSelectDates.php"><img src="img/trash.png"></a>
     </div>
 <?php } ?>
 <!-- form  -->
@@ -153,14 +148,6 @@ if (isset($_POST['submit'])) {
             <label class="label" for="phoneNumber">Telefoonnummer</label>
             <input class="input" id="phoneNumber" type="number" name="phoneNumber"
                    value="<?= isset($phonenumber) ? $phonenumber : '' ?>"/>
-
-            <!-- isAdmin -->
-            <p class="warning">
-                <?php echo $errorIsAdmin ?>
-            </p>
-            <label class="label" for="isAdmin">isAdmin</label>
-            <input class="input" id="isAdmin" type="number" name="isAdmin"
-                   value="<?= isset($isAdmin) ? $isAdmin : '' ?>"/>
 
             <!-- Submit -->
             <button class="button is-link is-fullwidth" type="submit" name="submit">Register</button>

@@ -20,14 +20,13 @@ $errorIsAdmin = '';
 
 if (isset($_POST['submit'])) {
 
+    // Get form data
     $firstName = mysqli_escape_string($db, $_POST['firstName']);
     $lastName = mysqli_escape_string($db, $_POST['lastName']);
-    $reservationType = mysqli_escape_string($db, $_POST['reservationType']);
-    $reservationDate = mysqli_escape_string($db, $_POST['reservationDate']);
-    $reservationBeginTime = mysqli_escape_string($db, $_POST['reservationBeginTime']);
-    $reservationEndTime = mysqli_escape_string($db, $_POST['reservationEndTime']);
-    $amountPeople = mysqli_escape_string($db, $_POST['amountPeople']);
-    $extraInfo = mysqli_escape_string($db, $_POST['extraInfo']);
+    $email = mysqli_escape_string($db, $_POST['email']);
+    $phoneNumber = mysqli_escape_string($db, $_POST['phoneNumber']);
+
+    $isAdmin = mysqli_escape_string($db, $_POST['isAdmin']);
     $index = $_POST['id'];
 
     // Server-side validation
@@ -75,24 +74,21 @@ if (isset($_POST['submit'])) {
 
 
 // select de album emt de juiste id van de database
-    $query = "SELECT reservations.id, amountPeople, reservationDate, reservationBeginTime, reservationEndTime, reservationType, extraInfo, users.firstName, users.lastName, FROM `reservations` JOIN users on userId = users.id ORDER by reservationDate";
+    $query = "SELECT * FROM `users` WHERE id = '$index'";
     $result = mysqli_query($db, $query)
     or die('Error '.mysqli_error($db).' with query '.$query);
 
     if(mysqli_num_rows($result)== 1){
-        $reservation = mysqli_fetch_assoc($result);
+        $user = mysqli_fetch_assoc($result);
     }else{
         header('Location: index.php');
         exit;
     }
-    $firstName = $reservation['firstName'];
-    $lastName = $reservation['lastName'];
-    $reservationType = $reservation['reservationType'];
-    $reservationDate = $reservation['reservationDate'];
-    $reservationBeginTime = $reservation['reservationBeginTime'];
-    $reservationEndTime = $reservation['reservationEndTime'];
-    $amountPeople = $reservation['amountPeople'];
-    $extraInfo = $reservation['extraInfo'];
+    $firstName = $user['firstName'];
+    $lastName = $user['lastName'];
+    $email = $user['email'];
+    $phoneNumber = $user['phoneNumber'];
+    $isAdmin = $user['isAdmin'];
 
 }
 
@@ -109,7 +105,7 @@ mysqli_close($db);
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/style.css">
 
-    <title>Registreren</title>
+    <title>Verander gebruiker</title>
 </head>
 <header>
     <nav>
@@ -135,10 +131,11 @@ mysqli_close($db);
 <?php if(isset($_SESSION['user']['admin'])){ ?>
     <div class="sidebar">
         <a href="admin.php"><img src="img/home.png"></a>
-        <a href="#mail"><img src="img/mail.png"></a>
+        <a href="users.php"><img src="img/users.png"></a>
         <a href="testCalender.php"><img src="img/agenda.png"></a>
         <a href="admin_reservations.php"><img src="img/dollar.png"></a>
         <a href="settings.php"><img src="img/settings.png"></a>
+        <a href="adminSelectDates.php"><img src="img/trash.png"></a>
     </div>
 <?php } ?>
 <!-- form  -->

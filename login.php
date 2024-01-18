@@ -35,42 +35,37 @@ if (isset($_POST['submit'])) {
         // SELECT the user from the database, based on the email address.
         $query = "SELECT * FROM users WHERE email = '$email'"; // selecteer de email uit de db
         $result = mysqli_query($db, $query); // Er wordt een sql query uitgevoerd
-
         // check if the user exists
         if ($result) {
 
             // Get user data from result
             $user = mysqli_fetch_assoc($result);
-
             // Check if the provided password matches the stored password in the database
-            if (password_verify($password, $user['password'])) {
+            if (!empty($user)) {
+                if (password_verify($password, $user['password'])) {
 
-                // Store the user in the session
-                if($user['isAdmin']) {
-                    $_SESSION['user'] = [
-                        'id' => $user['id'],
-                        'admin' => $user['isAdmin'],
-                    ];
+                    // Store the user in the session
+                    if ($user['isAdmin']) {
+                        $_SESSION['user'] = [
+                            'id' => $user['id'],
+                            'admin' => $user['isAdmin'],
+                        ];
+                    } else {
+                        $_SESSION['user'] = [
+                            'id' => $user['id'],
+                        ];
+
+                    }
                     header('Location: admin.php');
                     exit;
-                }else {
-                    $_SESSION['user'] = [
-                        'id' => $user['id'],
-                    ];
-                    header('Location: index.php');
-                    exit;
+                } else {
+                    // Credentials not valid
+                    require_once 'includes/validation.php';
                 }
             } else {
-                // Credentials not valid
                 require_once 'includes/validation.php';
             }
-        } else {
-            // User doesn't exist
-            require_once 'includes/validation.php';
         }
-    } else {
-        // Handle database error
-        require_once 'includes/validation.php';
     }
 }
 ?>
@@ -110,10 +105,11 @@ if (isset($_POST['submit'])) {
 <?php if(isset($_SESSION['user']['admin'])){ ?>
     <div class="sidebar">
         <a href="admin.php"><img src="img/home.png"></a>
-        <a href="#mail"><img src="img/mail.png"></a>
+        <a href="users.php"><img src="img/users.png"></a>
         <a href="testCalender.php"><img src="img/agenda.png"></a>
         <a href="admin_reservations.php"><img src="img/dollar.png"></a>
         <a href="settings.php"><img src="img/settings.png"></a>
+        <a href="adminSelectDates.php"><img src="img/trash.png"></a>
     </div>
 <?php } ?>
 
