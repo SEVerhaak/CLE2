@@ -18,14 +18,21 @@ while ($reservation = mysqli_fetch_assoc($result)) {
 mysqli_free_result($result);
 
 
+
 // SQL-query
 $sqlQuery = "SELECT reservationDate FROM reservations";
 $result = $db->query($sqlQuery);
 
-$sqlQuery1 = "SELECT CONCAT(reservationType, ' ', reservationBeginTime) AS planning FROM reservations";
+$sqlQuery1 = "SELECT CONCAT(reservationType, ' ', DATE_FORMAT(reservationBeginTime, '%H:%i')) AS planningCatering, reservationDate
+FROM reservations
+WHERE reservationType = 'catering'";
 $result1 = $db->query($sqlQuery1);
 
+$sqlQuery2 = "SELECT CONCAT(reservationType, ' ', DATE_FORMAT(reservationBeginTime, '%H:%i')) AS planningWorkshop, reservationDate
+FROM reservations
+WHERE reservationType = 'workshop'";
 
+$result2 = $db->query($sqlQuery2);
 
 
 
@@ -95,41 +102,42 @@ mysqli_close($db);
     <!-- Evenementen aan de kalender toevoegen (moet nog verbonden worden met de database) -->
     <?php
     include 'calender2.0.php';
+
+
+
     $calendar = new Calendar();
-
-
-    // Check of er resultaten zijn en voeg ze toe aan de kalender
-    if ($result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            // Haal de reserveringsdatum op
-            $reservationDate = $row["reservationDate"];
-
-            // Voeg de reserveringsdatum toe aan de kalender
-            $calendar->add_event('Reservering', $reservationDate, 1, 'green');
-        }
-    } else {
-        echo "Geen resultaten gevonden.";
-    }
-
 
 
     // Check of er resultaten zijn en loop door de resultaten
     if ($result1->num_rows > 0) {
         while ($row = $result1->fetch_assoc()) {
             // Haal de geplande gegevens op
-            $planning = $row["planning"];
+            $planning = $row["planningCatering"];
+
+            //Haal de reserveringsdatum op
+            $reservationDate = $row["reservationDate"];
 
             // Voeg de geplande gegevens toe aan de kalender
-            $calendar->add_event($planning, '2024-01-07', 1, 'green');
+            $calendar->add_event($planning, $reservationDate, 1, 'green');
         }
     } else {
         echo "Geen resultaten gevonden.";
     }
+    // Check of er resultaten zijn en loop door de resultaten
+    if ($result2->num_rows > 0) {
+        while ($row = $result2->fetch_assoc()) {
+            // Haal de geplande gegevens op
+            $planning = $row["planningWorkshop"];
 
+            //Haal de reserveringsdatum op
+            $reservationDate = $row["reservationDate"];
 
-
-
-
+            // Voeg de geplande gegevens toe aan de kalender
+            $calendar->add_event($planning, $reservationDate, 1, 'blue');
+        }
+    } else {
+        echo "Geen resultaten gevonden.";
+    }
 
 
     ?>
