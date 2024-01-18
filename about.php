@@ -9,6 +9,7 @@ session_start();
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="css/style.css" rel="stylesheet">
+    <link href="css/index.css" rel="stylesheet">
     <link href="css/about.css" rel="stylesheet">
     <title>Denise Kookt!</title>
 </head>
@@ -43,9 +44,11 @@ session_start();
     </div>
 <?php } ?>
 <main>
+    <div class="block">
         <h1>Over Ons</h1>
         <p>Denise Kookt! is gespecialiseerd in het organiseren van kookworkshops, het verzorgen van thuisrestaurants en het leveren van catering. Denise Kookt! is een zelfstanige onderneming van Denise.</p>
         <img src="./img/denisekookt.jpg" alt="Denise">
+    </div>
 </main>
 </body>
 <footer>
