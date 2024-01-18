@@ -16,4 +16,7 @@ function takenDatesCheckerDataFetch($db){
     }
     return $takenDates;
 }
+
 ?>
+
+
