@@ -45,6 +45,18 @@ session_start();
 <?php } ?>
 <main>
     <h1>Nieuws</h1>
+    <div class="block">
+        <img src="./img/pic_news.png" alt="Instagram Picture">
+        <p>Altijd leuk om een berg vrienden op bezoek te hebben. Kan ik me uitleven op de hapjes! In dit geval Ottolenghi geïnspireerd. Ratatouille met kokos komkommersaus, geroosterde bietjes met limoenbladsalsa, quinoa salade met waterkers, steak van knolselderij met café de Paris saus. Love it! Met oa @stolen7 . #denisekookt #denisekooktvoorvrienden #Ottolenghi #Ottolenghiopjebord #koken #homecooking #homemade #foodphotography #foodie #genieten #homechef</p>
+    </div>
+    <div class="block">
+        <img src="./img/pic_news.png" alt="Instagram Picture">
+        <p>Altijd leuk om een berg vrienden op bezoek te hebben. Kan ik me uitleven op de hapjes! In dit geval Ottolenghi geïnspireerd. Ratatouille met kokos komkommersaus, geroosterde bietjes met limoenbladsalsa, quinoa salade met waterkers, steak van knolselderij met café de Paris saus. Love it! Met oa @stolen7 . #denisekookt #denisekooktvoorvrienden #Ottolenghi #Ottolenghiopjebord #koken #homecooking #homemade #foodphotography #foodie #genieten #homechef</p>
+    </div>
+    <div class="block">
+        <img src="./img/pic_news.png" alt="Instagram Picture">
+        <p>Altijd leuk om een berg vrienden op bezoek te hebben. Kan ik me uitleven op de hapjes! In dit geval Ottolenghi geïnspireerd. Ratatouille met kokos komkommersaus, geroosterde bietjes met limoenbladsalsa, quinoa salade met waterkers, steak van knolselderij met café de Paris saus. Love it! Met oa @stolen7 . #denisekookt #denisekooktvoorvrienden #Ottolenghi #Ottolenghiopjebord #koken #homecooking #homemade #foodphotography #foodie #genieten #homechef</p>
+    </div>
 </main>
 </body>
 <footer>
