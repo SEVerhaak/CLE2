@@ -553,6 +553,14 @@ button:hover{
     height: auto;
     margin: 1rem;
 }
+.info-reservation1{
+    width: 40%;
+    background-color: #f7EDE2;
+    padding: 2rem;
+    border-radius: 1rem;
+    height: 40%;
+    margin: 1rem;
+}
 p{
     padding:0;
     margin-top: 0;
@@ -563,6 +571,36 @@ p{
     margin-bottom: 1rem;
 }
 .info-reservation a{
+    background-color: #84A59D;
+    color: #f7EDE2;
+    padding: 6px 16px;
+    border: 2px solid #84A59D;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+.info-reservation1 h2{
+    margin: 0;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+.info-reservation1 a{
+    background-color: #84A59D;
+    color: #f7EDE2;
+    padding: 6px 16px;
+    border: 2px solid #84A59D;
+    border-radius: 4px;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+.info-reservation2 h2{
+    margin: 0;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+.info-reservation2 a{
     background-color: #84A59D;
     color: #f7EDE2;
     padding: 6px 16px;
@@ -584,6 +622,45 @@ p{
     padding: 1rem;
     margin-bottom: 3rem;
     flex-wrap: wrap;
+}
+.info-reservation-box1{
+    width: 80%;
+    background-color: white;
+    height: 100%;
+    padding-bottom: 5rem;
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    margin-bottom: 3rem;
+}
+.info-reservation1{
+    width: 100%;
+    background-color: #f7EDE2;
+    padding: 2rem;
+    border-radius: 1rem;
+    height: 40%;
+    margin: 1rem;
+}
+.info-reservation2{
+    width: 80%;
+    background-color: #f7EDE2;
+    padding: 2rem;
+    border-radius: 1rem;
+    height: 40%;
+    margin: 1rem;
+}
+.date-reservation-box{
+    margin-left: 3.5rem;
+    max-width: 100%;
+    background-color: white;
+    height: 100%;
+    padding-bottom: 5rem;
+    margin-top: 0;
+    display: flex;
+    flex-direction: row;
+    padding: 1rem;
+    margin-bottom: 3rem;
 }
 .section2 a{
     background-color: #84A59D;

@@ -8,7 +8,7 @@ if(!isset($_SESSION['user'])){
 
 require_once 'includes/database.php';
 
-$query = "SELECT reservations.id, amountPeople, reservationDate, reservationBeginTime, reservationEndTime, reservationType, extraInfo, users.firstName, users.lastName, users.phoneNumber, users.email FROM `reservations` JOIN users on userId = users.id WHERE reservations.id != '1' ORDER by reservationDate ";
+$query = "SELECT reservations.id, amountPeople, reservationDate, reservationBeginTime, reservationEndTime, reservationType, extraInfo, users.firstName, users.lastName, users.phoneNumber, users.email FROM `reservations` JOIN users on userId = users.id WHERE amountPeople != '0' ORDER by reservationDate ";
 $result = mysqli_query($db, $query) or die('Error ' . htmlentities(mysqli_error($db)) . ' with query ' . htmlentities($query));
 
 $reservations = [];
@@ -74,7 +74,7 @@ mysqli_close($db);
 <div class="info-reservation-box">
     <?php foreach($reservations as $index => $reservation){ ?>
     <div class="info-reservation">
-        <h2>Datum reservering: <?= $reservations[$index]['reservationDate'] ?></h2>
+        <h2>Datum reservering: <?= date("D F j, Y", strtotime($reservations[$index]['reservationDate']))?></h2>
         <p>Reservering op naam: <?= $reservations[$index]['firstName'].' '.$reservations[$index]['lastName']?></p>
         <p>Hoeveelheid mensen: <?= $reservations[$index]['amountPeople']?></p>
         <p>Type reservering: <?= $reservations[$index]['reservationType']?></p>
@@ -96,4 +96,4 @@ mysqli_close($db);
     </div>
 </footer>
 </html>
-<?php
+

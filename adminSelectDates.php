@@ -16,6 +16,18 @@ if (!isset($_SESSION['user'])) {
 } else if ($_SESSION['user']['admin'] !== '1') {
     header('location: index.php');
 } else {
+    $query = "SELECT reservations.id, amountPeople, reservationDate, reservationBeginTime, reservationEndTime, reservationType, extraInfo, users.firstName, users.lastName, users.phoneNumber, users.email FROM `reservations` JOIN users on userId = users.id WHERE amountPeople = '0' ORDER by reservationDate ";
+    $result = mysqli_query($db, $query) or die('Error ' . htmlentities(mysqli_error($db)) . ' with query ' . htmlentities($query));
+
+    $reservations = [];
+
+    while ($reservation = mysqli_fetch_assoc($result)) {
+        $reservations[] = $reservation;
+    }
+
+// Sluit de resultaatset, maar laat de verbinding open
+    mysqli_free_result($result);
+
     $userID = 1;
     $amount_people = 0;
     $timeBegin = strtotime('00:00:00');
@@ -33,25 +45,25 @@ if (!isset($_SESSION['user'])) {
     $errors = [];
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if (empty($_POST['beginDate'])){
+        if (empty($_POST['beginDate'])) {
             $errors['startDate'] = 'Begindatum moet ingevuld zijn';
-        } else{
+        } else {
             $beginDate = $_POST['beginDate'];
         }
-        if (isset($_POST['checkMultiple'])){
+        if (isset($_POST['checkMultiple'])) {
             $checkMultiple = true;
-            if (empty($_POST['endDate'])){
+            if (empty($_POST['endDate'])) {
                 $errors['endDate'] = 'Einddatum moet ingevuld zijn';
-            } else{
+            } else {
                 $endDate = $_POST['endDate'];
             }
         }
         //print_r($beginDate);
         //print_r($endDate);
-        if($checkMultiple){
+        if ($checkMultiple) {
             $begin = new DateTime($beginDate);
             $end = new DateTime($endDate);
-            $end = $end->modify( '+1 day' );
+            $end = $end->modify('+1 day');
 
             $interval = DateInterval::createFromDateString('1 day');
             $period = new DatePeriod($begin, $interval, $end);
@@ -70,12 +82,11 @@ if (!isset($_SESSION['user'])) {
                     $succes = false;
                 }
             }
-            if ($succes){
+            if ($succes) {
                 $succesMessage = 'Datums zijn gewijzigd naar niet beschikbaar';
             }
             mysqli_close($db);
-        }
-        else{
+        } else {
             $sqlDate = "INSERT INTO `reservations`(userId, amountPeople, reservationDate, reservationBeginTime, reservationEndTime ,reservationCreationDate, reservationType, extraInfo) 
         VALUES ('$userID','$amount_people','$beginDate','$timeBegin','$timeEnd','$currentTimeSQL','$service', '$extraInfo')";
             if (mysqli_query($db, $sqlDate)) {
@@ -87,8 +98,9 @@ if (!isset($_SESSION['user'])) {
                 $errorMessage = "An error has occurred";
                 $succes = false;
             }
-            if ($succes){
+            if ($succes) {
                 $succesMessage = 'Datums zijn gewijzigd naar niet beschikbaar';
+                header('Location: adminSelectDates.php');
             }
             mysqli_close($db);
         }
@@ -120,37 +132,63 @@ if (!isset($_SESSION['user'])) {
             </div>
         </div>
         <div class="nav-left">
-            <a class="login" href="admin.php">Login</a>
+            <?php if (!isset($_SESSION['user'])) { ?>
+                <a class="login" href="login.php">Login</a>
+            <?php } else { ?>
+                <a class="login" href="logout.php">Log uit</a>
+            <?php } ?>
         </div>
     </nav>
 </header>
 <body>
-<h2>Selecteer een datum om de beschikbaarheid ervan aan te passen</h2>
-<form action="#" method="post">
-    <label for="beginDate">Begin datum:</label>
-    <input type="date" id="beginDate" name="beginDate" min="<?= $currentTimeHTML ?>">
-    <p class="error"><?php if(isset($errors['startDate'])){
-        echo $errors['startDate'];
-        } else{
-        echo '';
-        } ?></p>
-    <label for="checkMultiple">Reeks datums niet beschikbaar opgeven</label>
-    <input type="checkbox" id="checkMultiple" name="checkMultiple">
-    <br>
-    <label for="endDate">Eind datum:</label>
-    <input type="date" id="endDate" name="endDate" min="<?= $currentTimeHTML ?>" >
-    <p class="error"><?php if(isset($errors['endDate'])){
-            echo $errors['endDate'];
-        } else{
-            echo '';
-        } ?></p>
-    <p class="succes"><?php if(isset($succesMessage)){
-            echo $succesMessage;
-        } else{
-            echo '';
-        } ?></p>
-    <button type="submit">Opslaan</button>
-</form>
+<?php if (isset($_SESSION['user']['admin'])) { ?>
+    <div class="sidebar">
+        <a href="admin.php"><img src="img/home.png"></a>
+        <a href="users.php"><img src="img/users.png"></a>
+        <a href="testCalender.php"><img src="img/agenda.png"></a>
+        <a href="admin_reservations.php"><img src="img/dollar.png"></a>
+        <a href="settings.php"><img src="img/settings.png"></a>
+        <a href="adminSelectDates.php"><img src="img/trash.png"></a>
+    </div>
+<?php } ?>
+<div class="date-reservation-box">
+    <div class = "info-reservation1">
+    <h2>Selecteer een datum om de beschikbaarheid ervan aan te passen</h2>
+    <form action="#" method="post">
+        <label for="beginDate">Begin datum:</label>
+        <input type="date" id="beginDate" name="beginDate" min="<?= $currentTimeHTML ?>">
+        <p class="error"><?php if(isset($errors['startDate'])){
+                echo $errors['startDate'];
+            } else{
+                echo '';
+            } ?></p>
+        <label for="checkMultiple">Reeks datums niet beschikbaar opgeven</label>
+        <input type="checkbox" id="checkMultiple" name="checkMultiple">
+        <br>
+        <label for="endDate">Eind datum:</label>
+        <input type="date" id="endDate" name="endDate" min="<?= $currentTimeHTML ?>" >
+        <p class="error"><?php if(isset($errors['endDate'])){
+                echo $errors['endDate'];
+            } else{
+                echo '';
+            } ?></p>
+        <p class="succes"><?php if(isset($succesMessage)){
+                echo $succesMessage;
+            } else{
+                echo '';
+            } ?></p>
+        <button type="submit">Opslaan</button>
+    </form>
+    </div>
+    <div class = "info-reservation-box1">
+    <?php foreach ($reservations as $index => $reservation) { ?>
+        <div class="info-reservation2">
+            <h2>Datum: <?= date("D F j, Y", strtotime($reservations[$index]['reservationDate'])) ?></h2>
+            <a href="delete.php?id=<?= $reservations[$index]['id'] ?>&page=adminSelectDates">Verwijder datum</a>
+        </div>
+    <?php } ?>
+    </div>
+</div>
 </body>
 <footer>
     <div class="footer-style">
