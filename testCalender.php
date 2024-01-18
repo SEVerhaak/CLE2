@@ -101,7 +101,7 @@ mysqli_close($db);
     </div>
     <!-- Evenementen aan de kalender toevoegen (moet nog verbonden worden met de database) -->
     <?php
-    include 'calender2.0.php';
+    include 'calendar.php';
 
 
 
