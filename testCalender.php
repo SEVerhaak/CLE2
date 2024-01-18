@@ -108,20 +108,11 @@ mysqli_close($db);
 
             // Voeg de geplande gegevens toe aan de kalender
             $calendar->add_event($planning, $reservationDate, 1, 'green');
-
-
         }
 
     } else {
         echo "Geen resultaten gevonden.";
     }
-
-
-
-
-
-
-
 
     // Check of er resultaten zijn en loop door de resultaten
     if ($result2->num_rows > 0) {
