@@ -70,11 +70,7 @@ footer{
 .footer-main-text{
     color: #f7EDE2;
 }
-.footer-style img{
-    margin-left: 1rem;
-    margin-bottom: 0.3rem;
-    width: 4rem;
-}
+
 
 footer p{
     margin: 0.3rem;
@@ -623,6 +619,15 @@ p{
     margin-bottom: 3rem;
     flex-wrap: wrap;
 }
+.user-reservations{
+    padding-left: 4.5rem;
+    max-width: 100%;
+    background-color: white;
+    height: 100vh;
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+}
 .info-reservation-box1{
     width: 80%;
     background-color: white;
@@ -681,5 +686,10 @@ p{
         display: flex;
         flex-direction: row;
     justify-content: center;
+}
+
+.insta{
+    margin-left: 1rem;
+    width: 2.3rem;
 }
 

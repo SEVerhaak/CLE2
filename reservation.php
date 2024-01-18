@@ -191,6 +191,7 @@ if (count($settings) === 0) {
                 <a class="login" href="login.php">Login</a>
             <?php }else{ ?>
                 <a class="login" href = "logout.php">Log uit</a>
+                <a class="login" href = "user-reservations.php">Mijn reserveringen</a>
             <?php } ?>
         </div>
     </nav>
@@ -424,7 +425,7 @@ if (count($settings) === 0) {
     <div class="footer-style">
         <img class="logo" src="img/logo_dk.png">
         <p class="footer-main-text">Denise Kookt!</p>
-        <p class="footer-social-text">Socials</p>
+        <a href = "https://www.instagram.com/denisekookt/?hl=nl"><img class="insta" src="img/insta.png"></a>
     </div>
 </footer>
 </html>
