@@ -1,0 +1,23 @@
+main {
+    display: flex;
+    flex-direction: column;
+}
+
+.block {
+    display: flex;
+    flex-direction: row;
+    margin: 1rem;
+}
+
+.instaimg {
+    padding: 2rem;
+    height: 25%;
+    width: 25%;
+}
+
+.instatext {
+    padding: 2rem;
+    font-family: 'Open Sans', sans-serif;
+    color: #2D3835;
+    font-size: 1.25rem;
+}
