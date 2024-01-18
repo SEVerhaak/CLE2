@@ -152,7 +152,9 @@ if (count($settings) === 0) {
         VALUES ('$userID','$amount_people','$date','$timeBegin','$timeEnd','$currentTimeSQL','$service', '$extraInfo')";
                 if (mysqli_query($db, $sqlReservation)) {
                     // echo "New record created successfully";
-                    header('Location: index.php');
+                    $_SESSION['user'] = [
+                        'id' => $userID];
+                    header('Location: user-reservations.php');
                 } else {
                     //echo "Error: " . $sql . "<br>" . mysqli_error($db);
                     $errorMessage = "An error has occurred";

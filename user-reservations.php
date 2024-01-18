@@ -69,11 +69,11 @@ mysqli_close($db);
         <a href="adminSelectDates.php"><img src="img/trash.png"></a>
     </div>
 <?php } ?>
-<div class="user-reservations">
+<div class="center-box">
+    <div class="user-reservations">
     <h2> Mijn reserveringen</h2>
-    <div class="info-reservation-box">
         <?php foreach ($reservations as $index => $reservation) { ?>
-            <div class="info-reservation">
+            <div class="info-reservation-user">
                 <h2>Datum reservering: <?= date("D F j, Y", strtotime($reservations[$index]['reservationDate'])) ?></h2>
                 <p>Reservering op
                     naam: <?= $reservations[$index]['firstName'] . ' ' . $reservations[$index]['lastName'] ?></p>
@@ -87,7 +87,8 @@ mysqli_close($db);
                 <a href="user_delete.php?id=<?= $reservations[$index]['id'] ?>">Verwijder reservering</a>
             </div>
         <?php } ?>
-    </div>
+
+        </div>
 </div>
 </body>
 <footer>
