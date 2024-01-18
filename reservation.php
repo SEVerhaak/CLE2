@@ -1,12 +1,18 @@
 <?php
-//session_start();
+session_start();
 /** @var array $db */
 /** @var array $takendates */
 
+if (isset($_SESSION['user'])){
+    header('location: reservationUser.php');
+}
+
 // tijdelijke error reporting opties
+/*
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
+*/
 // includes
 require_once 'includes/database.php';
 require_once 'includes/functions.php';
@@ -20,8 +26,6 @@ while ($row = mysqli_fetch_assoc($result))
 if (count($settings) === 0) {
     header("Location: index.php");
 } else {
-
-
 // huidige tijd
     $currentTime = time();
 //huidige tijd met SQL&HTML formatting
@@ -93,14 +97,14 @@ if (count($settings) === 0) {
                 while ($row = mysqli_fetch_assoc($sqlEmailCheckResult))
                     $emailMatch[] = $row;
                 if (count($emailMatch) > 0) {
-                    $errors['email'] = 'E-Mail adres is al in gebruik';
+                    $errors['email'] = 'E-Mail adres is al in gebruik of niet geldig';
                 }
             }
             if (empty($_POST["phone"])) {
                 $errors['phone'] = 'Telefoonnummer is vereist';
             } else {
                 $phone = mysqli_real_escape_string($db, $_POST['phone']);
-                if (strlen(strval($phone)) > 8  and strlen(strval($phone)) < 10){
+                if (strlen(strval($phone)) > 8 and strlen(strval($phone)) < 11) {
 
                 } else {
                     $errors['phone'] = 'Voer een geldig telefoonnummer in';
@@ -155,8 +159,10 @@ if (count($settings) === 0) {
                 }
                 mysqli_close($db);
             }
+
         }
     }
+
 }
 ?>
 <!doctype html>
@@ -172,17 +178,34 @@ if (count($settings) === 0) {
 <header>
     <nav>
         <div class="nav-right">
-            <img class="logo" src="img/logo_dk.png">
-            <a class="header-link-text" href="reservation.php">Reserveren</a>
-            <a class="header-link-text" href="about.php">Over ons</a>
-            <a class="header-link-text" href="news.php">Nieuws</a>
-            <a class="header-link-text" href="contact.php">Contact</a>
+            <a href = "index.php"><img class="logo" src="img/logo_dk.png"></a>
+            <div class = "header-links">
+                <a class="header-link-text" href="reservation.php">Reserveren</a>
+                <a class="header-link-text" href="about.php">Over ons</a>
+                <a class="header-link-text" href="news.php">Nieuws</a>
+                <a class="header-link-text" href="contact.php">Contact</a>
+            </div>
         </div>
         <div class="nav-left">
-            <a class="login" href="admin.php">Login</a>
+            <?php if(!isset($_SESSION['user'])){?>
+                <a class="login" href="login.php">Login</a>
+            <?php }else{ ?>
+                <a class="login" href = "logout.php">Log uit</a>
+            <?php } ?>
         </div>
     </nav>
 </header>
+<body>
+<?php if(isset($_SESSION['user']['admin'])){ ?>
+    <div class="sidebar">
+        <a href="admin.php"><img src="img/home.png"></a>
+        <a href="users.php"><img src="img/users.png"></a>
+        <a href="testCalender.php"><img src="img/agenda.png"></a>
+        <a href="admin_reservations.php"><img src="img/dollar.png"></a>
+        <a href="settings.php"><img src="img/settings.png"></a>
+        <a href="adminSelectDates.php"><img src="img/trash.png"></a>
+    </div>
+<?php } ?>
 <div class="hidden-meta-data" style="display: none;">
     <?php for ($i = 0;
                $i < count(takenDatesCheckerDataFetch($db));
@@ -248,24 +271,8 @@ if (count($settings) === 0) {
                     echo '';
                 } ?>
             </p>
-            <div class="flex-people">
-                <label for="amount_people">Hoe veel mensen?</label>
-                <div>
-                    <button type="button" class="left-button" id="left-button-id">-</button>
-                    <input class="amount-value inputSection1" id="amount_people" type="number"
-                           value="<?= $settings[0]['minGuest'] ?>" name="amount_people" readonly="readonly">
-                    <button type="button" class="right-button" id="right-button-id">+</button>
-                </div>
-            </div>
 
-            <p class="error">
-                <?php if (isset($errors['amount_people'])) {
-                    echo $errors['amount_people'];
-                } else {
-                    echo '';
-                } ?>
-            </p>
-
+            <div id="hidden-info">
             <label>
                 <input class="inputSection1" value="timeslot1" type="radio" name="time"
                        id="time-1" <?php if (count($errors) > 0 and isset($_POST["time"])) {
@@ -291,7 +298,25 @@ if (count($settings) === 0) {
                         - <?php echo date('G:i', strtotime($timeSlots[1][1])) ?></p>
                     <p class="price"></p>
                 </div>
+                <div class="flex-people">
+                    <label for="amount_people">Hoe veel mensen?</label>
+                    <div>
+                        <button type="button" class="left-button" id="left-button-id">-</button>
+                        <input class="amount-value inputSection1" id="amount_people" type="number"
+                               value="<?= $settings[0]['minGuest'] ?>" name="amount_people" readonly="readonly">
+                        <button type="button" class="right-button" id="right-button-id">+</button>
+                    </div>
+                </div>
+
+                <p class="error">
+                    <?php if (isset($errors['amount_people'])) {
+                        echo $errors['amount_people'];
+                    } else {
+                        echo '';
+                    } ?>
+                </p>
             </label>
+            </div>
             <p id="jsError"></p>
             <div class="button-right">
                 <button id="nextButton" class="nextButton" type="button">Volgende stap</button>
@@ -444,7 +469,7 @@ if (count($settings) === 0) {
         let errorElementsPage2 = document.getElementsByClassName("error page-2")
         let errorBool = false;
         for (let i = 0; i < errorElementsPage2.length; i++) {
-            if (errorElementsPage2[i].innerHTML.includes("vereist") || errorElementsPage2[i].innerHTML.includes("is")) {
+            if (errorElementsPage2[i].innerHTML.includes("vereist") || errorElementsPage2[i].innerHTML.includes("geldig")) {
                 errorBool = true;
             }
         }
@@ -498,6 +523,10 @@ if (count($settings) === 0) {
 
 </script>
 <script>
+    let hiddenElement = document.getElementById('hidden-info');
+    hiddenElement.style.display = 'none';
+    hiddenElement.style.visibility = 'hidden';
+
     let dateElement = document.getElementById("date-id");
     let taken = false;
     dateElement.addEventListener("input", function () {
@@ -509,9 +538,13 @@ if (count($settings) === 0) {
             }
         }
         if (taken) {
+            hiddenElement.style.display = 'none';
+            hiddenElement.style.visibility = 'hidden';
             document.getElementById("nextButton").disabled = true;
             document.getElementById("date-error").innerHTML = 'deze datum is niet meer beschikbaar'
         } else {
+            hiddenElement.style.display = 'block';
+            hiddenElement.style.visibility = 'visible';
             document.getElementById("nextButton").disabled = false;
             document.getElementById("date-error").innerHTML = ''
 

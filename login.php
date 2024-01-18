@@ -46,13 +46,18 @@ if (isset($_POST['submit'])) {
             if (password_verify($password, $user['password'])) {
 
                 // Store the user in the session
-                $_SESSION['user'] = [
-                    'id' => $user['user_id'],
-                    'admin' => $user['isAdmin'],
-                ];
+                if($user['isAdmin']) {
+                    $_SESSION['user'] = [
+                        'id' => $user['id'],
+                        'admin' => $user['isAdmin'],
+                    ];
+                }else {
+                    $_SESSION['user'] = [
+                        'id' => $user['id'],
+                    ];
 
-                // Redirect to secure page
-                header('Location: index.php');
+                }
+                header('Location: admin.php');
                 exit;
             } else {
                 // Credentials not valid
@@ -83,18 +88,34 @@ if (isset($_POST['submit'])) {
 <header>
     <nav>
         <div class="nav-right">
-            <img class="logo" src="img/logo_dk.png">
-            <a class="header-link-text" href="reservation.php">Reserveren</a>
-            <a class="header-link-text" href="about.php">Over ons</a>
-            <a class="header-link-text" href="news.php">Nieuws</a>
-            <a class="header-link-text" href="contact.php">Contact</a>
+            <a href = "index.php"><img class="logo" src="img/logo_dk.png"></a>
+            <div class = "header-links">
+                <a class="header-link-text" href="reservation.php">Reserveren</a>
+                <a class="header-link-text" href="about.php">Over ons</a>
+                <a class="header-link-text" href="news.php">Nieuws</a>
+                <a class="header-link-text" href="contact.php">Contact</a>
+            </div>
         </div>
         <div class="nav-left">
-            <a class="login" href="#">Login</a>
+            <?php if(!isset($_SESSION['user'])){?>
+                <a class="login" href="login.php">Login</a>
+            <?php }else{ ?>
+                <a class="login" href = "logout.php">Log uit</a>
+            <?php } ?>
         </div>
     </nav>
 </header>
 <body>
+<?php if(isset($_SESSION['user']['admin'])){ ?>
+    <div class="sidebar">
+        <a href="admin.php"><img src="img/home.png"></a>
+        <a href="users.php"><img src="img/users.png"></a>
+        <a href="testCalender.php"><img src="img/agenda.png"></a>
+        <a href="admin_reservations.php"><img src="img/dollar.png"></a>
+        <a href="settings.php"><img src="img/settings.png"></a>
+        <a href="adminSelectDates.php"><img src="img/trash.png"></a>
+    </div>
+<?php } ?>
 
 <!-- form -->
 <div class="center-box">
