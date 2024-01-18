@@ -44,7 +44,15 @@ session_start();
     </div>
 <?php } ?>
 <main>
+    <div class="block">
+    <div class="contact">
     <h1>Contact</h1>
+    <h2>Je kunt Denise Kookt! bereiken op de volgende manieren:</h2>
+    <p>Email: info@denisekookt.nl</p>
+    <p>Telefoon: 06-12345678</p>
+    <p>Instagram: @Denisekookt</p>
+    </div>
+    </div>
 </main>
 </body>
 <footer>
