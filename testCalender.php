@@ -27,17 +27,14 @@ mysqli_free_result($result);
 $sqlQuery = "SELECT reservationDate FROM reservations";
 $result = $db->query($sqlQuery);
 
-$sqlQuery1 = "SELECT CONCAT(reservationType, ' ', DATE_FORMAT(reservationBeginTime, '%H:%i')) AS planningCatering, reservationDate
-FROM reservations
-WHERE reservationType = 'catering'";
+$sqlQuery1 = "SELECT CONCAT(reservationType, ' ', DATE_FORMAT(reservationBeginTime, '%H:%i')) AS planningCatering, reservationDate FROM reservations WHERE reservationType = 'catering'";
 $result1 = $db->query($sqlQuery1);
 
-$sqlQuery2 = "SELECT CONCAT(reservationType, ' ', DATE_FORMAT(reservationBeginTime, '%H:%i')) AS planningWorkshop, reservationDate
-FROM reservations
-WHERE reservationType = 'workshop'";
-
+$sqlQuery2 = "SELECT CONCAT(reservationType, ' ', DATE_FORMAT(reservationBeginTime, '%H:%i')) AS planningWorkshop, reservationDate FROM reservations WHERE reservationType = 'workshop'";
 $result2 = $db->query($sqlQuery2);
 
+$sqlQuery3 = "SELECT reservationDate FROM reservations WHERE userId = 1";
+$result3 = $db->query($sqlQuery3);
 
 
 mysqli_close($db);
@@ -86,6 +83,7 @@ mysqli_close($db);
         <a href="settings.php"><img src="img/settings.png"></a>
         <a href="adminSelectDates.php"><img src="img/trash.png"></a>
     </div>
+
 <?php } ?>
 <div class="calender-box">
 
@@ -125,6 +123,20 @@ mysqli_close($db);
 
             // Voeg de geplande gegevens toe aan de kalender
             $calendar->add_event($planning, $reservationDate, 1, 'blue');
+        }
+    } else {
+        echo "Geen resultaten gevonden.";
+    }
+
+    // Check of er resultaten zijn en loop door de resultaten
+    if ($result3->num_rows > 0) {
+        while ($row = $result3->fetch_assoc()) {
+            // Haal de geplande gegevens op
+            $nietBeschikbaar = $row["reservationDate"];
+
+            // Voeg de geplande gegevens toe aan de kalender
+            $calendar->add_event('Niet beschikbaar', $nietBeschikbaar, 1, 'red');
+
         }
     } else {
         echo "Geen resultaten gevonden.";
