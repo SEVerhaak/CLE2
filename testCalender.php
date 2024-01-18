@@ -33,8 +33,10 @@ $result1 = $db->query($sqlQuery1);
 $sqlQuery2 = "SELECT CONCAT(reservationType, ' ', DATE_FORMAT(reservationBeginTime, '%H:%i')) AS planningWorkshop, reservationDate FROM reservations WHERE reservationType = 'workshop'";
 $result2 = $db->query($sqlQuery2);
 
-$sqlQuery3 = "SELECT reservationDate FROM reservations WHERE userId = 1";
+$sqlQuery3 = "SELECT id, reservationDate FROM reservations WHERE userId = 1";
 $result3 = $db->query($sqlQuery3);
+
+
 
 
 mysqli_close($db);
@@ -49,6 +51,8 @@ mysqli_close($db);
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="css/style.css" rel="stylesheet">
     <link href="css/example.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
     <title>Denise Kookt!</title>
 </head>
 <!-- Header -->
@@ -86,13 +90,9 @@ mysqli_close($db);
 <?php } ?>
 <div class="calender-box">
 
-
     <!-- Evenementen aan de kalender toevoegen (moet nog verbonden worden met de database) -->
     <?php
     include 'calendar.php';
-
-
-
     $calendar = new Calendar();
 
 
@@ -107,10 +107,21 @@ mysqli_close($db);
 
             // Voeg de geplande gegevens toe aan de kalender
             $calendar->add_event($planning, $reservationDate, 1, 'green');
+
+
         }
+
     } else {
         echo "Geen resultaten gevonden.";
     }
+
+
+
+
+
+
+
+
     // Check of er resultaten zijn en loop door de resultaten
     if ($result2->num_rows > 0) {
         while ($row = $result2->fetch_assoc()) {
@@ -132,18 +143,14 @@ mysqli_close($db);
         while ($row = $result3->fetch_assoc()) {
             // Haal de geplande gegevens op
             $nietBeschikbaar = $row["reservationDate"];
+            $appointmentId = $row["id"]; // Gebruik de daadwerkelijke ID-kolomnaam uit de tabel
 
             // Voeg de geplande gegevens toe aan de kalender
             $calendar->add_event('Niet beschikbaar', $nietBeschikbaar, 1, 'red');
-
         }
     } else {
         echo "Geen resultaten gevonden.";
     }
-
-
-
-
 
     ?>
     <!-- Kalender met navigatieknoppen -->
