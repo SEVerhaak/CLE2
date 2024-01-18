@@ -9,6 +9,8 @@ session_start();
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="css/style.css" rel="stylesheet">
+    <link href="css/index.css" rel="stylesheet">
+    <link href="css/news.css" rel="stylesheet">
     <title>Denise Kookt!</title>
 </head>
 <header>
@@ -44,6 +46,18 @@ session_start();
 <?php } ?>
 <main>
     <h1>Nieuws</h1>
+    <div class="block">
+        <img src="./img/pic_news.png" alt="Instagram Picture 1" class="instaimg">
+        <p class="instatext">Altijd leuk om een berg vrienden op bezoek te hebben. Kan ik me uitleven op de hapjes! In dit geval Ottolenghi geïnspireerd. Ratatouille met kokos komkommersaus, geroosterde bietjes met limoenbladsalsa, quinoa salade met waterkers, steak van knolselderij met café de Paris saus. Love it! Met oa @stolen7. #denisekookt #denisekooktvoorvrienden #Ottolenghi #Ottolenghiopjebord #koken #homecooking #homemade #foodphotography #foodie #genieten #homechef</p>
+    </div>
+    <div class="block">
+        <img src="./img/denisekookt_ipcia.png" alt="Instagram Picture 3" class="instaimg">
+        <p class="instatext">Zo geïnspireerd door @louisebylisapalandet en haar mooie kookboek. Bezoek vandaag verwend met gegrilde courgette met pecannoten, bietjes met sesamzaadjes, gegrilde kip, zadencrackers met crème fraiche, dijonmosterd en parmezaan. En toe een deens appeltaartje met abrikozen en vanilleroom. Met appeltjes uit eigen tuin #denisekookt #deenskoken #homecooking #homemade #homechef #foodie #foodphotography #foodieopreis #moestuin #appeltjes</p>
+    </div>
+    <div class="block">
+        <img src="./img/foodpic2.png" alt="Instagram Picture 2" class="instaimg">
+        <p class="instatext">Gewoon omdat het woensdag is. Eend, pastinaak, geroosterde pompoen en salade van waterkers. Erbij een heerlijke rode Primitivo! #denisekookt #koken #homecooking #homemade #bijnaherfst #wijnspijs #wijntjeerbij #foodphotography #foodie</p>
+    </div>
 </main>
 </body>
 <footer>

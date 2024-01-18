@@ -9,6 +9,8 @@ session_start();
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="css/style.css" rel="stylesheet">
+    <link href="css/index.css" rel="stylesheet">
+    <link href="css/contact.css" rel="stylesheet">
     <title>Denise Kookt!</title>
 </head>
 <header>
@@ -43,7 +45,15 @@ session_start();
     </div>
 <?php } ?>
 <main>
+    <div class="block">
+    <div class="contact">
     <h1>Contact</h1>
+    <h2>Je kunt Denise Kookt! bereiken op de volgende manieren:</h2>
+    <p>Email: info@denisekookt.nl</p>
+    <p>Telefoon: 06-12345678</p>
+    <p>Instagram: @Denisekookt</p>
+    </div>
+    </div>
 </main>
 </body>
 <footer>
