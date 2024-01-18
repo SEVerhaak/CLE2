@@ -3,6 +3,10 @@
 // Setup connection with database
 require_once 'includes/database.php';
 
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
+
 if(!isset($_GET['id'])){
     header('Location: index.php');
     exit;
@@ -71,8 +75,6 @@ if (isset($_POST['submit'])) {
     }
 }else if (isset($_GET['id']) && $_GET['id'] !== ''){
     $index = $_GET['id'];
-
-
 // select de album emt de juiste id van de database
     $query = "SELECT * FROM `users` WHERE id = '$index'";
     $result = mysqli_query($db, $query)
@@ -89,7 +91,6 @@ if (isset($_POST['submit'])) {
     $email = $user['email'];
     $phoneNumber = $user['phoneNumber'];
     $isAdmin = $user['isAdmin'];
-
 }
 
 mysqli_close($db);
@@ -181,10 +182,11 @@ mysqli_close($db);
             <p class="warning">
                 <?php echo $errorIsAdmin ?>
             </p>
-            <label class="label" for="isAdmin">isAdmin</label>
-            <input class="input" id="isAdmin" type="number" name="isAdmin"
-                   value="<?= isset($isAdmin) ? $isAdmin : '' ?>"/>
-
+            <label class="label" for="isAdmin">Is gebruiker administrator?</label>
+            <select name="isAdmin" id="isAdmin">
+                <option value="0" <?php if ($isAdmin == '0'){echo 'selected="selected"';} else{ echo '';} ?>">Nee</option>
+                <option value="1" <?php if ($isAdmin == '1'){echo 'selected="selected"';} else{ echo '';} ?>>Ja</option>
+            </select>
             <!-- Submit -->
             <input type = "hidden" name = "id" value = "<?= htmlentities($index) ?>" />
             <button class="button is-link is-fullwidth" type="submit" name="submit">Opslaan</button>
