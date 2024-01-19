@@ -25,9 +25,14 @@ class Calendar {
         }
     }
 
-    public function add_event($txt, $date, $days = 1, $color = '') {
+//    public function add_event($txt, $date, $days = 1, $color = '') {
+//        $color = $color ? ' ' . $color : $color;
+//        $this->events[] = [$txt, $date, $days, $color];
+//    }
+
+    public function add_event($txt, $date, $days = 1, $color = '', $link = '') {
         $color = $color ? ' ' . $color : $color;
-        $this->events[] = [$txt, $date, $days, $color];
+        $this->events[] = [$txt, $date, $days, $color, $link];
     }
 
     public function getPrevMonth() {
@@ -68,7 +73,9 @@ class Calendar {
             foreach ($this->events as $event) {
                 for ($d = 0; $d <= ($event[2]-1); $d++) {
                     if (date('y-m-d', strtotime($this->active_year . '-' . $this->active_month . '-' . $i . ' -' . $d . ' day')) == date('y-m-d', strtotime($event[1]))) {
-                        $html .= '<div class="event' . $event[3] . '">' . $event[0] . '</div>';
+                        // Voeg een link toe als deze is opgegeven
+                        $link_html = $event[4] ? '<a href="' . $event[4] . '">' : '';
+                        $html .= '<div class="event' . $event[3] . '">' . $link_html . $event[0] . ($link_html ? '</a>' : '') . '</div>';
                     }
                 }
             }
