@@ -76,10 +76,13 @@ if (!isset($_SESSION['user'])) {
             $interval = DateInterval::createFromDateString('1 day');
             $period = new DatePeriod($begin, $interval, $end);
 
+
+
             foreach ($period as $dt) {
                 $date = $dt->format("Y-m-d");
                 $sqlDate = "INSERT INTO `reservations`(userId, amountPeople, reservationDate, reservationBeginTime, reservationEndTime ,reservationCreationDate, reservationType, extraInfo) 
-        VALUES ('$userID','$amount_people','$date','$timeBegin','$timeEnd','$currentTimeSQL','$service', '$extraInfo')";
+                VALUES ('$userID','$amount_people','$date','$timeBegin','$timeEnd','$currentTimeSQL','$service', '$extraInfo')";
+
                 if (mysqli_query($db, $sqlDate)) {
                     //echo "New record created successfully";
                     //header('Location: admin.php');
@@ -89,20 +92,24 @@ if (!isset($_SESSION['user'])) {
                     $errorMessage = "An error has occurred";
                     $succes = false;
                 }
+
             }
+
             if ($succes) {
                 $succesMessage = 'Datums zijn gewijzigd naar niet beschikbaar';
             }
             mysqli_close($db);
+
         } else {
-            $sqlDate = "INSERT INTO `reservations`(userId, amountPeople, reservationDate, reservationBeginTime, reservationEndTime ,reservationCreationDate, reservationType, extraInfo) 
+
+            $sqlDateSingle = "INSERT INTO `reservations`(userId, amountPeople, reservationDate, reservationBeginTime, reservationEndTime ,reservationCreationDate, reservationType, extraInfo)
         VALUES ('$userID','$amount_people','$beginDate','$timeBegin','$timeEnd','$currentTimeSQL','$service', '$extraInfo')";
-            if (mysqli_query($db, $sqlDate)) {
+            if (mysqli_query($db, $sqlDateSingle)) {
                 // echo "New record created successfully";
                 //header('Location: admin.php');
                 $succes = true;
             } else {
-                echo "Error: " . $sqlDate . "<br>" . mysqli_error($db);
+                echo "Error: " . $sqlDateSingle . "<br>" . mysqli_error($db);
                 $errorMessage = "An error has occurred";
                 $succes = false;
             }
@@ -111,6 +118,8 @@ if (!isset($_SESSION['user'])) {
                 header('Location: adminSelectDates.php');
             }
             mysqli_close($db);
+
+
         }
     }
 }

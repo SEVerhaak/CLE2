@@ -66,7 +66,9 @@ class Calendar {
         for ($i = 1; $i <= $num_days; $i++) {
             $selected = '';
             if ($i == $this->active_day) {
-                $selected = ' selected';
+                if($this->active_month == date('m')){
+                    $selected = ' selected';
+                }
             }
             $html .= '<div class="day_num' . $selected . '">';
             $html .= '<span>' . $i . '</span>';

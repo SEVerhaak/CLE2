@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
 body{
     margin:0;
-    background-image: url(../img/bg.png);
+    /* background-image: url(../img/bg.png); */
     font-family: 'Open Sans', sans-serif;
 }
 header{
@@ -724,3 +724,22 @@ p{
 .success-message p{
     font-weight: bold;
 }
+#isAdmin{
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid #2D3835;
+    border-radius: 4px;
+}
+
+#button-user-edit{
+    padding: 2px 8px;
+    margin: 0vw 0vw 0vw 0.5vw;
+}
+#button-user-edit:hover{
+    background-color: #4d5f5c;
+    padding: 2px 8px;
+    margin: 0vw 0vw 0vw 0.5vw;
+}
+
+

@@ -14,6 +14,7 @@ if (isset($_SESSION['user'])) {
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
+
 // includes
 require_once 'includes/database.php';
 require_once 'includes/functions.php';
@@ -77,17 +78,13 @@ if (count($settings) === 0) {
                 $errors['time'] = 'Datum is onjuist ingevoerd';
             }
         }
-        if (empty($_POST["extraInfo"])) {
-            $errors['extraInfo'] = 'Datum is vereist';
-        } else {
-            $extraInfo = mysqli_real_escape_string($db, $_POST['extraInfo']);
-        }
+        $extraInfo = $_POST["extraInfo"];
         // als er geen errors zijn voer query uit
-
         if (empty($errors)) {
             // sql statement voor toevoegen van reservering gekoppeld aan user id
             $sqlReservation = "INSERT INTO `reservations`(userId, amountPeople, reservationDate, reservationBeginTime, reservationEndTime ,reservationCreationDate, reservationType, extraInfo) 
         VALUES ('$userID','$amount_people','$date','$timeBegin','$timeEnd','$currentTimeSQL','$service', '$extraInfo')";
+
             if (mysqli_query($db, $sqlReservation)) {
                 // echo "New record created successfully";
                 header('Location: user-reservations.php');
