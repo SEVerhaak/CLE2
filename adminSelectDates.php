@@ -1,14 +1,20 @@
 <?php
+// sessie starten
 session_start();
+// import variables
 /** @var array $db */
 /** @var array $takendates */
+// vereiste bestanden
 require_once 'includes/database.php';
 require_once 'includes/functions.php';
 
+
+// tijdelijke debug opties
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
+// controleer of de gebruiker ingelogd is en admin is
 if (!isset($_SESSION['user'])) {
     header('location: index.php');
 } else if (!isset($_SESSION['user']['admin'])) {
@@ -16,6 +22,7 @@ if (!isset($_SESSION['user'])) {
 } else if ($_SESSION['user']['admin'] !== '1') {
     header('location: index.php');
 } else {
+    // query om alle reserveringen die gemaakt zijn om datums te blokeren eruit te halen
     $query = "SELECT reservations.id, amountPeople, reservationDate, reservationBeginTime, reservationEndTime, reservationType, extraInfo, users.firstName, users.lastName, users.phoneNumber, users.email FROM `reservations` JOIN users on userId = users.id WHERE amountPeople = '0' ORDER by reservationDate ";
     $result = mysqli_query($db, $query) or die('Error ' . htmlentities(mysqli_error($db)) . ' with query ' . htmlentities($query));
 
@@ -28,6 +35,7 @@ if (!isset($_SESSION['user'])) {
 // Sluit de resultaatset, maar laat de verbinding open
     mysqli_free_result($result);
 
+    // default waardes voor datum blokkerende reserveringen
     $userID = 1;
     $amount_people = 0;
     $timeBegin = strtotime('00:00:00');
@@ -199,10 +207,14 @@ if (!isset($_SESSION['user'])) {
     </div>
 </footer>
 <script>
+    // checkbox element
     let checkbox = document.getElementById('checkMultiple');
+    // 2e datum invul optie
     let secondDateBox = document.getElementById('endDate');
+    // 2e datum disabled bool
     secondDateBox.disabled = true;
 
+    // op verandering van de waarde van de checkbox; zet de 2e datum invul optie op enabled/disabled (flip-flop)
     checkbox.addEventListener('change', (event) => {
         secondDateBox.disabled = !event.currentTarget.checked;
     })

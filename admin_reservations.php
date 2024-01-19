@@ -81,7 +81,8 @@ mysqli_close($db);
             <div class="resulWrapper" data-display="0">
                 <h2 class="resultTitle">Datum reservering: </h2>
                 <h2 class="result"
-                    id="<?= 'dateResult' . $index ?>"> <?= $reservations[$index]['reservationDate'] ?></h2></div>
+                    id="<?= 'dateResult' . $index ?>"> <?= date("D F j, Y", strtotime($reservations[$index]['reservationDate']))?></h2>
+            </div>
             <div class="resulWrapper" data-display="0">
                 <p class="resultTitle">Reservering op naam:</p>
                 <p class="result"
@@ -105,7 +106,7 @@ mysqli_close($db);
                 <p class="result" id="<?= 'emailResult' . $index ?>"> <?= $reservations[$index]['email'] ?></p></div>
             <div class="resulWrapper" data-display="0">
                 <p class="resultTitle">Tel reserveerder: </p>
-                <p class="result" id="<?= 'phoneResult' . $index ?>"><?= $reservations[$index]['phoneNumber'] ?></p>
+                <p class="result" id="<?= 'phoneResult' . $index ?>"><?= '0'.$reservations[$index]['phoneNumber'] ?></p>
             </div>
             <div class="resulWrapper" data-display="0">
                 <p class="resultTitle">Bijzonderheden: </p>
@@ -127,38 +128,49 @@ mysqli_close($db);
 <script>
     // text elementen die doorzocht gaan worden met de zoek functie
     let elementsToSearch = document.getElementsByClassName('result');
-    // elementen die doorzocht worden, hier wordt de lengte van de loop door bepaald
+    // lengte voor de loop bepalen (dit gaat met de titel inplaats van de resultaten want sommige resultaten zijn leeg en dan klopt de lengte niet)
     let elementsToHide = document.getElementsByClassName('resultTitle');
     // het input element waaruit de string voor het zoeken uit gehaald wordt
     let input = document.getElementById('search');
 
     // functie voor het zoeken
     function searchResults() {
+        // zet de ingevulde waarde om in alleen hoofdletters
         let filter = input.value.toUpperCase();
+        // parent element wat verborgen moet worden als alle children onzichtbaar zijn
         let boxDiv = document.getElementsByClassName('info-reservation')
+        // de div die om de 2e elementen zit, door deze te verbergen verdwijnen beide elementen
         let wrapElement = document.getElementsByClassName('resulWrapper')
-
+        // for loop om te zoeken
         for (let i = 0; i < elementsToSearch.length; i++) {
+            // zet tekst van element[i] om in hoofdletters
             let text = elementsToSearch[i].innerHTML.toUpperCase();
+            // als de ingevoerde tekst overeen komt met de tekst uit element[i], zet de display dan op de standaard waarde
             if (text.indexOf(filter) > -1) {
                 wrapElement[i].style.display = '';
-                wrapElement[i].setAttribute('data-display', '0')
-
+                //wrapElement[i].setAttribute('data-display', '0')
+                // anders als de ingevoerde tekst niet overeen komt verberg element[i]
             } else {
                 wrapElement[i].style.display = 'none';
-                wrapElement[i].setAttribute('data-display', '1')
+                // wrapElement[i].setAttribute('data-display', '1')
             }
         }
+        // for loop om te kijken of alle children van de omhullende div onzichtbaar zijn, als ze allemaal onzichtbaar zijn wordt de parent div ook onzichtbaar gemaakt.
         for (let j = 0; j < boxDiv.length; j++) {
+            // aan het begin van de loop zet de counters op 0
             let visibleCount = 0;
             let inVisibleCount = 0;
+            // start de volgende loop, deze loopt door alle children van het parent element en kijkt dan of deze onzichtbaar
             for (let k = 0; k < boxDiv[j].children.length; k++) {
                 if (boxDiv[j].children[k].style.display === ''){
+                    // als child[k] van div[j] zichtbaar is dan +1 visible count
                     visibleCount += 1;
                 } else {
+                    // als child[k] van div[j] niet zichtbaar is dan +1 voor invisible count
                     inVisibleCount += 1;
                 }
             }
+            // als visiblecount gelijk is aan 2 zijn alleen de buttons in de div nog zichtbaar en kan de hele div ontzichtbaar gemaakt worden
             if (visibleCount === 2){
                 boxDiv[j].style.display = 'none'
             } else {
