@@ -35,6 +35,8 @@ if (isset($_POST['submit'])) {
         }
         if (empty($_POST['phoneNumber'])) {
             $errorPhonenumber = 'phoneNumber cannot be empty';
+        } elseif (!isValidPhoneNumber($phoneNumber)) {
+            $errorPhonenumber = 'Invalid phone number';
         }
     }
 
@@ -46,8 +48,8 @@ if (isset($_POST['submit'])) {
         // store the new user in the database.
         $sql = "INSERT INTO users (firstName, lastName, email, password, phoneNumber, isAdmin) VALUES ('$firstName', '$lastName', '$email', '$password', '$phoneNumber', '0')";
 
-
         $result = mysqli_query($db, $sql);
+
         // If query succeeded
         if ($result) {
             // Als de registratie succesvol is, voer dan het volgende uit:
@@ -56,19 +58,19 @@ if (isset($_POST['submit'])) {
             // Doorverwijzen naar login.php met het succesbericht
             header("Location: login.php?success=" . urlencode($success_message));
             exit(); // Zorg ervoor dat de code na de header() niet wordt uitgevoerd.
-
-
-
-
-            // Redirect to login page
-//            header("Location: login.php");
-            // Exit the code
-            $db->close();
         }
-
-
     }
+}
 
+// Functie voor het controleren van een geldig telefoonnummer
+function isValidPhoneNumber($phoneNumber) {
+    // Verwijder eventuele spaties, streepjes, haakjes, en andere tekens
+    $cleanedPhoneNumber = preg_replace('/[^0-9]/', '', $phoneNumber);
+
+    // Controleer of het nummer begint met "06" en gevolgd wordt door 8 cijfers
+    $pattern = '/^06\d{8}$/';
+
+    return (bool)preg_match($pattern, $cleanedPhoneNumber);
 }
 ?>
 
