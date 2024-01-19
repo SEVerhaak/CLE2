@@ -90,16 +90,10 @@ mysqli_close($db);
 
 <?php } ?>
 <div class="calender-box">
-
     <!-- Evenementen aan de kalender toevoegen (moet nog verbonden worden met de database) -->
     <?php
     include 'calendar.php';
     $calendar = new Calendar();
-
-
-
-
-
 
     // Check of er resultaten zijn en loop door de resultaten
     if ($result1->num_rows > 0) {
@@ -161,17 +155,18 @@ mysqli_close($db);
         echo "Geen resultaten gevonden.";
     }
 
-
-
     ?>
     <!-- Kalender met navigatieknoppen -->
     <div class="content-home">
-        <a href="?month=<?= $calendar->getPrevMonth() ?>" class="linkOne">Previous Month</a>
+        <a onclick='' href="?month=<?= $calendar->getPrevMonth() ?>" class="linkOne">Previous Month</a>
         <?= $calendar ?>
-        <a href="?month=<?= $calendar->getNextMonth() ?>" class="linkTwo">Next Month</a>
+        <a onclick='' href="?month=<?= $calendar->getNextMonth() ?>" class="linkTwo">Next Month</a>
     </div>
     <!-- Footer -->
+
 </div>
+<p id="warning-text"></p>
+
 </body>
 <footer>
     <div class="footer-style">
@@ -180,4 +175,24 @@ mysqli_close($db);
         <a href = "https://www.instagram.com/denisekookt/?hl=nl"><img class="insta" src="img/insta.png"></a>
     </div>
 </footer>
+<script>
+    let calendarDayElements = document.getElementsByClassName('day_num')
+    let warningElement = document.getElementById('warning-text')
+    let month = document.getElementsByClassName('month-year')[0].innerHTML
+    let warning = false;
+
+    for (let i = 0; i <calendarDayElements.length; i++) {
+        if (calendarDayElements[i].childElementCount === 3){
+            calendarDayElements[i].style.backgroundColor = '#f28482'
+            calendarDayElements[i].style.color = 'black'
+            //warning = true;
+            //warningElement.innerHTML += `Er is een dubbele reservering op ${i} ${month} \n`;
+        }
+    }
+    /*
+    if (!warning){
+        warningElement.innerHTML = '';
+    }
+    */
+</script>
 </html>
