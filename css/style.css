@@ -721,3 +721,6 @@ p{
     margin: 1rem;
 }
 
+.success-message p{
+    font-weight: bold;
+}

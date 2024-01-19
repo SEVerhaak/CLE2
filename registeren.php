@@ -50,14 +50,25 @@ if (isset($_POST['submit'])) {
         $result = mysqli_query($db, $sql);
         // If query succeeded
         if ($result) {
+            // Als de registratie succesvol is, voer dan het volgende uit:
+            $success_message = "Registratie succesvol! U kunt nu inloggen.";
+
+            // Doorverwijzen naar login.php met het succesbericht
+            header("Location: login.php?success=" . urlencode($success_message));
+            exit(); // Zorg ervoor dat de code na de header() niet wordt uitgevoerd.
+
+
+
+
             // Redirect to login page
-            header("Location: login.php");
+//            header("Location: login.php");
             // Exit the code
             $db->close();
         }
 
 
     }
+
 }
 ?>
 

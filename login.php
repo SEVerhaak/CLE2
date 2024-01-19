@@ -115,10 +115,21 @@ if (isset($_POST['submit'])) {
     </div>
 <?php } ?>
 
+
+
 <!-- form -->
 <div class="center-box">
+
+
     <div class="login-container">
         <p>Terug naar de <a href="index.php">Homepagina</a></p>
+        <?php
+        // Controleer of er een succesbericht is ingesteld in de URL
+        if (isset($_GET['success'])) {
+            $success_message = $_GET['success'];
+            echo '<p class="success-message">' . htmlspecialchars($success_message) . '</p>';
+        }
+        ?>
         <h1 class="title">Log in</h1>
         <form class="form-login" action="" method="post">
 
