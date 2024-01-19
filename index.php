@@ -44,6 +44,7 @@ session_start();
         <a href="adminSelectDates.php"><img src="img/trash.png"></a>
     </div>
 <?php } ?>
+<!-- Indexinformatie -->
 <main>
     <div class="block">
     <h1>Welkom bij Denise Kookt!</h1>

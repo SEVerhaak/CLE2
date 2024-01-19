@@ -45,6 +45,7 @@ session_start();
         <a href="adminSelectDates.php"><img src="img/trash.png"></a>
     </div>
 <?php } ?>
+<!-- Contactinformatie -->
 <main>
     <div class="block">
     <div class="contact">

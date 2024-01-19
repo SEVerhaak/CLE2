@@ -45,6 +45,7 @@ session_start();
         <a href="adminSelectDates.php"><img src="img/trash.png"></a>
     </div>
 <?php } ?>
+<!-- Omschrijving over het bedrijf -->
 <main>
     <div class="block">
         <h1>Over Ons</h1>

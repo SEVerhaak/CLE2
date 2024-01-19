@@ -45,6 +45,7 @@ session_start();
         <a href="adminSelectDates.php"><img src="img/trash.png"></a>
     </div>
 <?php } ?>
+<!-- Nieuwsberichten -->
 <main>
     <h1>Nieuws</h1>
     <div class="block">
