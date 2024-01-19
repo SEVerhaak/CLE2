@@ -146,6 +146,7 @@ mysqli_close($db);
                     <h2>Naam gebruiker: <?= $users[$x]['firstName'].' '.$users[$x]['lastName']?></h2>
                     <p>E-mail gebruiker: <?= $users[$x]['email']?></p>
                     <p>Tel gebruiker: <?= $users[$x]['phoneNumber']?></p>
+                    <a id="button-user-edit" href="<?= "editUser.php?id=".$users[$x]['id']; ?>">Edit</a>
                 </div>
             </div>
             <?php } ?>
