@@ -27,6 +27,25 @@
     align-self: flex-start;
     margin: 1rem;
 }
+.content-home button{
+    background-color: #84A59D;
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+    color: #f7EDE2;
+    text-decoration: none;
+    align-self: flex-start;
+    margin: 1rem;
+}
+.content-home button{
+    background-color: #84A59D;
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+    color: #f7EDE2;
+    text-decoration: none;
+    align-self: flex-start;
+    margin: 1rem;
+}
+
 
 .content-home a{
     /*background-color: #84A59D;*/

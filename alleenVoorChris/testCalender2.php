@@ -27,10 +27,10 @@ mysqli_free_result($result);
 $sqlQuery = "SELECT reservationDate FROM reservations";
 $result = $db->query($sqlQuery);
 
-$sqlQuery1 = "SELECT CONCAT(reservationType, ' ', DATE_FORMAT(reservationBeginTime, '%H:%i')) AS planningCatering, reservationDate FROM reservations WHERE reservationType = 'catering'";
+$sqlQuery1 = "SELECT CONCAT(reservationType, ' ', DATE_FORMAT(reservationBeginTime, '%H:%i')) AS planningCatering, reservationDate, id FROM reservations WHERE reservationType = 'catering'";
 $result1 = $db->query($sqlQuery1);
 
-$sqlQuery2 = "SELECT CONCAT(reservationType, ' ', DATE_FORMAT(reservationBeginTime, '%H:%i')) AS planningWorkshop, reservationDate FROM reservations WHERE reservationType = 'workshop'";
+$sqlQuery2 = "SELECT CONCAT(reservationType, ' ', DATE_FORMAT(reservationBeginTime, '%H:%i')) AS planningWorkshop, reservationDate, id FROM reservations WHERE reservationType = 'workshop'";
 $result2 = $db->query($sqlQuery2);
 
 $sqlQuery3 = "SELECT id, reservationDate FROM reservations WHERE userId = 1";
@@ -82,7 +82,7 @@ mysqli_close($db);
     <div class="sidebar">
         <a href="admin.php"><img src="img/home.png"></a>
         <a href="users.php"><img src="img/users.png"></a>
-        <a href="testCalender.php"><img src="img/agenda.png"></a>
+        <a href="testCalender2.php"><img src="img/agenda.png"></a>
         <a href="admin_reservations.php"><img src="img/dollar.png"></a>
         <a href="settings.php"><img src="img/settings.png"></a>
         <a href="adminSelectDates.php"><img src="img/trash.png"></a>
@@ -110,62 +110,65 @@ mysqli_close($db);
             //Haal de reserveringsdatum op
             $reservationDate = $row["reservationDate"];
 
-//          // Voeg de geplande gegevens toe aan de kalender
-//          $calendar->add_event($planning, $reservationDate, 1, 'green');
-            $url = "appointment_details.php"; // Stel hier je gewenste URL in
-            // Voeg een ander evenement toe met een link
-            $calendar->add_event($planning, $reservationDate, 1, 'blue', $url);
+            //Haal de id van de afspraak op
+            $appointmentId = $row["id"];
 
+            // Stel hier je gewenste URL in
+            $url = "appointment_details.php?id=" . $appointmentId;
 
+            // Voeg de geplande gegevens toe aan de kalender
+            $calendar->add_event($planning, $reservationDate, 1, 'green', $url);
         }
+    } else {
+        echo "Geen resultaten gevonden.";
+    }
 
+    // Check of er resultaten zijn en loop door de resultaten
+    if ($result2->num_rows > 0) {
+        while ($row = $result2->fetch_assoc()) {
+            // Haal de geplande gegevens op
+            $planning = $row["planningWorkshop"];
+
+            //Haal de reserveringsdatum op
+            $reservationDate = $row["reservationDate"];
+
+            //Haal de id van de afspraak op
+            $appointmentId = $row["id"];
+
+            // Stel hier je gewenste URL in
+            $url = "appointment_details.php?id=" . $appointmentId;
+
+            // Voeg de geplande gegevens toe aan de kalender
+            $calendar->add_event($planning, $reservationDate, 1, 'blue', $url);
+        }
+    } else {
+        echo "Geen resultaten gevonden.";
+    }
+
+    // Check of er resultaten zijn en loop door de resultaten
+    if ($result3->num_rows > 0) {
+        while ($row = $result3->fetch_assoc()) {
+            // Haal de geplande gegevens op
+            $nietBeschikbaar = $row["reservationDate"];
+
+            // Gebruik de daadwerkelijke ID-kolomnaam uit de tabel
+            $appointmentId = $row["id"];
+
+            // Voeg de geplande gegevens toe aan de kalender
+            $calendar->add_event('Niet beschikbaar', $nietBeschikbaar, 1, 'red');
+        }
     } else {
         echo "Geen resultaten gevonden.";
     }
 
 
 
-
-
-
-
-//
-//    // Check of er resultaten zijn en loop door de resultaten
-//    if ($result2->num_rows > 0) {
-//        while ($row = $result2->fetch_assoc()) {
-//            // Haal de geplande gegevens op
-//            $planning = $row["planningWorkshop"];
-//
-//            //Haal de reserveringsdatum op
-//            $reservationDate = $row["reservationDate"];
-//
-//            // Voeg de geplande gegevens toe aan de kalender
-//            $calendar->add_event($planning, $reservationDate, 1, 'blue');
-//        }
-//    } else {
-//        echo "Geen resultaten gevonden.";
-//    }
-//
-//    // Check of er resultaten zijn en loop door de resultaten
-//    if ($result3->num_rows > 0) {
-//        while ($row = $result3->fetch_assoc()) {
-//            // Haal de geplande gegevens op
-//            $nietBeschikbaar = $row["reservationDate"];
-//            $appointmentId = $row["id"]; // Gebruik de daadwerkelijke ID-kolomnaam uit de tabel
-//
-//            // Voeg de geplande gegevens toe aan de kalender
-//            $calendar->add_event('Niet beschikbaar', $nietBeschikbaar, 1, 'red');
-//        }
-//    } else {
-//        echo "Geen resultaten gevonden.";
-//    }
-
     ?>
     <!-- Kalender met navigatieknoppen -->
     <div class="content-home">
-        <h4 href="?month=<?= $calendar->getPrevMonth() ?>" class="linkOne">Previous Month</h4>
+        <a href="?month=<?= $calendar->getPrevMonth() ?>" class="linkOne">Previous Month</a>
         <?= $calendar ?>
-        <h4 href="?month=<?= $calendar->getNextMonth() ?>" class="linkTwo">Next Month</h4>
+        <a href="?month=<?= $calendar->getNextMonth() ?>" class="linkTwo">Next Month</a>
     </div>
     <!-- Footer -->
 </div>
