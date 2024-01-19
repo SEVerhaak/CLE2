@@ -199,6 +199,7 @@ if (!isset($_SESSION['user'])) {
     </form>
     </div>
     <div class = "info-reservation-box1">
+        <h2 class="title-info-reservation-box">Datums gemarkeerd als niet beschikbaar </h2>
     <?php foreach ($reservations as $index => $reservation) { ?>
         <div class="info-reservation2">
             <h2>Datum: <?= date("D F j, Y", strtotime($reservations[$index]['reservationDate'])) ?></h2>

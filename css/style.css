@@ -285,7 +285,7 @@ button:hover{
     cursor: pointer;
 }
 [type = radio]:checked + div{
-    border: 5px solid #2D3835;
+    border: 3px solid #2D3835;
 }
 
 .flex-people button{
@@ -740,6 +740,38 @@ p{
     background-color: #4d5f5c;
     padding: 2px 8px;
     margin: 0vw 0vw 0vw 0.5vw;
+}
+
+.title-info-reservation-box{
+    margin: 0rem 1rem;
+}
+
+.time-text{
+    margin: inherit;
+}
+
+#prevButton{
+    background-color: transparent;
+    color: #f28482;
+    font-size: 1rem;
+    border: 2px solid #f28482;
+}
+#prevButton:hover{
+    background-color: transparent;
+    color: #a15756;
+    font-size: 1rem;
+    border: 2px solid #a15756;
+
+}
+
+#submit-button{
+    font-size: 1rem;
+}
+
+#button-spacer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 

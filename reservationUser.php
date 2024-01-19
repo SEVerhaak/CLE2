@@ -214,9 +214,9 @@ if (count($settings) === 0) {
                     }
                 } ?>>
                 <div class="available-time">
-                    <p><?php echo date('G:i', strtotime($timeSlots[0][0])) ?>
+                    <p class="time-text"><?php echo date('G:i', strtotime($timeSlots[0][0])) ?>
                         - <?php echo date('G:i', strtotime($timeSlots[0][1])) ?></p>
-                    <p class="price"></p>
+                    <p class="price time-text"></p>
                 </div>
             </label>
             <label>
@@ -227,9 +227,9 @@ if (count($settings) === 0) {
                     }
                 } ?>>
                 <div class="available-time">
-                    <p><?php echo date('G:i', strtotime($timeSlots[1][0])) ?>
+                    <p class="time-text"><?php echo date('G:i', strtotime($timeSlots[1][0])) ?>
                         - <?php echo date('G:i', strtotime($timeSlots[1][1])) ?></p>
-                    <p class="price"></p>
+                    <p class="price time-text"></p>
                 </div>
             </label>
             <div class="flex-people">

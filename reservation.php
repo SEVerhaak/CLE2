@@ -284,9 +284,9 @@ if (count($settings) === 0) {
                     }
                 } ?>>
                 <div class="available-time">
-                    <p><?php echo date('G:i', strtotime($timeSlots[0][0])) ?>
+                    <p class="time-text"><?php echo date('G:i', strtotime($timeSlots[0][0])) ?>
                         - <?php echo date('G:i', strtotime($timeSlots[0][1])) ?></p>
-                    <p class="price"></p>
+                    <p class="price time-text"></p>
                 </div>
             </label>
             <label>
@@ -297,9 +297,9 @@ if (count($settings) === 0) {
                     }
                 } ?>>
                 <div class="available-time">
-                    <p><?php echo date('G:i', strtotime($timeSlots[1][0])) ?>
+                    <p class="time-text"><?php echo date('G:i', strtotime($timeSlots[1][0])) ?>
                         - <?php echo date('G:i', strtotime($timeSlots[1][1])) ?></p>
-                    <p class="price"></p>
+                    <p class="price time-text"></p>
                 </div>
                 <div class="flex-people">
                     <label for="amount_people">Hoe veel mensen?</label>
@@ -414,10 +414,10 @@ if (count($settings) === 0) {
             <label for="extraInfo">Zijn er nog bijzonderheden?</label>
             <textarea class="extraInfo" id="extraInfo" type="text" name="extraInfo" rows="10"></textarea>
         </div>
-
-        <button id="prevButton" type="button">Vorige stap</button>
-        <button id="submit-button" type="submit">Reserveren</button>
-
+        <div id="button-spacer">
+            <button id="prevButton" type="button">Vorige stap</button>
+            <button id="submit-button" type="submit">Reserveren</button>
+        </div>
     </div>
     </form>
 </div>
