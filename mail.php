@@ -8,7 +8,7 @@ require 'src/Exception.php';
 require 'src/PHPMailer.php';
 require 'src/SMTP.php';
 
-function sendEmail($adres, $amountPeople, $service, $reservationBeginTime, $reservationEndTime, $fName, $lName, $extraInfo){
+function sendEmail($adres, $amountPeople, $service, $reservationBeginTime, $reservationEndTime, $fName, $lName, $extraInfo, $reservationDate){
 
 // Create an instance; Pass `true` to enable exceptions
     $mail = new PHPMailer;
@@ -37,7 +37,7 @@ function sendEmail($adres, $amountPeople, $service, $reservationBeginTime, $rese
     $mail->isHTML(true);
 
 // Mail subject
-    $mail->Subject = 'Email from Localhost by CodexWorld';
+    $mail->Subject = 'Reservering Denise Kookt! $';
 
 // Mail body content
     $bodyContent = '<h1>How to Send Email from Localhost using PHP by CodexWorld</h1>';
