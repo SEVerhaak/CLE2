@@ -12,7 +12,7 @@ require_once 'adminmail.php';
 $login = false;
 if (isset($_GET['id'])) {
     $userID = $_GET['id'];
-    $errors[] = [];
+    $errors = [];
 // Is user logged in?
     $sqlUserQuery = "SELECT `id`, `email`, `firstName`, `lastName` FROM `users` WHERE `id` = '$userID'";
     $result = mysqli_query($db, $sqlUserQuery)
@@ -25,9 +25,7 @@ if (isset($_GET['id'])) {
     }
     if (isset($_POST['submit'])) {
         // Server-side validation
-
         $email = $userData[0]['email'];
-
         if (empty($_POST['subject'])) {
             $errors['subject'] = 'Het bericht heeft geen onderwerp!'; // Als email leeg is toon dit
         } else {
@@ -38,7 +36,6 @@ if (isset($_GET['id'])) {
         } else {
             $content = $_POST['content'];
         }
-
         if (empty($errors)) { // Als email en password niet leeg is
             sendAdminEmail($email, $subject, $content);
         }
