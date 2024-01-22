@@ -44,6 +44,7 @@ img{
     padding: 1rem;
     border-bottom: 3px solid #f7EDE2;
     border-top: 3px solid transparent;
+    color: #e1d7d0
 }
 
 .login{
@@ -836,3 +837,13 @@ p{
     color: red;
 }
 
+.selected-admin{
+    background-color: #f28482;
+    color: white;
+}
+
+.selected-user{
+    padding: 1rem !important;
+    border-bottom: 3px solid #f7EDE2 !important;
+    border-top: 3px solid transparent !important;
+}
