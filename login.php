@@ -21,11 +21,11 @@ if (isset($_POST['submit'])) {
     // Server-side validation
     if (isset($_POST['email'], $_POST['password'])) { //Controleren of email en password is ingevuld
         if (empty($_POST['email'])) {
-            $errorEmail = 'Email cannot be empty'; // Als email leeg is toon dit
+            $errorEmail = 'Vul een geldig e-mailadres in'; // Als email leeg is toon dit
         }
 
         if (empty($_POST['password'])) {
-            $errorPassword = 'Password cannot be empty'; // als password leeg is toon dit
+            $errorPassword = 'Vul een geldig wachtwoord in'; // als password leeg is toon dit
         }
     }
 
