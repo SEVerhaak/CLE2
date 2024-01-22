@@ -60,10 +60,10 @@ if (isset($_POST['submit'])) {
                     exit;
                 } else {
                     // Credentials not valid
-                    require_once 'includes/validation.php';
+                    $errorPassword = 'e-mail-adres of wachtwoord is onjuist';
                 }
             } else {
-                require_once 'includes/validation.php';
+                $errorPassword = 'e-mail-adres of wachtwoord is onjuist';
             }
         }
     }
