@@ -190,7 +190,7 @@ if (count($settings) === 0) {
             } ?>
         </p>
 
-        <div class="flex-down">
+        <div class="flex-down" id="firstHidden">
             <label for="date">Voor welke datum?</label>
             <input class="inputSection1" type="date" name="date" id="date-id" min='<?= $currentTimeHTML ?>'
                    value='<?php if (count($errors) > 0 and isset($_POST["date"])) {
@@ -298,6 +298,21 @@ if (count($settings) === 0) {
 
 </script>
 <script>
+    let firstHiddenElement =  document.getElementById('firstHidden')
+    let choiceWorksop = document.getElementById('workshop')
+    let choiceCatering = document.getElementById('catering')
+
+    firstHiddenElement.style.display = 'none';
+    firstHiddenElement.style.visibility = 'hidden';
+    choiceWorksop.addEventListener("click", function () {
+        firstHiddenElement.style.display = 'flex';
+        firstHiddenElement.style.visibility = 'visible';
+    })
+    choiceCatering.addEventListener("click", function () {
+        firstHiddenElement.style.display = 'flex';
+        firstHiddenElement.style.visibility = 'visible';
+    })
+
     let hiddenElement = document.getElementById('hidden-info');
     hiddenElement.style.display = 'none';
     hiddenElement.style.visibility = 'hidden';
