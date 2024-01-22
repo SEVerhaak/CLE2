@@ -782,4 +782,7 @@ p{
     justify-content: space-between;
 }
 
+.error{
+    color: red;
+}
 

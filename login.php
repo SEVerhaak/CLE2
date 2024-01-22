@@ -135,17 +135,17 @@ if (isset($_POST['submit'])) {
 
             <label class="label" for="email">Email</label>
             <input class="input" id="email" type="text" name="email" value="<?= isset($email) ? $email : '' ?>"/>
-            <p>
+            <p class = "error">
                 <?php echo $errorEmail ?>
             </p>
 
-            <label class="label" for="password">Password</label>
+            <label class="label" for="password">Wachtwoord</label>
             <input class="input" id="password" type="password" name="password"/>
-            <p class="help is-danger">
+            <p class="error">
                 <?php echo $errorPassword ?>
             </p>
 
-            <button type="submit" name="submit">Log in With Email</button>
+            <button type="submit" name="submit">Log in</button>
 
         </form>
         <section>

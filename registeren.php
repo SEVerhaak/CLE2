@@ -20,25 +20,25 @@ if (isset($_POST['submit'])) {
     $phoneNumber = mysqli_escape_string($db, $_POST['phoneNumber']);
 
     // Server-side validation
-    if (isset($_POST['firstName'], $_POST['lastName'], $_POST['email'], $_POST['password'], $_POST['phoneNumber'], $_POST['isAdmin'])) {
         if (empty($_POST['firstName'])) {
-            $errorFirstname = 'firstname cannot be empty';
+            $errorFirstname = 'Vul een naam in';
         }
         if (empty($_POST['lastName'])) {
-            $errorLastname = 'lastname cannot be empty';
+            $errorLastname = 'Vul een naam in';
         }
         if (empty($_POST['email'])) {
-            $errorEmail = 'Email cannot be empty';
+            $errorEmail = 'Vul een e-mail in';
         }
         if (empty($_POST['password'])) {
-            $errorPassword = 'password cannot be empty';
+            $errorPassword = 'Vul een wachtwoord in';
         }
         if (empty($_POST['phoneNumber'])) {
-            $errorPhonenumber = 'phoneNumber cannot be empty';
-        } elseif (!isValidPhoneNumber($phoneNumber)) {
-            $errorPhonenumber = 'Invalid phone number';
+            $errorPhonenumber = 'Vul een geldig telefoonnummer in';
         }
-    }
+        elseif (!isValidPhoneNumber($phoneNumber)) {
+            $errorPhonenumber = 'Vul een geldig telefoonnummer in';
+        }
+
 
     // If data valid
     if (empty($errorFirstname) && empty($errorLastname) && empty($errorEmail) && empty($errorPassword) && empty($errorPhonenumber) && empty($errorIsAdmin)) {
@@ -121,50 +121,50 @@ function isValidPhoneNumber($phoneNumber) {
 <!-- form  -->
 <div class="center-box">
     <div class="login-container">
-        <h2 class="title">Register With Email</h2>
+        <h2 class="title">Registreren</h2>
         <form class="form-login" action="" method="post">
 
             <!-- First name -->
-            <p class="warning" >
-                <?php echo $errorFirstname ?>
-            </p>
+
             <label class="label" for="firstName">Voornaam</label>
             <input class="input" id="firstName" type="text" name="firstName"
                    value="<?= isset($firstName) ? $firstName : '' ?>"/>
-
-            <!-- Last name -->
-            <p class="warning">
-                <?php echo $errorLastname ?>
+            <p class="error" >
+                <?php echo $errorFirstname ?>
             </p>
+            <!-- Last name -->
+
             <label class="label" for="lastName">Achternaam</label>
             <input class="input" id="lastName" type="text" name="lastName"
                    value="<?= isset($lastName) ? $lastName : '' ?>"/>
-
-            <!-- Email -->
-            <p class="warning">
-                <?php echo $errorEmail ?>
+            <p class="error">
+                <?php echo $errorLastname ?>
             </p>
+            <!-- Email -->
+
             <label class="label" for="email">Email</label>
             <input class="input" id="email" type="text" name="email"
                    value="<?= isset($email) ? $email : '' ?>"/>
-
-            <!-- Password -->
-            <p class="warning">
-                <?php echo $errorPassword ?>
+            <p class="error">
+                <?php echo $errorEmail ?>
             </p>
+            <!-- Password -->
+
             <label class="label" for="password">Wachtwoord</label>
             <input class="input" id="password" type="password" name="password"/>
-
-            <!-- Phonenumber -->
-            <p class="warning">
-                <?php echo $errorPhonenumber ?>
+            <p class="error">
+                <?php echo $errorPassword ?>
             </p>
+            <!-- Phonenumber -->
+
             <label class="label" for="phoneNumber">Telefoonnummer</label>
             <input class="input" id="phoneNumber" type="number" name="phoneNumber"
                    value="<?= isset($phonenumber) ? $phonenumber : '' ?>"/>
-
+            <p class="error">
+                <?php echo $errorPhonenumber ?>
+            </p>
             <!-- Submit -->
-            <button class="button is-link is-fullwidth" type="submit" name="submit">Register</button>
+            <button class="button is-link is-fullwidth" type="submit" name="submit">Registreer</button>
         </form>
         <section>
             <p>Heb je al een account?<a href="login.php">Inloggen</a></p>

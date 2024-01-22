@@ -218,7 +218,7 @@ if (count($settings) === 0) {
 </div>
 <div class="reservation-box">
     <div id="section1" class="section1">
-        <h1>Wat wil je boeken</h1>
+        <h1>Wat wil je reserveren?</h1>
         <form action="#" method="POST">
             <div class="flex-side">
                 <div class="catering-box">
@@ -302,7 +302,7 @@ if (count($settings) === 0) {
                     <p class="price time-text"></p>
                 </div>
                 <div class="flex-people">
-                    <label for="amount_people">Hoe veel mensen?</label>
+                    <label for="amount_people">Hoe veel personen?</label>
                     <div>
                         <button type="button" class="left-button" id="left-button-id">-</button>
                         <input class="amount-value inputSection1" id="amount_people" type="number"
