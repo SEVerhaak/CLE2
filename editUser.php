@@ -136,8 +136,8 @@ mysqli_close($db);
         <a href="users.php"><img src="img/users.png"></a>
         <a href="testCalender.php"><img src="img/agenda.png"></a>
         <a href="admin_reservations.php"><img src="img/dollar.png"></a>
-        <a href="settings.php"><img src="img/settings.png"></a>
         <a href="adminSelectDates.php"><img src="img/trash.png"></a>
+        <a href="settings.php"><img src="img/settings.png"></a>
     </div>
 <?php } ?>
 <!-- form  -->

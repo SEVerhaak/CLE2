@@ -20,7 +20,7 @@ session_start();
             <div class = "header-links">
                 <a class="header-link-text" href="reservation.php">Reserveren</a>
                 <a class="header-link-text" href="about.php">Over ons</a>
-                <a class="header-link-text" href="news.php">Nieuws</a>
+                <a class="selected-user header-link-text" href="news.php">Nieuws</a>
                 <a class="header-link-text" href="contact.php">Contact</a>
             </div>
         </div>
@@ -41,8 +41,8 @@ session_start();
         <a href="users.php"><img src="img/users.png"></a>
         <a href="testCalender.php"><img src="img/agenda.png"></a>
         <a href="admin_reservations.php"><img src="img/dollar.png"></a>
-        <a href="settings.php"><img src="img/settings.png"></a>
         <a href="adminSelectDates.php"><img src="img/trash.png"></a>
+        <a href="settings.php"><img src="img/settings.png"></a>
     </div>
 <?php } ?>
 <!-- Nieuwsberichten -->
