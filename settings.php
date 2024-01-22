@@ -129,7 +129,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <a href="adminSelectDates.php"><img src="img/trash.png"></a>
     </div>
 <?php } ?>
-<div class="center-box">
+<div class="center-box" style="background: white;">
     <div class="login-container">
         <h1> Instellingen </h1>
         <form method="post" class="form-login">

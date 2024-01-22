@@ -8,12 +8,16 @@ main {
     flex-direction: row;
     margin: 1rem;
     margin-bottom: 3rem;
+    padding: 0vw 20vw;
+    width: 60vw;
+    border-radius: 0rem;
 }
 
 .instaimg {
     padding: 2rem;
     height: 25%;
     width: 25%;
+    border-radius: 3rem;
 }
 
 .instatext {
@@ -26,7 +30,11 @@ main {
 h1 {
     text-align: center;
     background-color: #F7EDE2;
-    width: 50%;
     padding: 1rem 0 1rem 0;
-    border-radius: 1rem;
+    width: 100vw;
+    font-family: 'Libre Baskerville', serif;
+}
+
+.spacer{
+    height: 5vw;
 }

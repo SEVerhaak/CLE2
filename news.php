@@ -60,6 +60,9 @@ session_start();
         <img src="./img/foodpic2.png" alt="Instagram Picture 2" class="instaimg">
         <p class="instatext">Gewoon omdat het woensdag is. Eend, pastinaak, geroosterde pompoen en salade van waterkers. Erbij een heerlijke rode Primitivo! #denisekookt #koken #homecooking #homemade #bijnaherfst #wijnspijs #wijntjeerbij #foodphotography #foodie</p>
     </div>
+    <div class="spacer">
+
+    </div>
 </main>
 </body>
 <footer>
