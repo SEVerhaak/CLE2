@@ -31,6 +31,7 @@
     align-self: flex-start;
     margin: 1rem;
 }
+
 .linkTwo{
     background-color: #84A59D;
     padding: 0.5rem;
@@ -39,4 +40,12 @@
     text-decoration: none;
     align-self: flex-start;
     margin: 1rem;
+}
+
+.linkOne:hover{
+    background-color: #4d5f5c;
+}
+
+.linkTwo:hover{
+    background-color: #4d5f5c;
 }

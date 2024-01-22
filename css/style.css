@@ -55,6 +55,12 @@ img{
     font-size: 0.8rem;
     text-decoration: none;
 }
+.login:hover{
+    background-color: #c9bfb4;
+    color: black;
+}
+
+
 /* footer style */
 footer{
     background-color: #84A59D;
@@ -463,6 +469,11 @@ button:hover{
     color: #f7EDE2;
     text-decoration: none;
 }
+
+.admin-reservation a:hover{
+    background-color: #4d5f5c;
+}
+
 .admin-reservation h2{
     margin: 0;
 }
@@ -488,6 +499,11 @@ button:hover{
     align-self: center;
     margin-bottom: 2rem;
 }
+.admin-text a:hover{
+    background-color: #4d5f5c;
+    color: #f7EDE2;
+}
+
 .message{
     display: flex;
     width: 90%;
@@ -509,6 +525,11 @@ button:hover{
     align-self: flex-start;
     margin: 1rem;
 }
+
+.admin-section3 a:hover {
+    background-color: #4d5f5c;
+}
+
 .person{
     border-radius: 50%;
     background-color: #f7EDE2;
@@ -583,6 +604,12 @@ p{
     cursor: pointer;
     font-size: 0.8rem;
 }
+.info-reservation a:hover{
+    background-color: #4d5f5c;
+    border: 2px solid #4d5f5c;
+}
+
+
 .info-reservation-user a{
     background-color: #84A59D;
     color: #f7EDE2;
@@ -593,6 +620,12 @@ p{
     cursor: pointer;
     font-size: 0.8rem;
 }
+.info-reservation-user a:hover{
+    background-color: #4d5f5c;
+    border: 2px solid #4d5f5c;
+}
+
+
 .info-reservation1 h2{
     margin: 0;
     font-size: 1.5rem;
@@ -623,6 +656,12 @@ p{
     cursor: pointer;
     font-size: 0.8rem;
 }
+
+.info-reservation2 a:hover{
+    border: 2px solid #4d5f5c;
+    background-color: #4d5f5c;
+}
+
 .info-reservation-box{
     margin-left: 3.5rem;
     max-width: 100%;
@@ -697,6 +736,17 @@ p{
     cursor: pointer;
     font-size: 0.8rem;
 }
+.section2 a:hover{
+    background-color: #475b4f;
+    color: #f7EDE2;
+    padding: 16px 32px;
+    border: 2px solid #475b4f;
+    border-radius: 4px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
 .calender-box{
         margin-left: 3.5rem;
         max-width: 100%;
