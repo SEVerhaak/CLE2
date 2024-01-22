@@ -3,6 +3,10 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
+
 // Include library files
 require 'src/Exception.php';
 require 'src/PHPMailer.php';
@@ -37,11 +41,15 @@ function sendEmail($adres, $amountPeople, $service, $reservationBeginTime, $rese
     $mail->isHTML(true);
 
 // Mail subject
-    $mail->Subject = 'Reservering Denise Kookt! $';
+    $mail->Subject = 'Reservering Denise Kookt! voor '.$reservationDate;
 
 // Mail body content
-    $bodyContent = '<h1>How to Send Email from Localhost using PHP by CodexWorld</h1>';
-    $bodyContent .= '<p>This HTML email is sent from the localhost server using PHP by <b>CodexWorld</b></p>';
+    $bodyContent = '<h2>Bedankt voor je reservering bij Denise Kookt!</h2>';
+    $bodyContent .= '<p>Datum reservering: '.$reservationDate. ' om: '.$reservationBeginTime.'-'.$reservationEndTime.'</p>'.
+        '<p>Hoeveelheid mensen: '.$amountPeople.'</p>'.
+        '<p>Type reservering: '.$service.'</p>'.
+        '<p>Bijzonderheden: '.$extraInfo.'</p>'.
+        '<p>Met vriendelijke groet, Denise Kookt!</p>';
     $mail->Body    = $bodyContent;
 
 // Send email

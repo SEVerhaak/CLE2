@@ -157,6 +157,7 @@ if (count($settings) === 0) {
                     // echo "New record created successfully";
                     $_SESSION['user'] = [
                         'id' => $userID];
+
                     sendEmail($email, $amount_people, $service, $timeBegin, $timeEnd, $fName, $lName, $extraInfo, $date);
                     // $amountPeople $service, $reservationBeginTime, $reservationEndTime, $fName, $lName, $extraInfo
                     header('Location: user-reservations.php');

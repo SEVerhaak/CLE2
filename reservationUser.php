@@ -2,6 +2,7 @@
 session_start();
 /** @var array $db */
 /** @var array $takendates */
+/** @var string $emailUser */
 $loggedIn = false;
 
 
@@ -18,6 +19,7 @@ error_reporting(E_ALL);
 // includes
 require_once 'includes/database.php';
 require_once 'includes/functions.php';
+require_once 'mail.php';
 
 $sqlSettings = "SELECT * FROM settings WHERE 1";
 $result = mysqli_query($db, $sqlSettings)
@@ -87,7 +89,20 @@ if (count($settings) === 0) {
 
             if (mysqli_query($db, $sqlReservation)) {
                 // echo "New record created successfully";
-                mail('elisazornig@gmail.com', ' Elisa Zornig', 'Uw reservering is gemaakt');
+                $query = "SELECT * FROM `users` WHERE id = '$userID'";
+                $result = mysqli_query($db, $query)
+                or die('Error '.mysqli_error($db).' with query '.$query);
+
+                if(mysqli_num_rows($result)== 1){
+                    $user = mysqli_fetch_assoc($result);
+                }else{
+                    header('Location: index.php');
+                    exit;
+                }
+                $firstName = $user['firstName'];
+                $lastName = $user['lastName'];
+                $email = $user['email'];
+                sendEmail($email, $amount_people, $service, $timeBegin, $timeEnd, $firstName, $lastName, $extraInfo, $date);
                 header('Location: user-reservations.php');
             } else {
                 //echo "Error: " . $sql . "<br>" . mysqli_error($db);
