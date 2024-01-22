@@ -38,3 +38,14 @@ h1 {
 .spacer{
     height: 5vw;
 }
+
+.block-news{
+    display: flex;
+    flex-direction: row;
+    margin: 1rem;
+    margin-bottom: 3rem;
+    padding: 0vw 20vw;
+    width: 60vw;
+    border-radius: 0rem;
+    background-color: #F7EDE2;
+}
