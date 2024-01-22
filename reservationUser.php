@@ -87,6 +87,7 @@ if (count($settings) === 0) {
 
             if (mysqli_query($db, $sqlReservation)) {
                 // echo "New record created successfully";
+                mail('elisazornig@gmail.com', ' Elisa Zornig', 'Uw reservering is gemaakt');
                 header('Location: user-reservations.php');
             } else {
                 //echo "Error: " . $sql . "<br>" . mysqli_error($db);

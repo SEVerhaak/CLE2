@@ -2,6 +2,8 @@
 session_start();
 /** @var array $db */
 /** @var array $takendates */
+/** @var string $emailUser */
+
 
 if (isset($_SESSION['user'])){
     header('location: reservationUser.php');
@@ -16,6 +18,7 @@ error_reporting(E_ALL);
 // includes
 require_once 'includes/database.php';
 require_once 'includes/functions.php';
+require_once 'mail.php';
 
 $sqlUserID = "SELECT * FROM settings WHERE 1";
 $result = mysqli_query($db, $sqlUserID)
@@ -154,7 +157,10 @@ if (count($settings) === 0) {
                     // echo "New record created successfully";
                     $_SESSION['user'] = [
                         'id' => $userID];
+                    sendEmail($email, $amount_people, $service, $timeBegin, $timeEnd, $fName, $lName, $extraInfo);
+                    // $amountPeople $service, $reservationBeginTime, $reservationEndTime, $fName, $lName, $extraInfo
                     header('Location: user-reservations.php');
+
                 } else {
                     //echo "Error: " . $sql . "<br>" . mysqli_error($db);
                     $errorMessage = "An error has occurred";
