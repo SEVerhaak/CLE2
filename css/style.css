@@ -27,6 +27,10 @@ body{
         padding: 0.3rem;
     }
 
+    .navbar{
+        display: none;
+    }
+
     .header-link-text {
         text-decoration: none;
         color: #f7EDE2;
