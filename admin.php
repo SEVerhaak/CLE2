@@ -18,7 +18,7 @@ while ($reservation = mysqli_fetch_assoc($result)) {
     $reservations[] = $reservation;
 }
 
-$queryAdminBox = "SELECT reservationDate, amountPeople, reservationType, id FROM reservations WHERE amountPeople != '0' ORDER BY reservationDate LIMIT 2";
+$queryAdminBox = "SELECT reservationDate, amountPeople, reservationType, id FROM reservations WHERE amountPeople != '0' ORDER BY reservationDate LIMIT 5";
 $resultAdminBox = mysqli_query($db, $queryAdminBox) or die('Error ' . htmlentities(mysqli_error($db)) . ' with query ' . htmlentities($query));
 
 $reservationsAdminBox = [];
@@ -82,32 +82,18 @@ mysqli_close($db);
     </div>
 <?php } ?>
 <div class="admin-box">
-    <section class="admin-section1">
-        <div class="admin-reservations">
+    <section class="admin-section3">
             <h1>Openstaande reserveringen</h1>
+            <?php for($x = 0; $x < 5; $x++) { ?>
             <div class="admin-reservation">
-                <h2><?= $reservationsAdminBox[0]["reservationDate"] ?></h2>
+                <h2><?= $reservationsAdminBox[$x]["reservationDate"] ?></h2>
                 <div>
-                    <p><?php echo $reservationsAdminBox[0]["amountPeople"] . ' personen, ' . $reservationsAdminBox[0]["reservationType"] ?> </p>
-                    <a href="edit.php?id=<?=$reservationsAdminBox[0]["id"]?>"> Details </a>
+                    <p><?php echo $reservationsAdminBox[$x]["amountPeople"] . ' personen, ' . $reservationsAdminBox[0]["reservationType"] ?> </p>
+                    <a href="edit.php?id=<?=$reservationsAdminBox[$x]["id"]?>"> Details </a>
                 </div>
             </div>
-            <div class="admin-reservation">
-                <h2><?= $reservationsAdminBox[1]["reservationDate"] ?></h2>
-                <div>
-                    <p><?php echo $reservationsAdminBox[1]["amountPeople"] . ' personen, ' . $reservationsAdminBox[0]["reservationType"] ?> </p>
-                    <a href="edit.php?id=<?=$reservationsAdminBox[1]["id"]?>"> Details </a>
-                </div>
-            </div>
-        </div>
-        <div class="admin-reservations">
-            <h1>Agenda</h1>
-            <div class = "calender">
-                <img  src = "img/leftButton.png">
-                <a href = "testCalender.php" class = "img_a" ><img  src = "img/calender.png" class = "calender_img"></a>
-                <img  src = "img/rightButton.png">
-            </div>
-        </div>
+            <?php } ?>
+
     </section>
     <section class="admin-section2">
         <h1>Welkom, admin</h1>
@@ -135,9 +121,10 @@ mysqli_close($db);
         </script>
     </section>
 
-    <section class="admin-section3">
+    <section class="admin-section1">
+        <div class = "admin-reservations">
         <h1>Gebruikers</h1>
-        <?php for($x = 0; $x < 5; $x++) { ?>
+        <?php for($x = 0; $x < 2; $x++) { ?>
             <div class = "message">
                 <div class = "person">
                     <h1> <?= mb_strimwidth($users[$x]['firstName'], 0, 1).'.'.mb_strimwidth($users[$x]['lastName'], 0, 1).'.'; ?></h1>
@@ -146,11 +133,20 @@ mysqli_close($db);
                     <h2>Naam gebruiker: <?= $users[$x]['firstName'].' '.$users[$x]['lastName']?></h2>
                     <p>E-mail gebruiker: <?= $users[$x]['email']?></p>
                     <p>Tel gebruiker: <?= $users[$x]['phoneNumber']?></p>
-                    <a id="button-user-edit" href="<?= "editUser.php?id=".$users[$x]['id']; ?>">Edit</a>
+                    <a class = "button-user-edit" id="button-user-edit" href="<?= "editUser.php?id=".$users[$x]['id']; ?>">Edit</a>
                 </div>
             </div>
             <?php } ?>
-        <a href = "users.php">Alle gebruikers</a>
+        <a class = "button-user-edit" href = "users.php">Alle gebruikers</a>
+        </div>
+        <div class="admin-reservations">
+            <h1>Agenda</h1>
+            <div class = "calender">
+                <img  src = "img/leftButton.png">
+                <a href = "testCalender.php" class = "img_a" ><img  src = "img/calender.png" class = "calender_img"></a>
+                <img  src = "img/rightButton.png">
+            </div>
+        </div>
     </section>
 </div>
 </body>

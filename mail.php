@@ -49,6 +49,8 @@ function sendEmail($adres, $amountPeople, $service, $reservationBeginTime, $rese
         '<p>Hoeveelheid mensen: '.$amountPeople.'</p>'.
         '<p>Type reservering: '.$service.'</p>'.
         '<p>Bijzonderheden: '.$extraInfo.'</p>'.
+        '<p>Binnekort krijgt u nog een mail met meer informatie </p>'.
+        '<p>Voor meer vragen mail: info@denisekookt.nl</p>'.
         '<p>Met vriendelijke groet, Denise Kookt!</p>';
     $mail->Body    = $bodyContent;
 
