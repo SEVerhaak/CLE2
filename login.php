@@ -92,6 +92,36 @@ if (isset($_POST['submit'])) {
                 <a class="header-link-text" href="contact.php">Contact</a>
             </div>
         </div>
+        <div class="navbar">
+            <div class="containers nav-container">
+                <input class="checkbox" type="checkbox" name="" id="" />
+                <div class="hamburger-lines">
+                    <span class="line line1"></span>
+                    <span class="line line2"></span>
+                    <span class="line line3"></span>
+                </div>
+                <div class="logo">
+                    <a href = "index.php"><img class="logo" src="img/logo_dk.png"></a>
+                </div>
+                <div class="menu-items">
+                    <li><a class="header-link-text" href="reservation.php">Reserveren</a></li>
+                    <li><a class="header-link-text" href="about.php">Over ons</a></li>
+                    <li><a class="header-link-text" href="news.php">Nieuws</a></li>
+                    <li><a class="header-link-text" href="contact.php">Contact</a></li>
+                    <br>
+                    <br>
+                    <div class="nav-left-mobile">
+                        <?php if(!isset($_SESSION['user'])){?>
+                            <a class="login-mobile" href="login.php">Login</a>
+                        <?php }else{ ?>
+                            <a class="login-mobile" href = "logout.php">Log uit</a>
+                            <a class="login-mobile" href = "user-reservations.php">Mijn reserveringen</a>
+                        <?php } ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="nav-left">
             <?php if(!isset($_SESSION['user'])){?>
                 <a class="login" href="login.php">Login</a>
@@ -157,7 +187,7 @@ if (isset($_POST['submit'])) {
 </body>
 <footer>
     <div class="footer-style">
-        <img class="logo" src="img/logo_dk.png">
+        <img class="logo-mobile" src="img/logo_dk.png">
         <p class="footer-main-text">Denise Kookt!</p>
         <a href = "https://www.instagram.com/denisekookt/?hl=nl"><img class="insta" src="img/insta.png"></a>
     </div>
