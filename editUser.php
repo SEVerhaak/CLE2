@@ -189,7 +189,10 @@ mysqli_close($db);
             </select>
             <!-- Submit -->
             <input type = "hidden" name = "id" value = "<?= htmlentities($index) ?>" />
+            <div class="flex-side">
+                <a href="admin.php">Terug</a>
             <button class="button is-link is-fullwidth" type="submit" name="submit">Opslaan</button>
+            </div>
         </form>
     </div>
 </div>

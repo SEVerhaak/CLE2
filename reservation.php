@@ -354,7 +354,7 @@ if (count($settings) === 0) {
             <label for="lName">Achternaam</label>
             <input class="inputSection2" id="lName" type="text" name="lName"
                    value='<?php if (count($errors) > 0 and isset($_POST["lName"])) {
-                       echo htmlentities($_POST['fName']);
+                       echo htmlentities($_POST['lName']);
                    }
                    ?>'>
         </div>
@@ -419,7 +419,10 @@ if (count($settings) === 0) {
         </p>
         <div class="extra-info-form">
             <label for="extraInfo">Zijn er nog bijzonderheden?</label>
-            <textarea class="extraInfo" id="extraInfo" type="text" name="extraInfo" rows="10"></textarea>
+            <textarea class="extraInfo" id="extraInfo" type="text" name="extraInfo" rows="10"><?php if (count($errors) > 0 and isset($_POST["extraInfo"])) {
+                    echo htmlentities($_POST['extraInfo']);
+                }
+                ?></textarea>
         </div>
         <div id="button-spacer">
             <button id="prevButton" type="button">Vorige stap</button>
