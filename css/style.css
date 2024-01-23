@@ -528,10 +528,15 @@ button:hover{
 .button-user-edit {
     background-color: #84A59D;
     padding: 0.5rem;
+    margin: 1rem;
     border-radius: 0.3rem;
     color: #f7EDE2;
     text-decoration: none;
     align-self: flex-start;
+}
+.button-user-edit:hover {
+    background-color: #4d5f5c;
+    margin: 1rem;
 }
 
 .admin-section3 a:hover {
