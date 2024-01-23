@@ -2,9 +2,8 @@
 <link rel="stylesheet" href="css/calendar.css">
 <!-- Code voor de interactieve kalender -->
 <?php
-include 'includes/functions.php';
 
-adminCheck();
+//adminCheck();
 
 class Calendar {
 
