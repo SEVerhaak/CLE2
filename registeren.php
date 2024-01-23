@@ -36,6 +36,17 @@ if (isset($_POST['submit'])) {
         }
         if (empty($_POST['email'])) {
             $errorEmail = 'Vul een e-mail in';
+        } else {
+            //check of email al in gebruik is
+            $sqlEmailCheck = "SELECT * FROM users WHERE email LIKE '$email'";
+            $sqlEmailCheckResult = mysqli_query($db, $sqlEmailCheck)
+            or die('Error ' . mysqli_error($db) . ' with query ' . $sqlEmailCheck);
+            $emailMatch = [];
+            while ($row = mysqli_fetch_assoc($sqlEmailCheckResult))
+                $emailMatch[] = $row;
+            if (count($emailMatch) > 0) {
+                $errorEmail = 'E-Mail adres is al in gebruik of niet geldig';
+            }
         }
         if (empty($_POST['password'])) {
             $errorPassword = 'Vul een wachtwoord in';
