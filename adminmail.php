@@ -8,6 +8,9 @@ use PHPMailer\PHPMailer\Exception;
 require 'src/Exception.php';
 require 'src/PHPMailer.php';
 require 'src/SMTP.php';
+require 'includes/functions.php';
+
+adminCheck();
 
 function sendAdminEmail($adres, $subject, $content)
 {
@@ -49,7 +52,7 @@ function sendAdminEmail($adres, $subject, $content)
     if (!$mail->send()) {
         echo 'Message could not be sent. Mailer Error: ' . $mail->ErrorInfo;
     } else {
-        header("location: mailsucces.php");
+        header("location: mailsucces.php?id=");
     }
 }
 

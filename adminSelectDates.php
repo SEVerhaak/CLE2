@@ -8,20 +8,13 @@ session_start();
 require_once 'includes/database.php';
 require_once 'includes/functions.php';
 
-
 // tijdelijke debug opties
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
 // controleer of de gebruiker ingelogd is en admin is
-if (!isset($_SESSION['user'])) {
-    header('location: index.php');
-} else if (!isset($_SESSION['user']['admin'])) {
-    header('location: index.php');
-} else if ($_SESSION['user']['admin'] !== '1') {
-    header('location: index.php');
-} else {
+if (adminCheck()){
     // query om alle reserveringen die gemaakt zijn om datums te blokeren eruit te halen
     $query = "SELECT reservations.id, amountPeople, reservationDate, reservationBeginTime, reservationEndTime, reservationType, extraInfo, users.firstName, users.lastName, users.phoneNumber, users.email FROM `reservations` JOIN users on userId = users.id WHERE amountPeople = '0' ORDER by reservationDate ";
     $result = mysqli_query($db, $query) or die('Error ' . htmlentities(mysqli_error($db)) . ' with query ' . htmlentities($query));

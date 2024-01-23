@@ -1,12 +1,13 @@
 <!-- Verbinding met de Database maken en de reserveringen ophalen -->
 <?php
 session_start();
-if(!isset($_SESSION['user']['admin'])){
-    header('Location: index.php');
-}
+
 /** @var mysqli $db */
 
 require_once 'includes/database.php';
+require 'includes/functions.php';
+
+adminCheck();
 
 $query = "SELECT * FROM reservations";
 

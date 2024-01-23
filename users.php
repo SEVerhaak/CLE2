@@ -1,9 +1,9 @@
 
 <?php
 session_start();
-if(!isset($_SESSION['user'])){
-    header('Location: index.php');
-}
+require 'includes/functions.php';
+
+adminCheck();
 /** @var mysqli $db */
 
 require_once 'includes/database.php';
@@ -151,7 +151,7 @@ mysqli_close($db);
                 }
             }
             // als visiblecount gelijk is aan 2 zijn alleen de buttons in de div nog zichtbaar en kan de hele div ontzichtbaar gemaakt worden
-            if (visibleCount === 2){
+            if (visibleCount === 3){
                 boxDiv[j].style.display = 'none'
             } else {
                 boxDiv[j].style.display = ''

@@ -17,6 +17,22 @@ function takenDatesCheckerDataFetch($db){
     return $takenDates;
 }
 
+function adminCheck(){
+    if(!isset($_SESSION['user']['admin'])){
+        header('Location: index.php');
+    } else {
+        return true;
+    }
+}
+
+function loggedInUser(){
+    if(!isset($_SESSION['user']['id'])){
+        header('Location: index.php');
+    } else {
+        return true;
+    }
+}
+
 ?>
 
 

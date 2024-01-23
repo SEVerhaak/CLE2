@@ -854,3 +854,14 @@ p{
     border-bottom: 3px solid #f7EDE2 !important;
     border-top: 3px solid transparent !important;
 }
+
+#prevButton-link{
+    color: #f28482;
+    margin: 1rem;
+    text-decoration: none;
+}
+#prevButton-link:hover{
+    color: #e07b78;
+    margin: 1rem;
+    text-decoration: none;
+}

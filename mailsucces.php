@@ -5,16 +5,14 @@ ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
+
+
 /** @var mysqli $db */
 require_once 'includes/database.php';
 require_once 'adminmail.php';
+require 'includes/functions.php';
 
-if (isset($_GET['id'])) {
-
-
-} else {
-    header("location:admin.php");
-}
+adminCheck();
 
 ?>
 <!doctype html>

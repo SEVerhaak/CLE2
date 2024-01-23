@@ -1,12 +1,13 @@
 
 <?php
 session_start();
-if (!isset($_SESSION['user'])) {
-    header('Location: index.php');
-}
+
 /** @var mysqli $db */
 
 require_once 'includes/database.php';
+require 'includes/functions.php';
+
+adminCheck();
 
 $query = "SELECT reservations.id, amountPeople, reservationDate, reservationBeginTime, reservationEndTime, reservationType, extraInfo, users.firstName, users.lastName, users.phoneNumber, users.email FROM `reservations` JOIN users on userId = users.id WHERE amountPeople != '0' ORDER by reservationDate ";
 $result = mysqli_query($db, $query) or die('Error ' . htmlentities(mysqli_error($db)) . ' with query ' . htmlentities($query));
