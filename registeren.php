@@ -3,10 +3,6 @@ session_start();
 /** @var mysqli $db */
 require_once "includes/database.php";
 
-ini_set('display_errors', '1');
-ini_set('display_startup_errors', '1');
-error_reporting(E_ALL);
-
 $currentTime = time();
 //huidige tijd met SQL&HTML formatting
 $currentTimeSQL = date("Y-m-d h:i:s", $currentTime);

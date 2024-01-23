@@ -11,10 +11,6 @@ if (isset($_SESSION['user'])) {
     $userID = intval($_SESSION['user']['id']);
 }
 
-// tijdelijke error reporting opties
-ini_set('display_errors', '1');
-ini_set('display_startup_errors', '1');
-error_reporting(E_ALL);
 
 // includes
 require_once 'includes/database.php';

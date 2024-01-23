@@ -4,10 +4,6 @@
 require_once 'includes/database.php';
 require 'includes/functions.php';
 
-ini_set('display_errors', '1');
-ini_set('display_startup_errors', '1');
-error_reporting(E_ALL);
-
 if(!isset($_GET['id'])){
     header('Location: index.php');
     exit;
