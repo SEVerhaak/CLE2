@@ -3,6 +3,14 @@ session_start();
 /** @var mysqli $db */
 require_once "includes/database.php";
 
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
+
+$currentTime = time();
+//huidige tijd met SQL&HTML formatting
+$currentTimeSQL = date("Y-m-d h:i:s", $currentTime);
+
 $errorFirstname = '';
 $errorLastname = '';
 $errorEmail = '';
@@ -46,7 +54,7 @@ if (isset($_POST['submit'])) {
         $password = password_hash("$password", PASSWORD_BCRYPT, ['cost' => 12]);
 
         // store the new user in the database.
-        $sql = "INSERT INTO users (firstName, lastName, email, password, phoneNumber, isAdmin) VALUES ('$firstName', '$lastName', '$email', '$password', '$phoneNumber', '0')";
+        $sql = "INSERT INTO users (firstName, lastName, email, password, phoneNumber, creationDate ,isAdmin) VALUES ('$firstName', '$lastName', '$email', '$password', '$phoneNumber', '$currentTimeSQL', '0')";
 
         $result = mysqli_query($db, $sql);
 

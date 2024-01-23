@@ -92,6 +92,8 @@ mysqli_close($db);
             </div>
             <a href = "deleteUser.php?id=<?= $users[$index]['id']?>">Verwijder gebruiker</a>
             <a href = "editUser.php?id=<?= $users[$index]['id']?>">Verander gebruiker</a>
+            <a href = "adminmailpage.php?id=<?= $users[$index]['id']?>">Stuur een bericht</a>
+
         </div>
     <?php } ?>
 </div>
