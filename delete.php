@@ -1,8 +1,10 @@
 <?php
+include 'includes/functions.php';
+
 session_start();
-if(!isset($_SESSION['user']['admin'])){
-    header('Location: index.php');
-}
+
+adminCheck();
+
 $reservationId = $_GET['id'];
 $page = $_GET['page'];
 /** @var mysqli $db */

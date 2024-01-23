@@ -2,6 +2,10 @@
 <link rel="stylesheet" href="css/calendar.css">
 <!-- Code voor de interactieve kalender -->
 <?php
+include 'includes/functions.php';
+
+adminCheck();
+
 class Calendar {
 
     private $active_year, $active_month, $active_day;

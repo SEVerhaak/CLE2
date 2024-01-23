@@ -2,15 +2,16 @@
 /** @var mysqli $db */
 // Setup connection with database
 require_once 'includes/database.php';
+include 'includes/functions.php';
 
 if(!isset($_GET['id'])){
     header('Location: index.php');
     exit;
 }
 session_start();
-if(!isset($_SESSION['user'])){
-    header('Location: index.php');
-}
+
+adminCheck();
+
 // check of alles is ingevuld
 $firstName = '';
 $lastName = '';

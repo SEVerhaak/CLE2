@@ -10,6 +10,10 @@ require_once 'includes/database.php';
 require_once 'adminmail.php';
 
 $login = false;
+
+if (!isset($_SESSION['user']['admin'])) {
+    header('Location: index.php');
+}
 if (isset($_GET['id'])) {
     $userID = $_GET['id'];
     $errors = [];
@@ -23,13 +27,13 @@ if (isset($_GET['id'])) {
     if (count($userData) === 0) {
         //header("Location: index.php");
     }
-    if (isset($_POST['submit'])) {
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Server-side validation
         $email = $userData[0]['email'];
         if (empty($_POST['subject'])) {
             $errors['subject'] = 'Het bericht heeft geen onderwerp!'; // Als email leeg is toon dit
         } else {
-            $subject = $_POST['subject'];
+            $subject = mysqli_real_escape_string($_POST['subject']);
         }
         if (empty($_POST['content'])) {
             $errors['content'] = 'het bericht heeft geen content!'; // Als email leeg is toon dit
@@ -55,7 +59,7 @@ if (isset($_GET['id'])) {
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/style.css">
 
-    <title>Log in</title>
+    <title>Admin Mail</title>
 </head>
 <!-- Header -->
 <header>
@@ -98,7 +102,8 @@ if (isset($_GET['id'])) {
 
 
     <div class="login-container">
-        <h1 class="title">Email versturen</h1>
+        <h1 class="title">Email versturen
+            naar: <?= ' ' . $userData[0]['firstName'] . ' ' . $userData[0]['lastName'] ?></h1>
         <form class="form-login" action="" method="post">
 
             <label class="label" for="email">Email</label>
@@ -118,8 +123,10 @@ if (isset($_GET['id'])) {
                 <?php echo '' ?>
             </p>
             <div class="flex-side">
-                <a href="admin.php">Terug</a>
-                <button type="submit" name="submit">Verstuur</button>
+                <a id="prevButton-link" href="users.php">Vorige</a>
+                <button id="submit" type="submit">Versturen</button>
+                <!-- <a href="admin.php">Terug</a>
+                <button type="submit" name="submit">Verstuur</button> -->
             </div>
         </form>
     </div>

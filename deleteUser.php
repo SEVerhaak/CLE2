@@ -1,8 +1,8 @@
 <?php
 session_start();
-if(!isset($_SESSION['user'])){
-    header('Location: index.php');
-}
+include 'includes/functions.php';
+
+session_start();
 $userId = $_GET['id'];
 /** @var mysqli $db */
 

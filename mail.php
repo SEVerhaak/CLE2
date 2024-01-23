@@ -12,6 +12,8 @@ require 'src/Exception.php';
 require 'src/PHPMailer.php';
 require 'src/SMTP.php';
 
+adminCheck();
+
 function sendEmail($adres, $amountPeople, $service, $reservationBeginTime, $reservationEndTime, $fName, $lName, $extraInfo, $reservationDate){
 
 // Create an instance; Pass `true` to enable exceptions

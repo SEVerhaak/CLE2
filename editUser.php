@@ -2,6 +2,7 @@
 /** @var mysqli $db */
 // Setup connection with database
 require_once 'includes/database.php';
+require 'includes/functions.php';
 
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
@@ -12,9 +13,8 @@ if(!isset($_GET['id'])){
     exit;
 }
 session_start();
-if(!isset($_SESSION['user'])){
-    header('Location: index.php');
-}
+adminCheck();
+
 // check of alles is ingevuld
 $errorFirstname = '';
 $errorLastname = '';
