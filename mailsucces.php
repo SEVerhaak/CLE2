@@ -9,10 +9,10 @@ error_reporting(E_ALL);
 
 /** @var mysqli $db */
 require_once 'includes/database.php';
-require_once 'adminmail.php';
-require 'includes/functions.php';
+//require_once 'adminmail.php';
+// require 'includes/functions.php';
 
-adminCheck();
+//adminCheck();
 
 ?>
 <!doctype html>

@@ -18,7 +18,7 @@ if (isset($_GET['id'])) {
     $userID = $_GET['id'];
     $errors = [];
 // Is user logged in?
-    $sqlUserQuery = "SELECT `id`, `email`, `firstName`, `lastName` FROM `users` WHERE `id` = '$userID'";
+    $sqlUserQuery = "SELECT id, email, firstName, lastName FROM `users` WHERE `id` = '$userID'";
     $result = mysqli_query($db, $sqlUserQuery)
     or die('Error ' . mysqli_error($db) . ' with query ' . $sqlUserQuery);
     $userData = [];
@@ -33,7 +33,7 @@ if (isset($_GET['id'])) {
         if (empty($_POST['subject'])) {
             $errors['subject'] = 'Het bericht heeft geen onderwerp!'; // Als email leeg is toon dit
         } else {
-            $subject = mysqli_real_escape_string($_POST['subject']);
+            $subject = mysqli_real_escape_string($db, $_POST['subject']);
         }
         if (empty($_POST['content'])) {
             $errors['content'] = 'het bericht heeft geen content!'; // Als email leeg is toon dit
