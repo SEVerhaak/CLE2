@@ -8,10 +8,6 @@ session_start();
 require_once 'includes/database.php';
 require_once 'includes/functions.php';
 
-// tijdelijke debug opties
-ini_set('display_errors', '1');
-ini_set('display_startup_errors', '1');
-error_reporting(E_ALL);
 
 // controleer of de gebruiker ingelogd is en admin is
 if (adminCheck()){

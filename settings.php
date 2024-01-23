@@ -6,11 +6,6 @@ if(!isset($_SESSION['user'])){
 //session_start();
 /** @var array $db */
 /** @var array $takendates */
-
-// tijdelijke error reporting opties
-ini_set('display_errors', '1');
-ini_set('display_startup_errors', '1');
-error_reporting(E_ALL);
 // includes
 require_once 'includes/database.php';
 require_once 'includes/functions.php';
