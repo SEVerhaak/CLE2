@@ -49,3 +49,7 @@ main{
     margin-top:0;
     font-family: 'Libre Baskerville', serif;
 }
+
+.top {
+    margin-bottom: 0;
+}
